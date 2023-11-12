@@ -14,15 +14,42 @@ function SignupModal({ isVisible, onClose }) {
     zipCode: '',
     role: 'CLIENT', // Default to CLIENT
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement your submit logic here
-    // This would include validation and sending data to your backend
+    setIsLoading(true);
+    setError('');
+
+    try {
+
+      const response = await fetch('https://backend.com/signup', {//correct url to correct backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        console.log('Account created:', data);
+        onClose();
+      } else {
+        setError(data.message || 'An error occurred while creating the account.');
+      }
+    } catch (error) {
+      setError('Failed to connect to the server.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!isVisible) return null;
@@ -46,7 +73,8 @@ function SignupModal({ isVisible, onClose }) {
             <option value="COACH">Coach</option>
           </select>
           
-          <button type="submit">REGISTER</button>
+          <button type="submit" diasbled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
+          {error && <div className='error-message'>{error}</div>}
         </form>
       </div>
     </div>

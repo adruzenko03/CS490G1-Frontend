@@ -11,6 +11,11 @@ import Workouts from './pages/Workouts';
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isSignupVisible, setSignupVisible] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const onLoginSuccess = (userData) => {
+    setUser(userData);
+  }
 
   const toggleLoginModal = () => {
     setLoginVisible(!isLoginVisible);
