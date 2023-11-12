@@ -4,8 +4,7 @@ import QuoteSection from "../Components/QuoteSection";
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
-        <QuoteSection />
+      <QuoteSection />
     </div>
   );
 }

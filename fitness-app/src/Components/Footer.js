@@ -1,9 +1,10 @@
 import React from 'react';
 import './Footer.css';
-function Footer() {
+function Footer({ onLoginClick, onSignupClick }) {
   return (
     <div className="footer">
-      <div className="login-signup">LOGIN / SIGNUP</div>
+      <div className="login" onClick={onLoginClick}>LOGIN</div>
+      <div className="signup" onClick={onSignupClick}>SIGNUP</div>
     </div>
   );
 }
