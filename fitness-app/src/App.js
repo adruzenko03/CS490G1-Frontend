@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Coaches from './pages/Coaches';
 import Home from './pages/Home';
 import Workouts from './pages/Workouts';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
