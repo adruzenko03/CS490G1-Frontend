@@ -39,7 +39,7 @@ function ClientSurvey({ onClose }){
           // Process the response if needed
           const data = await response.json();
           console.log(data);
-          
+
           onClose();
         } catch (error) {
           setError('A network error occurred. Please try again later.');
@@ -90,8 +90,10 @@ function ClientSurvey({ onClose }){
             <option value="improve-endurance">Improve Endurance</option>
             </select>
         </div>
-  
-        <button type="submit" className="finish-button">FINISH</button>
+        {error && <div className="alert aler-danger">{error}</div>}
+        <button type="submit" className="finish-button" disabled={isLoading}>
+            {isLoading ? 'Submitting...' : 'FINISH'}
+        </button>
         </form>
     </div>
     );

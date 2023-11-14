@@ -13,10 +13,6 @@ function CoachSurvey({ onClose }) {
       const [isLoading, setIsLoading] = useState(false);
       const [error, setError] = useState('');
     
-      const handleInputChange = (e) => {
-        setSurveyData({ ...surveyData, [e.target.name]: e.target.value });
-      };
-    
       const handleGoalsChange = (e) => {
         const { value, checked } = e.target;
         setSurveyData({
@@ -33,7 +29,7 @@ function CoachSurvey({ onClose }) {
         setError('');
     
         try {
-          const response = await fetch('https://localhost:3000/coach-survey', { // correct URL to backend endpoint
+          const response = await fetch('https://localhost:3000/coach-survey', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -101,7 +97,10 @@ function CoachSurvey({ onClose }) {
               Enhance Flexibility
             </label>
           </div>
-          <button type="submit">FINISH</button>
+          {error && <div className="alert aler-danger">{error}</div>}
+          <button type="submit" className="finish-button" disabled={isLoading}>
+            {isLoading ? 'Submitting...' : 'FINISH'}
+        </button>
         </form>
       </div>
     </div>

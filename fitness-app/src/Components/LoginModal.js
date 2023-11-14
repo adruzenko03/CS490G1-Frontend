@@ -11,7 +11,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError('');
     try { 
-      const response = await fetch('https://backend.com/login' , {//correct url to correct backend URL
+      const response = await fetch('https://localhost:3000/login' , {//TEST USING POSTMAN
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',

@@ -3,7 +3,7 @@ import './Navbar.css';
 import Footer from './Footer';
 import { Link } from "react-router-dom"
 
-function Navbar({ onLoginClick, onSignupClick }) {
+function Navbar({ onLoginClick, onSignupClick, userRole }) {
   return (
     <div className="navbar">
       <div className="links">
@@ -11,7 +11,7 @@ function Navbar({ onLoginClick, onSignupClick }) {
         <Link to='/Workouts'>WORKOUTS</Link>
         <Link to='Coaches'>COACHES</Link>
       </div>
-      <Footer onLoginClick={onLoginClick} onSignupClick={onSignupClick}/>
+      <Footer onLoginClick={onLoginClick} onSignupClick={onSignupClick} userRole={userRole}/>
     </div>
   );
 }
