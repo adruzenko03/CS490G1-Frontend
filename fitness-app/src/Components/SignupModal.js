@@ -33,7 +33,7 @@ function SignupModal({ isVisible, onClose }) {
 
     try {
 
-      const response = await fetch('https://backend.com/signup', {//correct url to correct backend URL
+      const response = await fetch('http://localhost:3000/signup', {//correct url to correct backend URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

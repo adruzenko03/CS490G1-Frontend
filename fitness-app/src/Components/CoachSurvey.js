@@ -33,7 +33,7 @@ function CoachSurvey({ onClose }) {
         setError('');
     
         try {
-          const response = await fetch('https://backend.com/coach-survey', { // correct URL to backend endpoint
+          const response = await fetch('https://localhost:3000/coach-survey', { // correct URL to backend endpoint
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

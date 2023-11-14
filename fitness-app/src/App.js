@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import Workouts from './pages/Workouts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isSignupVisible, setSignupVisible] = useState(false);
