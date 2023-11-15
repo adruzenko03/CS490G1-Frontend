@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import "./Workouts.css";
 
-function Workouts(){
+function Workouts() {
   return (
-    <h1>Workouts</h1>
-  )
+    <div className="Workout-page">
+      <div className="header">
+        <h1>Workouts</h1>
+      </div>
+    </div>
+  );
 }
 
-export default Workouts
+export default Workouts;

@@ -1,15 +1,16 @@
-.quote-section {
+.home-page {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;     
-    height: 100%;
-    width: 200%;
-    text-align: center;
+    align-items: center;
+    margin-left: 250px;
 }
 
-.quote-section h2 {
-    line-height: 2.5;  
-    margin: 20px 0;
-    justify-content: center;
+.quote-section {
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+    font-size: 33px;
 }
