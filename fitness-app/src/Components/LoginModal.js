@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css';
+import './styles/Modal.css';
 import { useState } from 'react';
 
 function LoginModal({ isVisible, onClose, onLoginSuccess }) {

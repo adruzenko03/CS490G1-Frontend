@@ -1,6 +1,6 @@
 import React from "react";
 import WorkoutFilter from "../Components/WorkoutFilter";
-import "./Workouts.css";
+import "./styles/Workouts.css";
 
 function Workouts() {
   return (

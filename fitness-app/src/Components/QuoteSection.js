@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./QuoteSection.css";
+import "./styles/QuoteSection.css";
 
 export class QuoteSection extends Component {
   render() {

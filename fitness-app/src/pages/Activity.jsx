@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-import './Activity.css'
+import React from "react";
+import "./styles/Activity.css";
 
-export class Activity extends Component {
-  render() {
-    return (
-      <div className='activity-page'>Activity</div>
-    )
-  }
+export default function Activity() {
+  return (
+    <div className="activity-page">
+      <div className="header">Your Daily Activity</div>
+    </div>
+  );
 }
-
-export default Activity
