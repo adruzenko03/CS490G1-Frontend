@@ -20,7 +20,9 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
         });
         const data = await response.json();
         if( response.ok) {
-          onLoginSuccess(data);
+          const { token } = data;
+          onLoginSuccess({ ...data, token });//Passing TOKEN
+          localStorage.setItem('token', token);//In case if we need to use client token later on
           onClose();
         } else{
           setError(data.message || 'Login Failed');
