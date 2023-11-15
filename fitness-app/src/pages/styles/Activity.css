@@ -3,3 +3,14 @@
     height: 100%;
     margin-left: 250px;
 }
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #65babb;
+    color: white;
+    margin: 20px;
+    font-size: 30px;
+    padding: 5px;
+}
