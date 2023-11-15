@@ -15,7 +15,7 @@ const WorkoutFilter = () => {
 
   return (
     <div>
-      <div>Filter by:</div>
+      <div id="fliterby">Filter by:</div>
       <label>
         Equipment:{" "}
         <select

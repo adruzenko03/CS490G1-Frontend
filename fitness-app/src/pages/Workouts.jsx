@@ -17,6 +17,16 @@ function Workouts() {
           <p>Goal:</p>
           <p>Equipment:</p>
         </div>
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
       </div>
     </div>
   );

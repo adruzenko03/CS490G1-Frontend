@@ -23,6 +23,7 @@
     padding: 5px;
     
 }
+
 .list{
     margin: 20px;
     padding: 20px;
@@ -30,6 +31,9 @@
 }
 .Workout-details{
     padding: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 20px;
     border-radius: 20px;
     background-color: #096b6d;
     color:white;
