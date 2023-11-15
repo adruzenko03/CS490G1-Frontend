@@ -71,33 +71,92 @@ function SignupModal({ isVisible, onClose }) {
 
   return (
     <>
-    {showCoachSurvey && <CoachSurvey onClose={handleSurveyClose} />}
-    {showClientSurvey && <ClientSurvey onClose={handleSurveyClose} />}
-    {!showCoachSurvey && !showClientSurvey && (
-      <div className="signup-modal-backdrop" onClick={onClose}>
-        <div className="signup-modal-content" onClick={(e) => e.stopPropagation()}>
-          <form onSubmit={handleSubmit}>
-            <input type="text" name="firstName" placeholder="*FIRST NAME" required onChange={handleChange} />
-            <input type="text" name="lastName" placeholder="*LAST NAME" required onChange={handleChange} />
-            <input type="text" name="email" placeholder="*EMAIL" required onChange={handleChange} />
-            <input type="text" name="password" placeholder="*PASSWORD" required onChange={handleChange} />
-            <input type="text" name="phoneNumber" placeholder="*PHONE NUMBER" required onChange={handleChange} />
-            <input type="text" name="streetAddress" placeholder="*STREET ADDRESS" required onChange={handleChange} />
-            <input type="text" name="city" placeholder="*CITY" required onChange={handleChange} />
-            <input type="text" name="state" placeholder="*STATE" required onChange={handleChange} />
-            <input type="text" name="zipCode" placeholder="*ZIP CODE" required onChange={handleChange} />
-            
-            <select name="role" required onChange={handleChange}>
-              <option value="CLIENT">Client</option>
-              <option value="COACH">Coach</option>
-            </select>
-            
-            <button type="submit" diasbled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
-            {error && <div className='error-message'>{error}</div>}
-          </form>
+      {showCoachSurvey && <CoachSurvey onClose={handleSurveyClose} />}
+      {showClientSurvey && <ClientSurvey onClose={handleSurveyClose} />}
+      {!showCoachSurvey && !showClientSurvey && (
+        <div className="signup-modal-backdrop" onClick={onClose}>
+          <div
+            className="signup-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="*FIRST NAME"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="lastName"
+                placeholder="*LAST NAME"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="email"
+                placeholder="*EMAIL"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="password"
+                placeholder="*PASSWORD"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="*PHONE NUMBER"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="streetAddress"
+                placeholder="*STREET ADDRESS"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="*CITY"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="state"
+                placeholder="*STATE"
+                required
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="zipCode"
+                placeholder="*ZIP CODE"
+                required
+                onChange={handleChange}
+              />
+
+              <select name="role" required onChange={handleChange}>
+                <option value="CLIENT">Client</option>
+                <option value="COACH">Coach</option>
+              </select>
+
+              <button type="submit" disabled={isLoading}>
+                {isLoading ? "Registering..." : "REGISTER"}
+              </button>
+              {error && <div className="error-message">{error}</div>}
+            </form>
+          </div>
         </div>
-      </div>
-    )}
+      )}
     </>
   );
 }
