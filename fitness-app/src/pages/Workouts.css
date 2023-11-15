@@ -1,10 +1,13 @@
 .Workout-page{
     width: 100%;
     height: 100%;
-    padding-left: 250px;
+    margin-left: 250px;
 }
 .header{
     text-align: center;
     border: solid;
-    font-size: large;
+    font-size: 50px;
+}
+.filter{
+    border: solid;
 }
