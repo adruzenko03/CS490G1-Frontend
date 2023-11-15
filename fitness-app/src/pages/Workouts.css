@@ -9,5 +9,7 @@
     font-size: 50px;
 }
 .filter{
+    margin: 10px;
     border: solid;
+    font-size: 30px;
 }
