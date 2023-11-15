@@ -11,6 +11,13 @@ function Workouts() {
       <div className="filter">
         <WorkoutFilter></WorkoutFilter>
       </div>
+      <div className="list">
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
+      </div>
     </div>
   );
 }

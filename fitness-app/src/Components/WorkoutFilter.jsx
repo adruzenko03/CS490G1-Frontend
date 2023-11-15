@@ -17,7 +17,7 @@ const WorkoutFilter = () => {
     <div>
       <div>Filter by:</div>
       <label>
-        Equipment:
+        Equipment:{" "}
         <select
           value={selectedEquipment}
           onChange={(e) => setSelectedEquipment(e.target.value)}
@@ -30,7 +30,7 @@ const WorkoutFilter = () => {
       </label>
 
       <label>
-        Difficulty:
+        Difficulty:{" "}
         <select
           value={selectedDifficulty}
           onChange={(e) => setSelectedDifficulty(e.target.value)}
@@ -43,7 +43,7 @@ const WorkoutFilter = () => {
       </label>
 
       <label>
-        Goal:
+        Goal:{" "}
         <select
           value={selectedGoal}
           onChange={(e) => setSelectedGoal(e.target.value)}
@@ -55,7 +55,7 @@ const WorkoutFilter = () => {
       </label>
 
       <label>
-        Muscle:
+        Muscle:{" "}
         <select
           value={selectedMuscle}
           onChange={(e) => setSelectedMuscle(e.target.value)}
@@ -68,8 +68,10 @@ const WorkoutFilter = () => {
           <option value="Legs">Legs</option>
         </select>
       </label>
-      <div className="apply-btn">
-        <button onClick={handleApplyClick}>Apply</button>
+      <div>
+        <button id="apply-btn" onClick={handleApplyClick}>
+          apply
+        </button>
       </div>
     </div>
   );
