@@ -11,7 +11,7 @@ import Workouts from './pages/Workouts';
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isSignupVisible, setSignupVisible] = useState(false);
-  const [/*user,*/ setUser] = useState(null);//user state can help display user info and/or manage user sessions
+  const [user, setUser] = useState(null);//user state can help display user info and/or manage user sessions
   const [userRole, setUserRole] = useState(null);
 
   const onLoginSuccess = (userData) => {

@@ -11,16 +11,18 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError('');
     try { 
-      const response = await fetch('https://localhost:3000/login' , {//TEST USING POSTMAN
+      const response = await fetch('http://localhost:3001/login' , {//TEST USING POSTMAN
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',
+          "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({ email, password }),
         });
         const data = await response.json();
         if( response.ok) {
           const { token } = data;
+          console.log(typeof onLoginSuccess);
           onLoginSuccess({ ...data, token });//Passing TOKEN
           localStorage.setItem('token', token);//In case if we need to use client token later on
           onClose();
