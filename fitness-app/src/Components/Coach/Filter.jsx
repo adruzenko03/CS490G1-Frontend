@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 import FilterButton from './FilterButton';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import Dropdown from 'react-bootstrap/Dropdown';
+//import Dropdown from 'react-bootstrap/Dropdown';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import OneCoach from './OneCoach';
-import Stack from 'react-bootstrap';
+//import OneCoach from './OneCoach';
+//import Stack from 'react-bootstrap';
 
 
 
@@ -17,11 +17,11 @@ const Filter = ({ type }) => {
     const locationList = ["Location" ,"Newark", "Bloomfield", "Ridgewood", "Wayne"];
     const costList = ["Cost" ,"$59/month", "$69/month", "$89/month", "$129/month"];
 
-    const [clicked, setClicked] = useState(false);
+    // const [clicked, setClicked] = useState(false);
 
-    const toggleBtn = () => {
-        setClicked(true);
-    }
+    // const toggleBtn = () => {
+    //     setClicked(true);
+    // }
 
 
     return (
@@ -52,4 +52,3 @@ const Filter = ({ type }) => {
 }
 
 export default Filter
-

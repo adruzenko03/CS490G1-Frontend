@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './survey.css';
 
 function CoachSurvey({ onClose }) {
     const [surveyData, setSurveyData] = useState({
@@ -29,7 +29,7 @@ function CoachSurvey({ onClose }) {
         setError('');
     
         try {
-          const response = await fetch('https://localhost:3000/coach-survey', {
+          const response = await fetch('https://localhost:3001/coach-survey', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

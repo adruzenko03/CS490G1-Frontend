@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import "./QuoteSection.css";
+import "./styles/QuoteSection.css";
 
 export class QuoteSection extends Component {
   render() {
     return (
     <div className="quote-section">
-      <h2>
+      <h3>
         “IF YOU DON’T FIND THE TIME, IF YOU DON’T DO THE <br></br> WORK, YOU
         DON’T GET THE RESULTS.”<br></br>— ARNOLD SCHWARZENEGGER
-      </h2>
+      </h3>
     </div>
   );}
 }
