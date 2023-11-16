@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 import FilterButton from './FilterButton';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -17,11 +17,11 @@ const Filter = ({ type }) => {
     const locationList = ["Location" ,"Newark", "Bloomfield", "Ridgewood", "Wayne"];
     const costList = ["Cost" ,"$59/month", "$69/month", "$89/month", "$129/month"];
 
-    const [clicked, setClicked] = useState(false);
+    // const [clicked, setClicked] = useState(false);
 
-    const toggleBtn = () => {
-        setClicked(true);
-    }
+    // const toggleBtn = () => {
+    //     setClicked(true);
+    // }
 
 
     return (

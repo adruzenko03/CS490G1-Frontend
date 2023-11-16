@@ -5,7 +5,7 @@ import Stack from "react-bootstrap/Stack";
 import "./AllCoaches.css";
 
 const AllCoaches = () => {
-  const [coachesList, setCoachesList] = useState([
+  const [coachesList/*, setCoachesList*/] = useState([
     {
       name: "JOHN MOE",
       goals: "Gain Muscle, Lose Weight",
