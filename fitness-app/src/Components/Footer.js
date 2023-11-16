@@ -8,6 +8,9 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     if (userRole === 'COACH') {
       return (
         <>
+          {/* <Link to="/MyWorkout">My Workout</Link>
+          <Link to="/Activity">Activity</Link>
+          <Link to="/Progress">Progress</Link> */}
           <div>My Clients</div>
           <div>My Workout</div>
           <div>My Coach</div>
@@ -19,8 +22,9 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     } else if (userRole === 'CLIENT') {
       return (
         <>
-          <div>My Workout</div>
-          <div>My Coach</div>
+          {/* <Link to="/MyWorkout">My Workout</Link>
+          <Link to="/Activity">Activity</Link>
+          <Link to="/Progress">Progress</Link> <div>My Coach</div> */}
           <div>Activity</div>
           <div>Progress</div>
           <div>Settings</div>
