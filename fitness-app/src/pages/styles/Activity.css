@@ -24,6 +24,64 @@
     width: 600px;
 }
 
+.rep-form {
+    width: 100%;
+}
+.rep-form label {
+    align-items: center;
+    margin: 20px 0;
+}
+
+.rep-form input,
+.rep-form select {
+    width: 150px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 20px;
+    font-family: 'Koulen', sans-serif;
+}
+
+.rep-form button {
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    font-family: 'Koulen', sans-serif;
+    border-radius: 15px;
+    padding: 0px 50px;
+    background-color: rgb(216, 74, 13);
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.rep-form button:hover {
+    background-color: #d2962e;
+}
+.rep-form button.delete-btn {
+    width: 10%; 
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    font-family: 'Koulen', sans-serif;
+    border-radius: 15px;
+    padding: 0px 25px; 
+    background-color: rgb(216, 74, 13);
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.rep-form button.delete-btn:hover {
+    background-color: #d2962e;
+}
+
+.weight-form{
+    padding-left: 20px;
+}
 .activity-form label {
     display: flex;
     justify-content: space-between;
@@ -42,7 +100,9 @@
     font-size: 20px;
     font-family: 'Koulen', sans-serif;
 }
-
+.exercise-input{
+    width: 500px;
+}
 .activity-form button {
     margin-left: auto;
     margin-right: auto;

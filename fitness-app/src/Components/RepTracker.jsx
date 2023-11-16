@@ -14,11 +14,13 @@ const RepTracker = () => {
     setSets(newSets);
   };
 
-  const handleInputChange = (index, key, value) => {
+const handleInputChange = (index, key, value) => {
+  if (/^\d+$/.test(value) || value === "") {
     const newSets = [...sets];
     newSets[index][key] = value;
     setSets(newSets);
-  };
+  }
+};
 
   const handleExerciseChange = (value) => {
     setExercise(value);
@@ -28,46 +30,53 @@ const RepTracker = () => {
     <div>
       <h2 className="header">Rep Form</h2>
       <div className="form-container">
-        <label>
-          Exercise name:
-          <input
-            type="text"
-            value={exercise}
-            onChange={(e) => handleExerciseChange(e.target.value)}
-          />
-        </label>
-        {sets.map((set, index) => (
-          <div key={index}>
-            <label>
-              Set {index + 1} - Reps:
-              <input
-                type="number"
-                value={set.reps}
-                onChange={(e) =>
-                  handleInputChange(index, "reps", e.target.value)
-                }
-              />
-            </label>
-            <label>
-              Weight:
-              <input
-                type="number"
-                value={set.weight}
-                onChange={(e) =>
-                  handleInputChange(index, "weight", e.target.value)
-                }
-              />
-            </label>
-            {sets.length > 1 && (
-              <button type="button" onClick={() => handleDeleteSet(index)}>
-                Delete Set
-              </button>
-            )}
-          </div>
-        ))}
-        <button type="button" onClick={handleAddSet}>
-          Add Set
-        </button>
+        <div className="rep-form">
+          <label>
+            <div className="title">Exercise name:</div>
+            <input
+              className="exercise-input"
+              type="text"
+              value={exercise}
+              onChange={(e) => handleExerciseChange(e.target.value)}
+            />
+          </label>
+          {sets.map((set, index) => (
+            <div key={index}>
+              <label>
+                Set {index + 1} - Reps:{" "}
+                <input
+                  type="number"
+                  value={set.reps}
+                  onChange={(e) =>
+                    handleInputChange(index, "reps", e.target.value)
+                  }
+                />
+              </label>
+              <label className="weight-form">
+                 Weight:
+                <input
+                  type="number"
+                  value={set.weight}
+                  onChange={(e) =>
+                    handleInputChange(index, "weight", e.target.value)
+                  }
+                />
+              </label>
+              {sets.length > 1 && (
+                <button
+                  className="delete-btn"
+                  type="button"
+                  onClick={() => handleDeleteSet(index)}
+                >
+                  Delete Set
+                </button>
+              )}
+            </div>
+          ))}
+          <button type="button" onClick={handleAddSet}>
+            Add Set
+          </button>
+        </div>
       </div>
     </div>
   );
