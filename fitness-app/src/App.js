@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Workouts from './pages/Workouts';
 import Activity from './pages/Activity';
 import Progress from './pages/Progress';
+import MyWorkout from './pages/MyWorkout';
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -54,6 +55,7 @@ function App() {
           <Route path="/Workouts" element={<Workouts />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
+          <Route path="/MyWorkout" element={<MyWorkout />} />
         </Routes>
       </Router>
       <LoginModal

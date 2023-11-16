@@ -38,6 +38,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
 
   return (
     <div className="footer">
+      <Link to="/MyWorkout">My Workout</Link>
       <Link to="/Activity">Activity</Link>
       <Link to="/Progress">Progress</Link>
       {renderFooterContent()}
