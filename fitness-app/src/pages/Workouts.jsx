@@ -6,12 +6,27 @@ function Workouts() {
   return (
     <div className="Workout-page">
       <div className="header">
-        <p>Workouts</p>
+        <h1>Workouts</h1>
       </div>
       <div className="filter">
         <WorkoutFilter></WorkoutFilter>
       </div>
       <div className="list">
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
+        <div className="Workout-details">
+          <p>Workout name</p>
+          <p>Goal:</p>
+          <p>Equipment:</p>
+        </div>
         <div className="Workout-details">
           <p>Workout name</p>
           <p>Goal:</p>
