@@ -1,10 +1,20 @@
-import React from 'react'
-import './styles/Coaches.css'
+import React, { useState } from "react";
+import Filter from "../Components/Coach/Filter";
+import AllCoaches from "../Components/Coach/AllCoaches";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/dropdown";
+import "./Coaches.css";
 
-export default function Coaches() {
+function Coaches() {
   return (
-    <div className="coach-page">
-      <div className="header">Coaches</div>
+    <div className="coaches">
+      <div className="coaches-txt">
+        <h1>Coaches</h1>
+      </div>
+      <Filter />
+      <AllCoaches />
     </div>
   );
 }
+
+export default Coaches;
