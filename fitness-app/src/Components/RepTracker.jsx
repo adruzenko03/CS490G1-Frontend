@@ -14,16 +14,26 @@ const RepTracker = () => {
     setSets(newSets);
   };
 
-const handleInputChange = (index, key, value) => {
-  if (/^\d+$/.test(value) || value === "") {
-    const newSets = [...sets];
-    newSets[index][key] = value;
-    setSets(newSets);
-  }
-};
+  const handleInputChange = (index, key, value) => {
+    if (/^\d+$/.test(value) || value === "") {
+      const newSets = [...sets];
+      newSets[index][key] = value;
+      setSets(newSets);
+    }
+  };
 
   const handleExerciseChange = (value) => {
     setExercise(value);
+  };
+
+  const handleSave = () => {
+    // Log the data
+    console.log("Exercise: ", exercise);
+    console.log("Sets: ", sets);
+
+    // Clear the form
+    setExercise("");
+    setSets([{ reps: "", weight: "" }]);
   };
 
   return (
@@ -53,7 +63,7 @@ const handleInputChange = (index, key, value) => {
                 />
               </label>
               <label className="weight-form">
-                 Weight:
+                Weight:
                 <input
                   type="number"
                   value={set.weight}
@@ -73,9 +83,14 @@ const handleInputChange = (index, key, value) => {
               )}
             </div>
           ))}
-          <button type="button" onClick={handleAddSet}>
-            Add Set
-          </button>
+          <div>
+            <button type="button" onClick={handleAddSet}>
+              Add Set
+            </button>
+            <button type="button" onClick={handleSave}>
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
