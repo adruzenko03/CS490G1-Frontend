@@ -93,7 +93,7 @@ function SignupModal({ isVisible, onClose }) {
               <option value="COACH">Coach</option>
             </select>
             
-            <button type="submit" diasbled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
+            <button type="submit" disabled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
             {error && <div className='error-message'>{error}</div>}
           </form>
         </div>
