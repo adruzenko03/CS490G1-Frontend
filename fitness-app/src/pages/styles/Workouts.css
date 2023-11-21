@@ -71,3 +71,8 @@ select {
 #apply-btn:hover {
     background-color: #cad4d7;
 }
+
+.fliterby{
+    display:flex;
+    margin-left: 1px;
+}
