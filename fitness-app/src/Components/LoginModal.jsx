@@ -39,8 +39,8 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
   if (!isVisible) return null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="signup-modal-backdrop" onClick={onClose}>
+      <div className="signup-modal-content" onClick={(e) => e.stopPropagation()}>
         <form onSubmit={handleLogin}>
           <label htmlFor="email">EMAIL:</label>
           <input type="email" id="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
