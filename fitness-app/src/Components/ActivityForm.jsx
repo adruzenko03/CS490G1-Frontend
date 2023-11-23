@@ -3,26 +3,14 @@ import { useState } from "react";
 
 export default function ActivityForm() {
   const [calorieIntake, setCalorieIntake] = useState("");
-  const [proteinIntake, setProteinIntake] = useState("");
-  const [waterIntake, setWaterIntake] = useState("");
-  const [exercise, setExercise] = useState("");
-  const [mood, setMood] = useState("");
   const [weight, setWeight] = useState("");
 
   const handleSave = () => {
     console.log("Form data saved:", {
       calorieIntake,
-      proteinIntake,
-      waterIntake,
-      exercise,
-      mood,
       weight,
     });
     setCalorieIntake("");
-    setProteinIntake("");
-    setWaterIntake("");
-    setExercise("");
-    setMood("");
     setWeight("");
   };
 
@@ -37,43 +25,6 @@ export default function ActivityForm() {
             value={calorieIntake}
             onChange={(e) => setCalorieIntake(e.target.value)}
           />
-        </label>
-
-        <label>
-          Protein Intake:
-          <input
-            type="text"
-            value={proteinIntake}
-            onChange={(e) => setProteinIntake(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Water Intake:
-          <input
-            type="text"
-            value={waterIntake}
-            onChange={(e) => setWaterIntake(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Exercise:
-          <input
-            type="text"
-            value={exercise}
-            onChange={(e) => setExercise(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Mood:
-          <select value={mood} onChange={(e) => setMood(e.target.value)}>
-            <option value=""></option>
-            <option value="happy">Happy</option>
-            <option value="neutral">Neutral</option>
-            <option value="sad">Sad</option>
-          </select>
         </label>
 
         <label>
