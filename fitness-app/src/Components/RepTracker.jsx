@@ -38,7 +38,7 @@ const RepTracker = () => {
 
   return (
     <div>
-      <h2 className="header">Rep Form</h2>
+      <h2 className="header">Today's Workout</h2>
       <div className="form-container">
         <div className="rep-form">
           <label>

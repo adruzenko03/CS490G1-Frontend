@@ -1,5 +1,5 @@
 .navbar {
-  width: 250px;  
+  width: 250px;
   height: 100vh;
   background-color: #7abebf;
   display: flex;
@@ -10,7 +10,12 @@
   position: sticky;
   top: 0;
 }
- 
+
+#navlogo {
+  margin-top: 20px;
+  font-size: 55px;
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -22,9 +27,37 @@
   color: #ffffff;
   text-align: center;
   font-size: 32px;
+  position: relative;
 }
 
-#navlogo{
-  margin-top: 20px;
-  font-size:55px;
+.links a:hover {
+  color: #ffffff;
+}
+
+
+
+.links a.active {
+  color: rgb(211, 89, 37);
+}
+
+.links a:before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.3s ease-in-out;
+}
+
+.links a:hover:before{
+  width: 100%;
+  left: 0;
+}
+
+.links a.active:before {
+  width: 100%;
+  left: 0;
+  background-color: rgb(211, 89, 37);
 }
