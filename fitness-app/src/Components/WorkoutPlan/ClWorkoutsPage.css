@@ -1,0 +1,53 @@
+#title{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    margin-top: 5px
+}
+
+.clientInfoContainer{
+    background-color: #7DBBC3;
+    width: 84vw;
+    height: fit-content;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.clientInfo{
+    color: white;
+    padding: 20px;
+}
+
+.workoutsContainer{
+    background-color: #7DBBC3;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+}
+
+.allWorkouts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: center;    
+    margin-top: 40px;
+}
+
+.createButton{
+    background-color: #148dd9;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 30px;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.createButton:hover{
+    background-color: #0068a9;
+}
