@@ -9,9 +9,9 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     if (userRole === 'COACH') {
       return (
         <>
-          {/* <NavLink activeClassName="active" to="/MyWorkout">My Workout</NavLink >
-          <NavLink activeClassName="active" to="/Activity">Activity</NavLink>
-          <NavLink activeClassName="active" to="/Progress">Progress</NavLink> */}
+          {/* <NavLink activeclassname="active" to="/MyWorkout">My Workout</NavLink >
+          <NavLink activeclassname="active" to="/Activity">Activity</NavLink>
+          <NavLink activeclassname="active" to="/Progress">Progress</NavLink> */}
           <div>My Clients</div>
           <div>My Workout</div>
           <div>My Coach</div>
@@ -23,9 +23,9 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     } else if (userRole === 'CLIENT') {
       return (
         <>
-          {/* <NavLink activeClassName="active" to="/MyWorkout">My Workout</NavLink>
-          <NavLink activeClassName="active" to="/Activity">Activity</NavLink>
-          <NavLink activeClassName="active" to="/Progress">Progress</NavLink>  */}
+          {/* <NavLink activeclassname="active" to="/MyWorkout">My Workout</NavLink>
+          <NavLink activeclassname="active" to="/Activity">Activity</NavLink>
+          <NavLink activeclassname="active" to="/Progress">Progress</NavLink>  */}
           <div>My Coach</div>
           <div>Activity</div>
           <div>Progress</div>
@@ -44,9 +44,15 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
 
   return (
     <div className="footer">
-      <NavLink activeClassName="active" to="/MyWorkout" >My Workout</NavLink>
-      <NavLink activeClassName="active" to="/Activity">Activity</NavLink>
-      <NavLink activeClassName="active" to="/Progress">Progress</NavLink>
+      <NavLink activeclassname="active" to="/MyWorkout">
+        My Workout
+      </NavLink>
+      <NavLink activeclassname="active" to="/Activity">
+        Activity
+      </NavLink>
+      <NavLink activeclassname="active" to="/Progress">
+        Progress
+      </NavLink>
       {renderFooterContent()}
     </div>
   );

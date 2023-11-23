@@ -7,13 +7,13 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
   return (
     <div className="navbar">
       <div className="links">
-        <NavLink id="navlogo" to="/" activeClassName="active">
+        <NavLink id="navlogo" to="/" activeclassname="active">
           TRU-FIT
         </NavLink>
-        <NavLink to="/Workouts" activeClassName="active">
+        <NavLink to="/Workouts" activeclassname="active">
           WORKOUTS
         </NavLink>
-        <NavLink to="/Coaches" activeClassName="active">
+        <NavLink to="/Coaches" activeclassname="active">
           COACHES
         </NavLink>
       </div>

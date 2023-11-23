@@ -68,7 +68,7 @@ export default function ActivityForm() {
           </label>
 
           <label>
-            Weight:
+            Current Weight:
             <input
               type="text"
               value={weight}
