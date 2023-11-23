@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Activity.css";
-import ActivityForm from "../Components/ActivityForm";
-import RepTracker from "../Components/RepTracker";
+import ActivityForm from "../Components/Activity/ActivityForm";
+import RepTracker from "../Components/Activity/RepTracker";
 
 export default function Activity() {
   return (
