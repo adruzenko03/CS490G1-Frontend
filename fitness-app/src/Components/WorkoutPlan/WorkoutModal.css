@@ -25,13 +25,13 @@
 }
 
 .workoutElements{
-    margin-top: 1vh;
+    margin-top: 2.5vh;
 }
 .workoutElements span{
     font-size: 1.15rem;
     color: #0A2342;
     display:inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
 }
 
 .header{
@@ -57,8 +57,8 @@
 .dropdownButtons{
     display: flex;
     flex-direction: column;
-    margin-left: 150px;
-    width: 80%;
+    margin-left: 100px;
+    width: 60%;
 }
 
 .dropdownButtons input{

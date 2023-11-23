@@ -27,7 +27,6 @@ const WorkoutModal = ({setClicked}) => {
                     <div className="workoutModal">
                         <div className="workoutElements">
                             <span>WORKOUT NAME:</span><br />
-                            <span>ADD WORKOUT:</span><br />
                             <span>Goal:</span><br />
                             <span>DIFFICULTY:</span><br />
                             <span>EQUIPMENT:</span><br />
@@ -36,7 +35,6 @@ const WorkoutModal = ({setClicked}) => {
                         </div>
 
                         <div className="dropdownButtons">
-                            <input />
 
                             <input style={{display:"block", marginTop:"15px"}}/>
 
