@@ -10,6 +10,8 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
         <Link id='navlogo' to='./'>TRU-FIT</Link>
         <Link to='/Workouts'>WORKOUTS</Link>
         <Link to='/Coaches'>COACHES</Link>
+        <Link to='/MyCoach'>MyCoach</Link>
+        <Link to='/Clients'>MyClients</Link>
       </div>
       <Footer onLoginClick={onLoginClick} onSignupClick={onSignupClick} userRole={userRole}/>
     </div>

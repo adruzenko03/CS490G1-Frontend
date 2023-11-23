@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import './OneCoach.css'
+import './YourClientExpanded.css'
 
-const OneCoach = ({items}) => {
+const OneClient = ({items}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () =>{
@@ -11,10 +11,9 @@ const OneCoach = ({items}) => {
   return (
     <>
     
-      <div className='oneCoach' onClick={toggleModal}>
+      <div className='yourClient' onClick={toggleModal}>
         <span id='name'>{items.name}</span>
         <span>{items.goals}</span>
-        <span>{items.experience}</span>
       </div>
 
       {modal && (
@@ -23,12 +22,14 @@ const OneCoach = ({items}) => {
           <div className="content">
             <button className='cancel' onClick={toggleModal}>X</button>
             <h1 className='coachName' style={{fontSize:"1.5rem", textDecoration:"underline"}}>{items.name}</h1>
-            <span>{items.goals}</span>
-            <span>{items.experience}</span>
-            <span>{items.location}</span>
-            <span>{items.cost}</span>
-            <span>{items.schedule}</span>
-            <button className='request'>REQUEST COACH</button>
+            <span><b>GOAL:</b>  {items.goals}</span>
+            <span><b>FITNESS LEVEL:</b>   {items.fitnessLevel}</span>
+            <span><b>DIET:</b>  {items.diet}</span>
+            <span><b>WEEKLY EXERCISE:</b>  {items.weeklyExercise}</span>
+            <div className='buttons'>
+                <button className='request1'>CONTACT CLIENT</button>
+                <button className='request2'>REMOVE CLIENT</button>
+            </div>
           </div>
         </div>
       )}
@@ -36,4 +37,4 @@ const OneCoach = ({items}) => {
   )
 }
 
-export default OneCoach
+export default OneClient

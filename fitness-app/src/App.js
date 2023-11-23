@@ -6,6 +6,8 @@ import SignupModal from './Components/SignupModal';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Coaches from './pages/Coaches';
 import Home from './pages/Home';
+import MyCoach from './pages/MyCoach';
+import Clients from './pages/Clients';
 import Workouts from './pages/Workouts';
 import Activity from './pages/Activity';
 import Progress from './pages/Progress';
@@ -53,6 +55,8 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="/Coaches" element={<Coaches />} />
           <Route path="/Workouts" element={<Workouts />} />
+          <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/Clients" element={<Clients />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import './OneCoach.css'
+import React, {useState} from 'react'
+import './CoachOneRequest.css'
 
-const OneCoach = ({items}) => {
+const OneRequest = ({items}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () =>{
@@ -10,12 +10,15 @@ const OneCoach = ({items}) => {
 
   return (
     <>
-    
-      <div className='oneCoach' onClick={toggleModal}>
-        <span id='name'>{items.name}</span>
-        <span>{items.goals}</span>
-        <span>{items.experience}</span>
-      </div>
+      {items ? (
+        <div className="oneRequest" onClick={toggleModal}>
+          <div className="text-wrapper">{items.name}</div>
+          <div className="div">{items.goals}</div>
+          <div className="text-wrapper-2">{items.experience}</div>
+        </div>
+      ) : (
+        <p></p>
+      )}
 
       {modal && (
         <div className='popup'>
@@ -36,4 +39,6 @@ const OneCoach = ({items}) => {
   )
 }
 
-export default OneCoach
+export default OneRequest
+
+

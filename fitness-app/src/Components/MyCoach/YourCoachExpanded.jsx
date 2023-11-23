@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './OneCoach.css'
+import './YourCoachExpanded.css'
 
 const OneCoach = ({items}) => {
   const [modal, setModal] = useState(false);
@@ -11,7 +11,7 @@ const OneCoach = ({items}) => {
   return (
     <>
     
-      <div className='oneCoach' onClick={toggleModal}>
+      <div className='yourCoach' onClick={toggleModal}>
         <span id='name'>{items.name}</span>
         <span>{items.goals}</span>
         <span>{items.experience}</span>
@@ -28,7 +28,10 @@ const OneCoach = ({items}) => {
             <span>{items.location}</span>
             <span>{items.cost}</span>
             <span>{items.schedule}</span>
-            <button className='request'>REQUEST COACH</button>
+            <div className='buttons'>
+                <button className='request1'>CONTACT COACH</button>
+                <button className='request2'>REMOVE COACH</button>
+            </div>
           </div>
         </div>
       )}

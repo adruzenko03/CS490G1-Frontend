@@ -1,0 +1,21 @@
+body{
+    height: 100%;
+    margin: 0;
+}
+
+.myClient{
+    width:auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+
+.myClient-txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
