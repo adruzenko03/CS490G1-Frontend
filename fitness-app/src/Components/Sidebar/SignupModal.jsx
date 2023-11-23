@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import CoachSurvey from './CoachSurvey';
-import ClientSurvey from './ClientSurvey';
-import './styles/SignupModal.css'; 
+import React, { useState } from "react";
+import CoachSurvey from "../Surveys/CoachSurvey";
+import ClientSurvey from "../Surveys/ClientSurvey";
+import "../styles/SignupModal.css";
 
 function SignupModal({ isVisible, onClose }) {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-    streetAddress: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    role: 'CLIENT', // Default to CLIENT
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    streetAddress: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    role: "CLIENT", // Default to CLIENT
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showCoachSurvey, setShowCoachSurvey] = useState(false);
   const [showClientSurvey, setShowClientSurvey] = useState(false);
 
@@ -25,48 +25,47 @@ function SignupModal({ isVisible, onClose }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-
-      const response = await fetch('http://localhost:3001/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3001/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
-        console.log('Account created:', data);
-        if(formData.role === 'COACH'){
+        console.log("Account created:", data);
+        if (formData.role === "COACH") {
           setShowCoachSurvey(true);
-        }
-        else if(formData.role === 'CLIENT'){
+        } else if (formData.role === "CLIENT") {
           setShowClientSurvey(true);
         }
       } else {
-        setError(data.message || 'An error occurred while creating the account.');
+        setError(
+          data.message || "An error occurred while creating the account."
+        );
       }
     } catch (error) {
-      setError('Failed to connect to the server.');
+      setError("Failed to connect to the server.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSurveyClose = () => { 
+  const handleSurveyClose = () => {
     setShowCoachSurvey(false);
     setShowClientSurvey(false);
     onClose();
-  }
+  };
 
   if (!isVisible && !showCoachSurvey && !showClientSurvey) return null;
 
