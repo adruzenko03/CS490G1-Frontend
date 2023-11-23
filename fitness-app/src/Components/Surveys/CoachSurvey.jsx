@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/survey.css';
+import './styles/survey.css';
 
 function CoachSurvey({ onClose }) {
     const [surveyData, setSurveyData] = useState({
