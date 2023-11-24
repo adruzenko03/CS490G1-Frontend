@@ -25,12 +25,17 @@
     margin-right: 20px;
     padding-top: 30px;
     padding-bottom: 25px;
+    max-width: 89vw;
 }
 
 .allWorkouts{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust column width */
+    gap: 30px; /* Adjust gap between elements */
 }
 
 .buttonDiv{
@@ -50,4 +55,8 @@
 
 .createButton:hover{
     background-color: #0068a9;
+}
+
+.oneWorkoutTab:hover{
+    background-color: #148dd9;
 }

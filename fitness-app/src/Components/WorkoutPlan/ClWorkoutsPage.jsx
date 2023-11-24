@@ -6,10 +6,49 @@ import './WorkoutModal.css'
 
 const ClWorkoutsPage = () => {
 
+  // const [modal, setModal] = useState(false);
+  // const toggleModal = ()=>{
+  //   setModal(!modal);
+  // }
+
   const [clicked, setClicked]= useState(false);
   const toggleBtn = ()=>{
     setClicked(!clicked);
   }
+
+  const [workouts, setWorkouts] = useState([
+    {
+      workoutName: "Pull",
+      goal: "Lose Weight",
+      difficulty: "Beginner",
+      equipment: "Barbells",
+      muscleGroup: "Back and Biceps",
+      description: "Do 3 sets per each muslce group."
+    },
+    {
+      workoutName: "Push",
+      goal: "Gain Muscle",
+      difficulty: "Intermediate",
+      equipment: "Bench Press",
+      muscleGroup: "Triceps and Chest",
+      description: "Do 2 sets per each muslce group."
+    },
+    {
+      workoutName: "Run",
+      goal: "Core Strength",
+      difficulty: "Beginner",
+      equipment: "Bench",
+      muscleGroup: "Abdominals",
+      description: "Do 4 sets per each muslce group."
+    },
+  ])
+
+  const addWorkout = (newWorkout) =>{
+    // setModal(false);
+    setWorkouts([...workouts, newWorkout]);
+  }
+
+
 
   return (
     <>
@@ -27,9 +66,11 @@ const ClWorkoutsPage = () => {
       <br />
         <div className="workoutsContainer">
           <div className="allWorkouts">
-            <OneWorkout />
-            <OneWorkout />
-            <OneWorkout />
+            {workouts.map((workout)=>{
+              return(
+                <OneWorkout elements={workout}/>
+              )
+            })}
           </div>
 
           <div className="buttonDiv">
@@ -41,7 +82,7 @@ const ClWorkoutsPage = () => {
           </div>
         </div>
 
-        {clicked && (<WorkoutModal setClicked={setClicked}/>)}
+        {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout}/>)}
 
       </div>
     </>
