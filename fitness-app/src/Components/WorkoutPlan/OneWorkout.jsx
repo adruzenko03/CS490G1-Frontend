@@ -9,6 +9,8 @@ const OneWorkout = ({elements}) => {
   const toggleBtn = () => {
     setClicked1(!clicked);
   }
+  
+  
 
   return (
     <>
@@ -32,7 +34,7 @@ const OneWorkout = ({elements}) => {
 
       {clicked && (
         <div className="editModal">
-          <EditWorkoutModal setClicked1={setClicked1}/>
+          <EditWorkoutModal setClicked1={setClicked1} items={elements}/>
         </div>
       )}
     </>

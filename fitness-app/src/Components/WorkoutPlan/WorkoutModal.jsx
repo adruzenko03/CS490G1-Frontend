@@ -87,6 +87,7 @@ const WorkoutModal = ({setClicked, addWorkout}) => {
                             <input style={{display:"block", marginTop:"15px"}} name='workoutName' value={workoutData.workoutName} onChange={handleInputChange}/>
 
                             <select className="workoutGoal" name="goal" value={workoutData.goal} onChange={handleInputChange}> 
+                                <option></option> 
                                 <option value="loseWeight">Lose Weight</option> 
                                 <option value="gainMuscle">Gain Muscle</option> 
                                 <option value="bulk">Bulk</option> 
@@ -94,6 +95,7 @@ const WorkoutModal = ({setClicked, addWorkout}) => {
                             </select>
 
                             <select name="difficulty" value={workoutData.difficulty} onChange={handleInputChange}> 
+                                <option></option> 
                                 <option value="beginner">Begginer</option> 
                                 <option value="intermediate">Intermediate</option> 
                                 <option value="advanced">Advanced</option> 
@@ -101,6 +103,7 @@ const WorkoutModal = ({setClicked, addWorkout}) => {
                             </select>
 
                             <select name="equipment" value={workoutData.equipment} onChange={handleInputChange}> 
+                                <option></option> 
                                 <option value="dumbells">Dumbbells</option> 
                                 <option value="smith">Smith Machine</option> 
                                 <option value="bench">Bench</option> 
@@ -108,6 +111,7 @@ const WorkoutModal = ({setClicked, addWorkout}) => {
                             </select>
 
                             <select name="muscleGroup" value={workoutData.muscleGroup} onChange={handleInputChange}> 
+                                <option></option> 
                                 <option value="shoulderBack">Shoulders and Back</option> 
                                 <option value="chestArm">Chest and Arms</option> 
                                 <option value="abdominals">Abdominals and Core</option> 

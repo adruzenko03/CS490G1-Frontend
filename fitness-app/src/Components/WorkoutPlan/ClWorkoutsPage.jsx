@@ -19,18 +19,18 @@ const ClWorkoutsPage = () => {
   const [workouts, setWorkouts] = useState([
     {
       workoutName: "Pull",
-      goal: "Lose Weight",
+      goal: "Gain Muscle",
       difficulty: "Beginner",
-      equipment: "Barbells",
-      muscleGroup: "Back and Biceps",
+      equipment: "Dumbbells",
+      muscleGroup: "Shoulders and Back",
       description: "Do 3 sets per each muslce group."
     },
     {
       workoutName: "Push",
       goal: "Gain Muscle",
       difficulty: "Intermediate",
-      equipment: "Bench Press",
-      muscleGroup: "Triceps and Chest",
+      equipment: "Bench",
+      muscleGroup: "Chest and Arms",
       description: "Do 2 sets per each muslce group."
     },
     {
@@ -82,7 +82,7 @@ const ClWorkoutsPage = () => {
           </div>
         </div>
 
-        {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout}/>)}
+        {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout} />)}
 
       </div>
     </>
