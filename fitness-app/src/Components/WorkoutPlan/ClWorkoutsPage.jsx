@@ -1,15 +1,15 @@
+// ******* TODO *********//
+// Need to generate new id when creating new component
+
 import React, { useState } from 'react'
 import './ClWorkoutsPage.css'
 import OneWorkout from './OneWorkout'
 import WorkoutModal from './WorkoutModal';
 import './WorkoutModal.css'
+import { DataContext } from '../Contexts/DataContext';
 
 const ClWorkoutsPage = () => {
 
-  // const [modal, setModal] = useState(false);
-  // const toggleModal = ()=>{
-  //   setModal(!modal);
-  // }
 
   const [clicked, setClicked]= useState(false);
   const toggleBtn = ()=>{
@@ -18,6 +18,7 @@ const ClWorkoutsPage = () => {
 
   const [workouts, setWorkouts] = useState([
     {
+      id: 0,
       workoutName: "Pull",
       goal: "Gain Muscle",
       difficulty: "Beginner",
@@ -26,6 +27,7 @@ const ClWorkoutsPage = () => {
       description: "Do 3 sets per each muslce group."
     },
     {
+      id: 1,
       workoutName: "Push",
       goal: "Gain Muscle",
       difficulty: "Intermediate",
@@ -34,6 +36,7 @@ const ClWorkoutsPage = () => {
       description: "Do 2 sets per each muslce group."
     },
     {
+      id: 2,
       workoutName: "Run",
       goal: "Core Strength",
       difficulty: "Beginner",
@@ -48,6 +51,7 @@ const ClWorkoutsPage = () => {
     setWorkouts([...workouts, newWorkout]);
   }
 
+  
 
 
   return (
@@ -68,7 +72,9 @@ const ClWorkoutsPage = () => {
           <div className="allWorkouts">
             {workouts.map((workout)=>{
               return(
-                <OneWorkout elements={workout}/>
+                <DataContext.Provider value={{workouts, setWorkouts}}>
+                  <OneWorkout elements={workout}/>
+                </DataContext.Provider>
               )
             })}
           </div>

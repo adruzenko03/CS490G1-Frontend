@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import './OneWorkout.css'
 import { useState } from 'react'
 import EditWorkoutModal from './EditWorkoutModal';
+import { DataContext } from '../Contexts/DataContext';
+
 
 const OneWorkout = ({elements}) => {
   const [clicked, setClicked1] = useState(false);
@@ -10,6 +12,17 @@ const OneWorkout = ({elements}) => {
     setClicked1(!clicked);
   }
   
+  const {workouts, setWorkouts} = useContext(DataContext);
+
+  // Keep in mind to generate ids for every individual workout 
+  // when getting data from the database
+  const updateWorkout = (updatedWorkout) => {
+    const updatedWorkouts = workouts.map((workout) =>
+      workout.id === updatedWorkout.id ? updatedWorkout : workout
+    );
+    setWorkouts(updatedWorkouts);
+  };
+
   
 
   return (
@@ -34,7 +47,7 @@ const OneWorkout = ({elements}) => {
 
       {clicked && (
         <div className="editModal">
-          <EditWorkoutModal setClicked1={setClicked1} items={elements}/>
+          <EditWorkoutModal setClicked1={setClicked1} items={elements} updateWorkout={updateWorkout}/>
         </div>
       )}
     </>

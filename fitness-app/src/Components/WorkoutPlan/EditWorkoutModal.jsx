@@ -62,7 +62,7 @@ const EditWorkoutModal = ({setClicked1, items, updateWorkout}) => {
                                 <option value="Core Strength">Core Strength</option> 
                             </select>
 
-                            <select name="workoutDifficulty" value={editedItems.difficulyt} onChange={handleInputChange}> 
+                            <select name="difficulty" value={editedItems.difficulty} onChange={handleInputChange}> 
                                 <option value="Beginner">Beginner</option> 
                                 <option value="Intermediate">Intermediate</option> 
                                 <option value="Advanced">Advanced</option> 

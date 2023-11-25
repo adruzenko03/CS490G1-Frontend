@@ -1,3 +1,7 @@
+// ******* TODO *********//
+// Need to generate new id when creating new component
+// ******** *********** **********//
+
 import React, { useState } from 'react'
 import './WorkoutModal.css'
 import ClWorkoutsPage from './ClWorkoutsPage';
