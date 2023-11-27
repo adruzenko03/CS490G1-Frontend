@@ -5,7 +5,7 @@ import EditWorkoutModal from './EditWorkoutModal';
 import { DataContext } from '../Contexts/DataContext';
 
 
-const OneWorkout = ({elements}) => {
+const OneWorkout = ({elements, deleteWorkout}) => {
   const [clicked, setClicked1] = useState(false);
 
   const toggleBtn = () => {
@@ -47,7 +47,7 @@ const OneWorkout = ({elements}) => {
 
       {clicked && (
         <div className="editModal">
-          <EditWorkoutModal setClicked1={setClicked1} items={elements} updateWorkout={updateWorkout}/>
+          <EditWorkoutModal setClicked1={setClicked1} items={elements} updateWorkout={updateWorkout} deleteWorkout={deleteWorkout}/>
         </div>
       )}
     </>

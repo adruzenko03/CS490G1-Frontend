@@ -9,10 +9,10 @@
     background-color: #1B6468;
     margin-left: 20px;
     margin-right: 20px;
-    min-width: 25vw;
-    max-width: 25vw;
+    /* min-width: 35vw;
+    max-width: 40vw; */
     min-height: 36vh;
-    width: fit-content;
+    /* width: fit-content; */
     border-radius: 20px;
     transition: all 0.2s ease-out;
 }

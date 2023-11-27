@@ -7,6 +7,7 @@ import OneWorkout from './OneWorkout'
 import WorkoutModal from './WorkoutModal';
 import './WorkoutModal.css'
 import { DataContext } from '../Contexts/DataContext';
+import { v4 as uuidv4 } from 'uuid';
 
 const ClWorkoutsPage = () => {
 
@@ -18,7 +19,7 @@ const ClWorkoutsPage = () => {
 
   const [workouts, setWorkouts] = useState([
     {
-      id: 0,
+      id: uuidv4(),
       workoutName: "Pull",
       goal: "Gain Muscle",
       difficulty: "Beginner",
@@ -27,7 +28,7 @@ const ClWorkoutsPage = () => {
       description: "Do 3 sets per each muslce group."
     },
     {
-      id: 1,
+      id: uuidv4(),
       workoutName: "Push",
       goal: "Gain Muscle",
       difficulty: "Intermediate",
@@ -36,19 +37,24 @@ const ClWorkoutsPage = () => {
       description: "Do 2 sets per each muslce group."
     },
     {
-      id: 2,
+      id: uuidv4(),
       workoutName: "Run",
       goal: "Core Strength",
       difficulty: "Beginner",
       equipment: "Bench",
       muscleGroup: "Abdominals",
       description: "Do 4 sets per each muslce group."
-    },
+    },    
   ])
 
   const addWorkout = (newWorkout) =>{
     // setModal(false);
     setWorkouts([...workouts, newWorkout]);
+  }
+
+  const deleteWorkout = (id) => {
+    const filteredWorkouts = workouts.filter(workout => workout.id !== id);
+    setWorkouts(filteredWorkouts);
   }
 
   
@@ -67,13 +73,13 @@ const ClWorkoutsPage = () => {
               <h4>WEEKLY EXPERIENCE:</h4>
             </div>
         </div>
-      <br />
+
         <div className="workoutsContainer">
           <div className="allWorkouts">
             {workouts.map((workout)=>{
               return(
                 <DataContext.Provider value={{workouts, setWorkouts}}>
-                  <OneWorkout elements={workout}/>
+                  <OneWorkout elements={workout} deleteWorkout={deleteWorkout}/>
                 </DataContext.Provider>
               )
             })}
@@ -84,7 +90,8 @@ const ClWorkoutsPage = () => {
               className='createButton'
               onClick={toggleBtn}
             >
-              CREATE WORKOUT</button>
+              CREATE WORKOUT
+            </button>
           </div>
         </div>
 

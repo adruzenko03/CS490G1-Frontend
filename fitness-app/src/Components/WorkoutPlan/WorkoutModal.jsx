@@ -5,10 +5,12 @@
 import React, { useState } from 'react'
 import './WorkoutModal.css'
 import ClWorkoutsPage from './ClWorkoutsPage';
+import {v4 as uuidv4} from 'uuid';
 
 const WorkoutModal = ({setClicked, addWorkout}) => {
 
     const [workoutData, setWorkoutData] = useState({
+        id: uuidv4(),
         workoutName: '',
         goal: '',
         difficulty: '',

@@ -20,12 +20,15 @@
 }
 
 .workoutsContainer{
+    margin-top: 20px;
     background-color: #7DBBC3;
     margin-left: 20px;
     margin-right: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 25px;
     max-width: 89vw;
+    max-height: 55vh;
+    overflow: auto;
 }
 
 .allWorkouts{
@@ -33,15 +36,15 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap; */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust column width */
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /*Adjust column width */
     gap: 30px; /* Adjust gap between elements */
 }
 
 .buttonDiv{
     display: flex;
     justify-content: center;    
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .createButton{

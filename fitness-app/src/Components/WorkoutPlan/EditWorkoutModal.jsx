@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import './EditWorkoutModal.css'
 
-const EditWorkoutModal = ({setClicked1, items, updateWorkout}) => {
+const EditWorkoutModal = ({setClicked1, items, updateWorkout, deleteWorkout}) => {
 
     const [editedItems, setEditedItems] = useState(items); // Local state to handle changes
 
@@ -29,6 +29,13 @@ const EditWorkoutModal = ({setClicked1, items, updateWorkout}) => {
         toggleModal();
         setClicked1(false);
     }
+
+    const handleDelete = (id) =>{
+        deleteWorkout(id);
+        // alert('hey ther' + id);
+    }
+
+   
 
   return (
     <div>
@@ -99,7 +106,7 @@ const EditWorkoutModal = ({setClicked1, items, updateWorkout}) => {
 
                     <div className="addButton">
                         <button id='saveBtn' onClick={handleSaveChanges}>SAVE CHANGES</button>
-                        <button id='deleteBtn'>DELETE WORKOUT</button>
+                        <button id='deleteBtn' onClick={()=>handleDelete(items.id)}>DELETE WORKOUT</button>
                     </div>
                 </div>
             </div>
