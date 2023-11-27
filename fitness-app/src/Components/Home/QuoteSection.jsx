@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./styles/QuoteSection.css";
-import image from "../images/logo-full.png";
+import image from "./images/logo-full.png";
 
 export class QuoteSection extends Component {
   render() {
