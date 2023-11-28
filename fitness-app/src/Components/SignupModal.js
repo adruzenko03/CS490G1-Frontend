@@ -33,7 +33,7 @@ function SignupModal({ isVisible, onClose }) {
 
     try {
 
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch('http://localhost:3001/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,14 +45,16 @@ function SignupModal({ isVisible, onClose }) {
       
       if (response.ok) {
         console.log('Account created:', data);
-        if(formData.role === 'COACH'){
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem("role", formData.role);
+        if(formData.role === 'coach'){
           setShowCoachSurvey(true);
         }
-        else if(formData.role === 'CLIENT'){
+        else if(formData.role === 'client'){
           setShowClientSurvey(true);
         }
       } else {
-        setError(data.message || 'An error occurred while creating the account.');
+        setError(data.message || 'An error occurred while creating the account. User already registered');
       }
     } catch (error) {
       setError('Failed to connect to the server.');
