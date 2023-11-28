@@ -14,7 +14,7 @@ function SignupModal({ isVisible, onClose }) {
     city: '',
     state: '',
     zipCode: '',
-    role: 'CLIENT', // Default to CLIENT
+    role: 'client', // Default to CLIENT
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -88,11 +88,11 @@ function SignupModal({ isVisible, onClose }) {
             <input type="text" name="zipCode" placeholder="*ZIP CODE" required onChange={handleChange} />
             
             <select name="role" required onChange={handleChange}>
-              <option value="CLIENT">Client</option>
-              <option value="COACH">Coach</option>
+              <option value="client">client</option>
+              <option value="coach">coach</option>
             </select>
             
-            <button type="submit" diasbled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
+            <button type="submit" disabled={isLoading}>{isLoading ? 'Registering...' : 'REGISTER'}</button>
             {error && <div className='error-message'>{error}</div>}
           </form>
         </div>
