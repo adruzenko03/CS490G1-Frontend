@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import "./Styles/WorkoutModal.css";
 
 const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
   return (
@@ -7,18 +8,42 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
       isOpen={isOpen}
       onRequestClose={closeModal}
       contentLabel="Workout Details"
+      className="workout-modal"
+      overlayClassName="workout-overlay"
     >
-      <h2>{selectedWorkout && selectedWorkout.name}</h2>
-      <p>Goal: {selectedWorkout && selectedWorkout.goal}</p>
-      <p>Equipment: {selectedWorkout && selectedWorkout.equipment}</p>
-      <p>Instructions: {selectedWorkout && selectedWorkout.instructions}</p>
-      <p>
-        Muscle Target Group:{" "}
-        {selectedWorkout && selectedWorkout.muscleTargetGroup}
-      </p>
-      <p>Difficulty: {selectedWorkout && selectedWorkout.difficulty}</p>
-      <button>Add Workout</button>
-      <button onClick={closeModal}>Close</button>
+      <div className="modal-header">
+        <button className="close-button" onClick={closeModal}>
+          X
+        </button>
+      </div>
+      <div>
+        <h2 className="workout-name">{selectedWorkout && selectedWorkout.name}</h2>
+        <p>Goal: {selectedWorkout && selectedWorkout.goal}</p>
+        <p>Equipment: {selectedWorkout && selectedWorkout.equipment}</p>
+        <p>Difficulty: {selectedWorkout && selectedWorkout.difficulty}</p>
+        <p>
+          Muscle Target Group:{" "}
+          {selectedWorkout && selectedWorkout.muscleTargetGroup}
+        </p>
+        {selectedWorkout && selectedWorkout.link && (
+          <p>
+            Link:{" "}
+            <a
+              href={selectedWorkout.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {selectedWorkout.link}
+            </a>
+          </p>
+        )}
+        <button>Add Workout</button>
+        <hr />
+        <p>
+          Instructions:
+          <br /> {selectedWorkout && selectedWorkout.instructions}
+        </p>
+      </div>
     </Modal>
   );
 };

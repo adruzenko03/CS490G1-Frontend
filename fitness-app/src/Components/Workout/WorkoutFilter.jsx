@@ -1,16 +1,18 @@
-import React, { useState } from "react";
 
-const WorkoutFilter = () => {
-  const [selectedEquipment, setSelectedEquipment] = useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("");
-  const [selectedGoal, setSelectedGoal] = useState("");
-  const [selectedMuscle, setSelectedMuscle] = useState("");
 
+const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
   const handleApplyClick = () => {
-    console.log("Selected Equipment:", selectedEquipment);
-    console.log("Selected Difficulty:", selectedDifficulty);
-    console.log("Selected Goal:", selectedGoal);
-    console.log("Selected Muscle:", selectedMuscle);
+    applyFilters();
+  };
+
+  const handleResetClick = () => {
+    setAppliedFilters({
+      equipment: "",
+      difficulty: "",
+      goal: "",
+      muscle: "",
+    });
+    applyFilters(); 
   };
 
   return (
@@ -19,11 +21,16 @@ const WorkoutFilter = () => {
       <label>
         Equipment:{" "}
         <select
-          value={selectedEquipment}
-          onChange={(e) => setSelectedEquipment(e.target.value)}
+          value={appliedFilters.equipment}
+          onChange={(e) =>
+            setAppliedFilters({
+              ...appliedFilters,
+              equipment: e.target.value,
+            })
+          }
         >
           <option value=""></option>
-          <option value="No-Equipment">No Equipment</option>
+          <option value="No Equipment">No Equipment</option>
           <option value="Pull-up Bar">Pull-up Bar</option>
           <option value="Dumbbells">Dumbbell</option>
         </select>
@@ -32,8 +39,13 @@ const WorkoutFilter = () => {
       <label>
         Difficulty:{" "}
         <select
-          value={selectedDifficulty}
-          onChange={(e) => setSelectedDifficulty(e.target.value)}
+          value={appliedFilters.difficulty}
+          onChange={(e) =>
+            setAppliedFilters({
+              ...appliedFilters,
+              difficulty: e.target.value,
+            })
+          }
         >
           <option value=""></option>
           <option value="beginner">Beginner</option>
@@ -45,20 +57,30 @@ const WorkoutFilter = () => {
       <label>
         Goal:{" "}
         <select
-          value={selectedGoal}
-          onChange={(e) => setSelectedGoal(e.target.value)}
+          value={appliedFilters.goal}
+          onChange={(e) =>
+            setAppliedFilters({
+              ...appliedFilters,
+              goal: e.target.value,
+            })
+          }
         >
           <option value=""></option>
-          <option value="weight-loss">Weight Loss</option>
-          <option value="muscle-gain">Muscle Gain</option>
+          <option value="Weight Loss">Weight Loss</option>
+          <option value="Muscle Gain">Muscle Gain</option>
         </select>
       </label>
 
       <label>
         Muscle:{" "}
         <select
-          value={selectedMuscle}
-          onChange={(e) => setSelectedMuscle(e.target.value)}
+          value={appliedFilters.muscle}
+          onChange={(e) =>
+            setAppliedFilters({
+              ...appliedFilters,
+              muscle: e.target.value,
+            })
+          }
         >
           <option value=""></option>
           <option value="Chest">Chest</option>
@@ -66,11 +88,15 @@ const WorkoutFilter = () => {
           <option value="Abs">Abs</option>
           <option value="Arms">Arms</option>
           <option value="Legs">Legs</option>
+          <option value="Cardio">Cardio</option>
         </select>
       </label>
       <div>
         <button id="apply-btn" onClick={handleApplyClick}>
-          apply
+          Apply
+        </button>
+        <button id="reset-btn" onClick={handleResetClick}>
+          Reset
         </button>
       </div>
     </div>
