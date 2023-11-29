@@ -37,12 +37,7 @@ function CoachSurvey({ onClose }) {
         setError('');
         const userID = localStorage.getItem('userId');
         const role = localStorage.getItem('role');
-        const surveyDataWithUserId = {userID,experience: surveyData.experience,
-          city: surveyData.city,
-          state: surveyData.state,
-          cost: surveyData.cost,
-          //add goals: goal
-        };
+        const surveyDataWithUserId = {userID,...surveyData};
         try {
           const response = await fetch('http://localhost:3001/coach-survey', {
             method: 'POST',
