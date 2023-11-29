@@ -22,7 +22,6 @@ function App() {
       setUser(userData); // Set the entire user object
       setUserRole(userData.role); // Set the user role
     } else {
-      // Handle login failure, possibly using the message
       console.log(message);
     }
   };

@@ -3,7 +3,7 @@ import CoachSurvey from './CoachSurvey';
 import ClientSurvey from './ClientSurvey';
 import './SignupModal.css'; 
 
-function SignupModal({ isVisible, onClose }) {
+function SignupModal({ isVisible, onClose, onSignupSuccess }) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -47,6 +47,7 @@ function SignupModal({ isVisible, onClose }) {
         console.log('Account created:', data);
         localStorage.setItem('userId', data.userId);
         localStorage.setItem("role", formData.role);
+        onSignupSuccess(formData);
         if(formData.role === 'coach'){
           setShowCoachSurvey(true);
         }
