@@ -55,7 +55,6 @@ function CoachSurvey({ onClose }) {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
-          //onSignupSuccess is never called
           onClose(); 
         } catch (error) {
           setError('Failed to submit survey. Please try again later.');
