@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import CoachSurvey from './CoachSurvey';
-import ClientSurvey from './ClientSurvey';
-import './SignupModal.css'; 
+import React, { useState } from "react";
+import CoachSurvey from "../Surveys/CoachSurvey";
+import ClientSurvey from "../Surveys/ClientSurvey";
+import "./styles/SignupModal.css";
 
 function SignupModal({ isVisible, onClose, onSignupSuccess }) {
   const [formData, setFormData] = useState({
@@ -17,7 +17,7 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
     role: 'client', // Default to CLIENT
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showCoachSurvey, setShowCoachSurvey] = useState(false);
   const [showClientSurvey, setShowClientSurvey] = useState(false);
 
@@ -25,16 +25,14 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-
-      const response = await fetch('http://localhost:3001/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3001/signup", {
+        method: "POST",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -42,7 +40,7 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         console.log('Account created:', data);
         localStorage.setItem('userId', data.userId);
@@ -58,17 +56,17 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
         setError(data.message || 'An error occurred while creating the account. User already registered');
       }
     } catch (error) {
-      setError('Failed to connect to the server.');
+      setError("Failed to connect to the server.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSurveyClose = () => { 
+  const handleSurveyClose = () => {
     setShowCoachSurvey(false);
     setShowClientSurvey(false);
     onClose();
-  }
+  };
 
   if (!isVisible && !showCoachSurvey && !showClientSurvey) return null;
 

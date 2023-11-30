@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import './App.css';
-import Navbar from './Components/Navbar';
-import LoginModal from './Components/LoginModal';
-import SignupModal from './Components/SignupModal';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Coaches from './pages/Coaches';
-import Home from './pages/Home';
-import Workouts from './pages/Workouts';
-import Activity from './pages/Activity';
-import Progress from './pages/Progress';
-import MyWorkout from './pages/MyWorkout';
+import React, { useState } from "react";
+import "./App.css";
+import Navbar from "./Components/Sidebar/Navbar";
+import LoginModal from "./Components/Sidebar/LoginModal";
+import SignupModal from "./Components/Sidebar/SignupModal";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Coaches from "./pages/Coaches";
+import Home from "./pages/Home";
+import Workouts from "./pages/Workouts";
+import Activity from "./pages/Activity";
+import Progress from "./pages/Progress";
+import MyWorkout from "./pages/MyWorkout";
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isSignupVisible, setSignupVisible] = useState(false);
-  const [user, setUser] = useState(null);//user state can help display user info and/or manage user sessions
+  const [/*user, */setUser] = useState(null); //user state can help display user info and/or manage user sessions
   const [userRole, setUserRole] = useState(null);
 
   const onLoginSuccess = (isSuccess, message, userData) => {

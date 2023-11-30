@@ -11,12 +11,12 @@
   }
   
   .modal-content {
-    background-color: black;
+    background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     width: 90%;
-    max-width: 400px; 
+    max-width: 500px;
   }
   
   .modal-content form {
@@ -31,13 +31,14 @@
     border-radius: 4px;
   }
   
-  .modal-content button {
+  .signup-modal-content button {
     padding: 10px;
     border: none;
     border-radius: 4px;
     background-color: #f76c6c;
     color: white;
     cursor: pointer;
+    margin-bottom: 5px;
   }
   
   .modal-content button:hover {

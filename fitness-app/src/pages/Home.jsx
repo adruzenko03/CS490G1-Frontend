@@ -1,5 +1,5 @@
 import React from "react";
-import QuoteSection from "../Components/QuoteSection";
+import QuoteSection from "../Components/Home/QuoteSection";
 import './styles/Home.css';
 
 function Home() {

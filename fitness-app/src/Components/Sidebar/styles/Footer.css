@@ -1,0 +1,56 @@
+.login-signup{
+  margin-top: auto;
+  text-align: center;
+}
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32px;
+  width: 250px;
+
+}
+
+.footer a{
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32px;
+  position: relative;
+  width: 150px;
+}
+
+.footer a:hover {
+  color: #ffffff;
+}
+
+
+
+.footer a.active {
+  color: rgb(211, 89, 37);
+}
+
+.footer a:before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.3s ease-in-out;
+}
+
+.footer a:hover:before{
+  width: 100%;
+  left: 0;
+}
+
+.footer a.active:before {
+  width: 100%;
+  left: 0;
+  background-color: rgb(211, 89, 37);
+}
