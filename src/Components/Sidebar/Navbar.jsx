@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 function Navbar({ onLoginClick, onSignupClick, userRole }) {
   return (
-    <div className="navbar">
+    <div className="navBar">
       <div className="links">
         <NavLink id="navlogo" to="/" activeclassname="active">
           TRU-FIT
