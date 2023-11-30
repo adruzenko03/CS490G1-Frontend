@@ -10,6 +10,7 @@ import Workouts from './pages/Workouts';
 import Activity from './pages/Activity';
 import Progress from './pages/Progress';
 import MyWorkout from './pages/MyWorkout';
+import Settings from './pages/Settings';
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -30,11 +31,13 @@ function App() {
     setUser(userData);
     setUserRole(userData.role);
   };
-  /*
   const logout = () => {
     setUser(null);
     setUserRole(null);
-  };*/
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+  };
 
   const toggleLoginModal = () => {
     setLoginVisible(!isLoginVisible);
@@ -60,6 +63,7 @@ function App() {
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
+          <Route path="/Settings" element={<Settings />} />
         </Routes>
       </Router>
       <LoginModal

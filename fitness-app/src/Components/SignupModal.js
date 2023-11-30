@@ -45,7 +45,8 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
       
       if (response.ok) {
         console.log('Account created:', data);
-        localStorage.setItem('userId', data.userId);
+        localStorage.setItem("user", JSON.stringify(formData));
+        localStorage.setItem("userId", data.userId);
         localStorage.setItem("role", formData.role);
         onSignupSuccess(formData);
         if(formData.role === 'coach'){

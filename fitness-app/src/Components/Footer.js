@@ -16,7 +16,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
           <div>My Coach</div>
           <Link to="/Activity">Activity</Link>
           <Link to="/Progress">Progress</Link>
-          <div>Settings</div>
+          <Link to="/Settings">Settings</Link>
         </>
       );
     } else if (userRole === 'client') {
@@ -29,7 +29,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
           <div>My Coach</div>
           <Link to="/Activity">Activity</Link>
           <Link to="/Progress">Progress</Link>
-          <div>Settings</div>
+          <Link to="/Settings">Settings</Link>
         </>
       );
     } else {
