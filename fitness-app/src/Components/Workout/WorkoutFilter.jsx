@@ -1,5 +1,3 @@
-
-
 const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
   const handleApplyClick = () => {
     applyFilters();
@@ -12,11 +10,11 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
       goal: "",
       muscle: "",
     });
-    applyFilters(); 
+    applyFilters();
   };
 
   return (
-    <div>
+    <div className="fliter-form">
       <div className="fliterby">Filter by:</div>
       <label>
         Equipment:{" "}
@@ -33,9 +31,14 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           <option value="No Equipment">No Equipment</option>
           <option value="Pull-up Bar">Pull-up Bar</option>
           <option value="Dumbbells">Dumbbell</option>
+          <option value="Mat">Mat</option>
+          <option value="Stationary Bike">Stationary Bike</option>
+          <option value="TRX Straps">TRX Straps</option>
+          <option value="Swimsuit">Swimsuit</option>
+          <option value="Kettlebell">Kettlebell</option>
+          <option value="Stairs">Stairs</option>
         </select>
       </label>
-
       <label>
         Difficulty:{" "}
         <select
@@ -53,7 +56,6 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           <option value="advanced">Advanced</option>
         </select>
       </label>
-
       <label>
         Goal:{" "}
         <select
@@ -68,9 +70,12 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           <option value=""></option>
           <option value="Weight Loss">Weight Loss</option>
           <option value="Muscle Gain">Muscle Gain</option>
+          <option value="Overall Fitness">Overall Fitness</option>
+          <option value="Core Strengthening">Core Strengthening</option>
+          <option value="Endurance">Endurance</option>
+          <option value="Flexibility">Flexibility</option>
         </select>
       </label>
-
       <label>
         Muscle:{" "}
         <select
@@ -95,7 +100,7 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
         <button id="apply-btn" onClick={handleApplyClick}>
           Apply
         </button>
-        <button id="reset-btn" onClick={handleResetClick}>
+        <button id="apply-btn" onClick={handleResetClick}>
           Reset
         </button>
       </div>

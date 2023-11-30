@@ -72,6 +72,102 @@ function Workouts() {
       difficulty: "Advanced",
       link: "https://example.com/pull-up-routine-source",
     },
+    {
+      name: "Cardio Kickboxing",
+      goal: "Weight Loss",
+      equipment: "No Equipment",
+      instructions: "Combine martial arts moves with cardio exercises.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Intermediate",
+      link: "https://example.com/cardio-kickboxing-source",
+    },
+    {
+      name: "High-Intensity Interval Training (HIIT)",
+      goal: "Overall Fitness",
+      equipment: "No Equipment",
+      instructions:
+        "Alternate between short bursts of intense exercise and rest.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Advanced",
+      link: "https://example.com/hiit-workout-source",
+    },
+    {
+      name: "Pilates for Core Strength",
+      goal: "Core Strengthening",
+      equipment: "Mat",
+      instructions:
+        "Focus on controlled movements to strengthen the core muscles.",
+      muscleTargetGroup: "Core",
+      difficulty: "Intermediate",
+      link: "https://example.com/pilates-core-strength-source",
+    },
+    {
+      name: "Cycling for Endurance",
+      goal: "Endurance",
+      equipment: "Stationary Bike",
+      instructions: "Maintain a steady pace and gradually increase resistance.",
+      muscleTargetGroup: "Legs",
+      difficulty: "Intermediate",
+      link: "https://example.com/cycling-endurance-source",
+    },
+    {
+      name: "Full Body Stretching Routine",
+      goal: "Flexibility",
+      equipment: "No Equipment",
+      instructions:
+        "Perform a series of stretches targeting different muscle groups.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Beginner",
+      link: "https://example.com/full-body-stretching-source",
+    },
+    {
+      name: "TRX Suspension Training",
+      goal: "Total Body Workout",
+      equipment: "TRX Straps",
+      instructions:
+        "Use suspension straps for resistance exercises targeting various muscles.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Intermediate",
+      link: "https://example.com/trx-training-source",
+    },
+    {
+      name: "Swimming for Fitness",
+      goal: "Overall Fitness",
+      equipment: "Swimsuit",
+      instructions:
+        "Engage in different swimming strokes for a full-body workout.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Intermediate",
+      link: "https://example.com/swimming-fitness-source",
+    },
+    {
+      name: "Tabata Core Workout",
+      goal: "Core Strengthening",
+      equipment: "No Equipment",
+      instructions: "Perform high-intensity core exercises in a Tabata format.",
+      muscleTargetGroup: "Core",
+      difficulty: "Advanced",
+      link: "https://example.com/tabata-core-workout-source",
+    },
+    {
+      name: "Kettlebell Circuit",
+      goal: "Muscle Gain",
+      equipment: "Kettlebell",
+      instructions:
+        "Combine various kettlebell exercises for a full-body circuit.",
+      muscleTargetGroup: "Full Body",
+      difficulty: "Intermediate",
+      link: "https://example.com/kettlebell-circuit-source",
+    },
+    {
+      name: "Staircase Workout",
+      goal: "Cardiovascular Health",
+      equipment: "Stairs",
+      instructions: "Use stairs for a high-intensity cardiovascular workout.",
+      muscleTargetGroup: "Legs",
+      difficulty: "Intermediate",
+      link: "https://example.com/staircase-workout-source",
+    },
   ];
 
   const openModal = (workout) => {
@@ -86,7 +182,9 @@ function Workouts() {
 
   useEffect(() => {
     Modal.setAppElement("#root");
-  });
+    applyFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const applyFilters = () => {
     const filtered = mockData.filter((workout) => {

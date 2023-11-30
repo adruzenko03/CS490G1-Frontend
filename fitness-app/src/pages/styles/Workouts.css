@@ -46,7 +46,7 @@ label {
     font-size: 30px;
 }
 
-select {
+.fliter-form select {
     margin-right: 5px;
     border: none;
     border-radius: 15px;
@@ -76,3 +76,4 @@ select {
     display:flex;
     margin-left: 1px;
 }
+

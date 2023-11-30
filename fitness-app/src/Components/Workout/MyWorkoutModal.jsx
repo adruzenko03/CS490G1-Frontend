@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import "./Styles/WorkoutModal.css";
 
-const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
+const MyWorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
   
   return (
     <Modal
@@ -42,17 +42,7 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
           </p>
         )}
         <div className="weekdays">
-          <span>Select Day To Add Workout: </span>
-          <select>
-            <option value="monday">Monday</option>
-            <option value="tuesday">Tuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
-            <option value="sunday">Sunday</option>
-          </select>
-          <button>Add</button> <hr />
+          <button>Remove Workout</button> <hr />
         </div>
 
         <p>
@@ -64,4 +54,4 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
   );
 };
 
-export default WorkoutModal;
+export default MyWorkoutModal;
