@@ -239,5 +239,5 @@ function Workouts(){
     </div>
   );
 }
-
+}
 export default Workouts
