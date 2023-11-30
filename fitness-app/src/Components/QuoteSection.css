@@ -1,0 +1,15 @@
+.quote-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+    height: 100%;
+    width: 200%;
+    text-align: center;
+}
+
+.quote-section h2 {
+    line-height: 2.5;  
+    margin: 20px 0;
+    justify-content: center;
+}

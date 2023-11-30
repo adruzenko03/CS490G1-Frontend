@@ -1,0 +1,21 @@
+body{
+    height: 100%;
+    margin: 0;
+}
+
+.coaches{
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.coaches-txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    font-family: "Koulen",sans-serif;
+}
+

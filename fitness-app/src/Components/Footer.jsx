@@ -6,21 +6,21 @@ import { NavLink } from "react-router-dom";
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   // Conditionally render footer content based on userRole
   const renderFooterContent = () => {
-    if (userRole === 'COACH') {
+    if (userRole === 'coach') {
       return (
         <>
           {/* <NavLink activeclassname="active" to="/MyWorkout">My Workout</NavLink >
           <NavLink activeclassname="active" to="/Activity">Activity</NavLink>
           <NavLink activeclassname="active" to="/Progress">Progress</NavLink> */}
           <div>My Clients</div>
-          <div>My Workout</div>
+          <Link to="/MyWorkout">My Workout</Link>
           <div>My Coach</div>
-          <div>Activity</div>
-          <div>Progress</div>
+          <Link to="/Activity">Activity</Link>
+          <Link to="/Progress">Progress</Link>
           <div>Settings</div>
         </>
       );
-    } else if (userRole === 'CLIENT') {
+    } else if (userRole === 'client') {
       return (
         <>
           {/* <NavLink activeclassname="active" to="/MyWorkout">My Workout</NavLink>
