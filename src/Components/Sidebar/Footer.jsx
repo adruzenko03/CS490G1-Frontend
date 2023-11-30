@@ -42,15 +42,6 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
       return (
         <>
           {" "}
-          <NavLink activeclassname="active" to="/MyWorkout">
-            My Workout
-          </NavLink>
-          <NavLink activeclassname="active" to="/Activity">
-            Activity
-          </NavLink>
-          <NavLink activeclassname="active" to="/Progress">
-            Progress
-          </NavLink>
           <div className="login" onClick={onLoginClick}>
             LOGIN
           </div>
