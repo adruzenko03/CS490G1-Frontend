@@ -204,7 +204,6 @@ function Workouts() {
     setFilteredData(filtered);
   };
 
-function Workouts(){
   return (
     <div className="Workout-page">
       <div className="header">
@@ -239,5 +238,5 @@ function Workouts(){
     </div>
   );
 }
-}
+
 export default Workouts

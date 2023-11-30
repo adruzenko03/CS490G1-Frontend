@@ -1,4 +1,4 @@
-.navbar {
+.navBar {
   width: 250px;
   height: 100vh;
   background-color: #7abebf;
@@ -33,8 +33,6 @@
 .links a:hover {
   color: #ffffff;
 }
-
-
 
 .links a.active {
   color: rgb(211, 89, 37);
