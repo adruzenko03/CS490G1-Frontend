@@ -32,6 +32,7 @@ const EditWorkoutModal = ({setClicked1, items, updateWorkout, deleteWorkout}) =>
 
     const handleDelete = (id) =>{
         deleteWorkout(id);
+        setClicked1(false);
         // alert('hey ther' + id);
     }
 

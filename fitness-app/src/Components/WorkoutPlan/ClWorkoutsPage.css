@@ -7,7 +7,7 @@
 
 .clientInfoContainer{
     background-color: #7DBBC3;
-    width: 84vw;
+    width: 83.23vw;
     height: fit-content;
     margin-top: 20px;
     margin-left: 20px;
@@ -27,7 +27,7 @@
     padding-top: 20px;
     padding-bottom: 25px;
     max-width: 89vw;
-    max-height: 55vh;
+    height: 60vh;
     overflow: auto;
 }
 
@@ -38,13 +38,14 @@
     flex-wrap: wrap; */
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /*Adjust column width */
-    gap: 30px; /* Adjust gap between elements */
+    gap: 20px; /* Adjust gap between elements */
+    margin-top: 2vh;
 }
 
 .buttonDiv{
     display: flex;
     justify-content: center;    
-    margin-top: 30px;
+    margin-top: 6.5vh;
 }
 
 .createButton{
@@ -54,10 +55,12 @@
     padding: 5px 30px;
     font-size: 1.4rem;
     color: white;
+    transition: all 250ms;
 }
 
 .createButton:hover{
     background-color: #0068a9;
+    transform: scale(1.03);
 }
 
 .oneWorkoutTab:hover{
