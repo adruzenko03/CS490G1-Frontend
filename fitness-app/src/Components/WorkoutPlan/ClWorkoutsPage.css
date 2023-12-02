@@ -7,11 +7,9 @@
 
 .clientInfoContainer{
     background-color: #7DBBC3;
-    width: 83.23vw;
+    width: 100%;
     height: fit-content;
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .clientInfo{
@@ -22,11 +20,9 @@
 .workoutsContainer{
     margin-top: 20px;
     background-color: #7DBBC3;
-    margin-left: 20px;
-    margin-right: 20px;
     padding-top: 20px;
     padding-bottom: 25px;
-    max-width: 89vw;
+    max-width: 100%;
     height: 60vh;
     overflow: auto;
 }
@@ -42,10 +38,12 @@
     margin-top: 2vh;
 }
 
+
 .buttonDiv{
     display: flex;
     justify-content: center;    
     margin-top: 6.5vh;
+    position:initial ;
 }
 
 .createButton{
