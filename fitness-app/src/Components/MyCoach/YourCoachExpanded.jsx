@@ -29,7 +29,7 @@ const OneCoach = ({items}) => {
             <span>{items.cost}</span>
             <span>{items.schedule}</span>
             <div className='buttons'>
-                <button className='request1'>CONTACT COACH</button>
+                <button className='request1' onClick={event =>  window.location.href='/ChatMain'}>CONTACT COACH</button>
                 <button className='request2'>REMOVE COACH</button>
             </div>
           </div>

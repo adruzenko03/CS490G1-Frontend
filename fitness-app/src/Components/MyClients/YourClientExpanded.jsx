@@ -27,7 +27,7 @@ const OneClient = ({items}) => {
             <span><b>DIET:</b>  {items.diet}</span>
             <span><b>WEEKLY EXERCISE:</b>  {items.weeklyExercise}</span>
             <div className='buttons'>
-                <button className='request1'>CONTACT CLIENT</button>
+                <button className='request1' onClick={event =>  window.location.href='/ChatMain'}>CONTACT CLIENT</button>
                 <button className='request2'>REMOVE CLIENT</button>
             </div>
           </div>
