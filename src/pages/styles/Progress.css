@@ -3,3 +3,9 @@
     height: 100%;
     overflow: auto;
 }
+
+.graphs{
+    background-color: white;
+    border: solid 1px black;
+    margin: 10px;
+}
