@@ -2,6 +2,8 @@ import './App.css'
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
+import sendIcon from '../icons/send1.png';
+
 const Chat = ({socket, username, room}) => {
 
     const [currentMessage, setCurrentMessage] = useState('');
@@ -32,19 +34,19 @@ const Chat = ({socket, username, room}) => {
   return (
     <div className='chat-window'>
         <div className="chat-header">
-            <p>Live Chat</p>
+            <p>Coach Name</p>
         </div>
         <div className="chat-body">
             <ScrollToBottom className='message-container'>
                 {messageList.map((messageContent)=>{
                     return <div className='message' id={username === messageContent.username ? "you" : "other"}>
                         <div>
-                            <div className='message-content'>
-                                <p>{messageContent.message}</p>
+                            <div className='message-content' style={{fontFamily:"Open Sans, sans-serif"}}>
+                                <p style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.message}</p>
                             </div>
-                            <div className='message-meta'>
-                                <p id='time'>{messageContent.time}</p>
-                                <p id='author'>{messageContent.username}</p>
+                            <div className='message-meta' style={{fontFamily:"Open Sans, sans-serif"}}>
+                                <p id='time' style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.time}</p>
+                                <p id='author' style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.username}</p>
                             </div>
                         </div>
                         </div>
@@ -54,16 +56,17 @@ const Chat = ({socket, username, room}) => {
         <div className="chat-footer">
             <input 
                 type="text" 
-                placeholder='Hey...'
+                placeholder='Message'
                 value={currentMessage}
                 onChange={(event)=>{
                     setCurrentMessage(event.target.value);
                 }}
                 onKeyPress={(event)=>{event.key === "Enter" && sendMessage()}}
             />
-            <button
+            {/* <button
                 onClick={sendMessage}
-            >&#9658;</button>
+            >{sendIcon}</button> */}
+            <img src={sendIcon} alt="" onClick={sendMessage}/>
         </div>
     </div>
   )
