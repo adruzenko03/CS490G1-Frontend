@@ -80,7 +80,7 @@ body {
   border-radius: 10px;
   background: #fff;
   width: 100%;
-  background-color: #7abf98de;
+  background-color: #7DBBC3;
   display: flex;
 
 }
@@ -208,11 +208,10 @@ body {
     display: flex;
     flex-direction: column;
     width: 17vw;
-    background-color: #2e637d;
-    color: rgb(0, 0, 0);
+    background-color: #2f656c;
+    color: black;
     justify-content: flex-start;
     align-items: center;
-    height:100%;
     overflow-x: hidden;
     overflow-y: auto;
     border-radius: 10px;
@@ -220,8 +219,8 @@ body {
 
 .allClients span{
     margin-top: 20px;
-    background-color: white;
-    width: 91%;
+    background-color: #ffffff;
+    width: 75%;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;

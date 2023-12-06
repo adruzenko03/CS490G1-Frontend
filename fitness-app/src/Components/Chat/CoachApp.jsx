@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './CoachApp.css';
 import io from 'socket.io-client'
 import CoachChat from './CoachChat';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 const socket = io.connect("http://localhost:3001");
 
 function CoachApp() {
+
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
   const [showChat, setShowChat] = useState(false);
