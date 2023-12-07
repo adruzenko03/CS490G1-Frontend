@@ -30,9 +30,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
       catch (err){
         setError('Network Error');
       } 
-    };
-
-
+  };
   if (!isVisible) return null;
 
   return (
