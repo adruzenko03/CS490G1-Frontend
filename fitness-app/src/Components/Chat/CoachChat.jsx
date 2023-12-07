@@ -18,7 +18,7 @@ const CoachChat = ({socket, username, room}) => {
 
     
     // THIS SHOULD BE RETRIEVED ON LOGIN //
-    const coachId = 2; 
+    const coachId = 101; 
     // ********************************** //
 
     const [newMessage, setNewMessage] = useState({

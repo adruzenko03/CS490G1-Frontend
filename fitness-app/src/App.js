@@ -63,7 +63,7 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
-          <Route path="/ChatMain" element={<ChatMain />} />
+          {/* <Route path="/ChatMain" element={<ChatMain />} /> */}
         </Routes>
       </Router>
       <LoginModal
