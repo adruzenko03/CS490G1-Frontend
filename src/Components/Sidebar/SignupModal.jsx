@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import CoachSurvey from './CoachSurvey';
-import ClientSurvey from './ClientSurvey';
-import './SignupModal.css'; 
+import React, { useState } from "react";
+import CoachSurvey from "../Surveys/CoachSurvey";
+import ClientSurvey from "../Surveys/ClientSurvey";
+import "./styles/SignupModal.css";
 
 function SignupModal({ isVisible, onClose, onSignupSuccess }) {
   const [formData, setFormData] = useState({
