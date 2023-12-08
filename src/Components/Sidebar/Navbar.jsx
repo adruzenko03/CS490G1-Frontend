@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { Link } from "react-router-dom"
 import { NavLink } from 'react-router-dom';
 
-import trufitLogo from './images/logo-full.png'
+import trufitLogo from './icons/logo-full.png'
 import workoutIcon from './icons/dumbbell.png'
 import coachIcon from './icons/coach.png'
 import mycoachIcon from './icons/mycoach.png'

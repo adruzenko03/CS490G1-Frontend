@@ -2,13 +2,23 @@ body{
     height: 100%;
     margin: 0;
 }
-
+/* 
 .coaches{
     width:100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+} */
+
+.myCoach{
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .coaches-txt{
@@ -19,3 +29,10 @@ body{
     font-family: "Koulen",sans-serif;
 }
 
+.myCoach-txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

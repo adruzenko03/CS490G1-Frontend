@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import Navbar from './Components/Navbar';
-import LoginModal from './Components/LoginModal';
-import SignupModal from './Components/SignupModal';
+import Navbar from './Components/Sidebar/Navbar';
+import LoginModal from './Components/Sidebar/LoginModal';
+import SignupModal from './Components/Sidebar/SignupModal';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Coaches from './pages/Coaches';
 import Home from './pages/Home';
