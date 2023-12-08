@@ -1,7 +1,7 @@
 import React from 'react'
-import Requests from '../Components/MyCoach/Requests'
+import Requests from '../Components/MyCoach/CoachRequests'
 import YourCoach from '../Components/MyCoach/YourCoach'
-import './MyCoach.css'
+import './styles/MyCoach.css'
 
 const MyCoach = () => {
   return (

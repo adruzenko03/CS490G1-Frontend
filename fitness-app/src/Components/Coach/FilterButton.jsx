@@ -8,7 +8,9 @@ import AllCoaches from './AllCoaches';
 
 const FilterButton = ({ items }) => {
   
-  const [values, setValues] = useState([]);
+  const [value, setValue] = useState('');
+
+  
 
     return (
       <>
@@ -18,17 +20,17 @@ const FilterButton = ({ items }) => {
           </Dropdown.Toggle>
     
           <Dropdown.Menu id="dropdown">
-            <Dropdown.Item onClick={()=>setValues([...values, items[1]])}>{items[1]}</Dropdown.Item>
-            <Dropdown.Item onClick={()=>setValues([...values, items[2]])}>{items[2]}</Dropdown.Item>
-            <Dropdown.Item onClick={()=>setValues([...values, items[3]])}>{items[3]}</Dropdown.Item>
-            <Dropdown.Item onClick={()=>setValues([...values, items[4]])}>{items[4]}</Dropdown.Item>
+            {items.slice(1).map((item, index) => (
+            <Dropdown.Item key={index} onClick={()=>setValue(item)}>
+              {item}
+            </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
 
-      
+        <p>{value}</p>
       </>
       );
-
 
 }
 

@@ -5,20 +5,20 @@ import FilterButton from './FilterButton';
 import './AllCoaches.css'
 import { MyContext } from './MyContext';
 
-const AllCoaches = () => {
+const AllCoaches = ({vals}) => {
 
     const [coachesList, setCoachesList] = useState([
         {
             name: "JOHN MOE",
-            goals: "Gain Muscle, Lose Weight",
-            experience: "3 Years",
-            location: "Bloomfield",
+            goals: "Resistance",
+            experience: "1 Year",
+            location: "Newark",
             cost: "$59/month",
             schedule: "Monday, Tuesday, Thursday, Friday"
         },
         {
             name: "ANDREW RICHEY",
-            goals: "Fast boxing training",
+            goals: "Boxing",
             experience: "2 Years",
             location: "Newark",
             cost: "$69/month",
@@ -26,7 +26,7 @@ const AllCoaches = () => {
         },
         {
             name: "BEN LIAM",
-            goals: "Resistance training",
+            goals: "Resistance",
             experience: "5 Years",
             location: "Bloomfield",
             cost: "$89/month",
@@ -34,7 +34,15 @@ const AllCoaches = () => {
         },
         {
             name: "JOSH NESTOR",
-            goals: "UFC training",
+            goals: "Lifting",
+            experience: "10 Years",
+            location: "Ridgewood",
+            cost: "$59/month",
+            schedule: "Weekdays"
+        },
+        {
+            name: "TRISTAN SMITH",
+            goals: "Lifting",
             experience: "10 Years",
             location: "Ridgewood",
             cost: "$59/month",
@@ -42,31 +50,80 @@ const AllCoaches = () => {
         },
         {
             name: "TYRON SMITH",
-            goals: "Yoga",
-            experience: "4 Years",
-            location: "Ridgefield",
+            goals: "Running",
+            experience: "3 Years",
+            location: "Ridgewood",
+            cost: "$129/month",
+            schedule: "Everyday"
+        },
+        {
+            name: "TYRON SMITH",
+            goals: "Running",
+            experience: "3 Years",
+            location: "Ridgewood",
+            cost: "$129/month",
+            schedule: "Everyday"
+        },
+        {
+            name: "TYRON SMITH",
+            goals: "Running",
+            experience: "3 Years",
+            location: "Ridgewood",
+            cost: "$129/month",
+            schedule: "Everyday"
+        },
+        {
+            name: "TYRON SMITH",
+            goals: "Running",
+            experience: "3 Years",
+            location: "Ridgewood",
+            cost: "$129/month",
+            schedule: "Everyday"
+        },
+        {
+            name: "TYRON SMITH",
+            goals: "Running",
+            experience: "3 Years",
+            location: "Ridgewood",
             cost: "$129/month",
             schedule: "Everyday"
         }
       ]);
 
-      const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
+    //   const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
+      console.log({vals})
 
     return (
         <>
         <br />
             <div className='allCoaches'>
                 {coachesList.map((coach)=>{
-                    if(coach.goals===lst[0] || coach.experience ===lst[1] || coach.location===lst[2] || coach.cost===lst[3]){
+                    if(coach.goals===vals[0] && coach.experience ===vals[1] && coach.location===vals[2] && coach.cost===vals[3]){
                         return(
                             <Stack gap={3}>
                                 <div className='p-2'><OneCoach items={coach}/></div>
                             </Stack>
                         );
                     }else{
-                        return null;
+                        return(null);
                     }
                 })}
+
+            {coachesList.every(
+                (coach) =>
+                coach.goals !== vals[0] ||
+                coach.experience !== vals[1] ||
+                coach.location !== vals[2] ||
+                coach.cost !== vals[3]
+            ) && (
+                <Stack gap={3} style={{paddingLeft:"10px", marginTop:"10px"}}>
+                    <p>No coaches meet the specified conditions.</p>
+                    {/* <p>Would you like to display a list of coaches near you?</p>
+                    <button>Yes</button>
+                    <button>No</button> */}
+                </Stack>
+            )}
+                
             </div>
 
         </>
