@@ -1,4 +1,4 @@
-import SettingsForm from "../Components/SettingsForm";
+import SettingsForm from "../Components/SettingsForm/SettingsForm";
 import React from 'react'
 import './styles/Settings.css'
 

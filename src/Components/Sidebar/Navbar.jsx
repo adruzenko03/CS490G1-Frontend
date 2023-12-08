@@ -3,14 +3,13 @@ import './styles/Navbar.css';
 import Footer from './Footer';
 import { Link } from "react-router-dom"
 import { NavLink } from 'react-router-dom';
-
-import trufitLogo from './icons/logo-full.png'
-import workoutIcon from './icons/dumbbell.png'
-import coachIcon from './icons/coach.png'
-import mycoachIcon from './icons/mycoach.png'
-import clientsIcon from './icons/clients.png'
-import clientWorkout from './icons/clientworkout.png'
-import chatlogo from './icons/chat.png'
+import trufitLogo from '../icons/logo-full.png'
+import workoutIcon from '../icons/dumbbell.png'
+import coachIcon from '../icons/coach.png'
+import mycoachIcon from '../icons/mycoach.png'
+import clientsIcon from '../icons/clients.png'
+import clientWorkout from '../icons/clientworkout.png'
+import chatlogo from '../icons/chat.png'
 
 function Navbar({ onLoginClick, onSignupClick, userRole }) {
 

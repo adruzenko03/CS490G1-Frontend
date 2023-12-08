@@ -2,9 +2,9 @@ import { React, useState} from 'react';
 import './styles/Footer.css';
 import { Link } from "react-router-dom";
 
-import homeDumbbell from './icons/homedumbbell.png'
-import activity from './icons/activity.png'
-import progress from './icons/progress.png'
+import homeDumbbell from '../icons/homedumbbell.png'
+import activity from '../icons/activity.png'
+import progress from '../icons/progress.png'
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
