@@ -21,20 +21,26 @@ function App() {
   const [user, setUser] = useState(null);//user state can help display user info and/or manage user sessions
   const [userRole, setUserRole] = useState(null);
 
-  const onLoginSuccess = (userData) => {
-    setUser(userData);
-    setUserRole(userData.role);
-  }
+  const onLoginSuccess = (isSuccess, message, userData) => {
+    if (isSuccess) {
+      setUser(userData); // Set the entire user object
+      setUserRole(userData.role); // Set the user role
+    } else {
+      console.log(message);
+    }
+  };
 
   const onSignupSuccess = (userData) => {
     setUser(userData);
     setUserRole(userData.role);
-  }
-  /*
+  };
   const logout = () => {
     setUser(null);
     setUserRole(null);
-  };*/
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+  };
 
   const toggleLoginModal = () => {
     setLoginVisible(!isLoginVisible);
@@ -62,8 +68,12 @@ function App() {
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
+<<<<<<< HEAD
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
           {/* <Route path="/ChatMain" element={<ChatMain />} /> */}
+=======
+          <Route path="/Settings" element={<Settings />} />
+>>>>>>> origin/rickydev
         </Routes>
       </Router>
       <LoginModal

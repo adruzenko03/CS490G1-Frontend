@@ -20,27 +20,28 @@ function ClientSurvey({ onClose }){
       };
     
       const handleSubmit = async (e) => {
+        const userID = localStorage.getItem('userId');
+        const surveyDataWithUserId = {userID,...surveyData}
+        console.log("This will be inserted to client survey ",surveyDataWithUserId);
         e.preventDefault();
         setIsLoading(true);
         setError('');
       
         try {
-          const response = await fetch('https://localhost:3001/client-survey', {
+          const response = await fetch('http://localhost:3001/client-survey', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(surveyData),
+            body: JSON.stringify(surveyDataWithUserId),
           });
       
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
       
-          // Process the response if needed
           const data = await response.json();
-          console.log(data);
-
+          console.log("From Client Survey, data, ",data);
           onClose();
         } catch (error) {
           setError('A network error occurred. Please try again later.');
@@ -86,9 +87,11 @@ function ClientSurvey({ onClose }){
             <label>*FITNESS GOAL:</label>
             <select name="fitnessGoal" value={surveyData.fitnessGoal} onChange={handleChange} required>
             <option value="">Select goal</option>
-            <option value="lose-weight">Lose Weight</option>
-            <option value="gain-muscle">Gain Muscle</option>
-            <option value="improve-endurance">Improve Endurance</option>
+            <option value="2">Lose Weight</option>
+            <option value="1">Gain Muscle</option>
+            <option value="3">Improve Endurance</option>
+            <option value="4">enhance flexibility</option>
+            
             </select>
         </div>
         {error && <div className="alert aler-danger">{error}</div>}
