@@ -13,6 +13,7 @@ import Activity from './pages/Activity';
 import Progress from './pages/Progress';
 import MyWorkout from './pages/MyWorkout';
 import ClientWorkouts from './pages/ClientWorkouts';
+import Settings from './pages/Settings';
 import ChatMain from './pages/ChatMain';
 
 function App() {
@@ -63,7 +64,8 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
-          {/* <Route path="/ChatMain" element={<ChatMain />} /> */}
+          <Route path="/Settings" element={<Settings />} />
+          {/* <Route path="/ChatMain" element={<ChatMain />} />  */}
         </Routes>
       </Router>
       <LoginModal

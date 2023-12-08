@@ -85,6 +85,10 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
           />
           Client Workouts
         </Link>
+        <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
+          
+          Settings
+        </Link>
         {/* <Link id='link6' to='/ChatMain' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
           <img 
             src={chatlogo} 
