@@ -13,7 +13,7 @@ import Activity from './pages/Activity';
 import Progress from './pages/Progress';
 import MyWorkout from './pages/MyWorkout';
 import ClientWorkouts from './pages/ClientWorkouts';
-import Settings from './pages/Settings'
+import Settings from './pages/Settings';
 import ChatMain from './pages/ChatMain';
 
 function App() {
@@ -70,8 +70,13 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
+<<<<<<< HEAD
           {/* <Route path="/ChatMain" element={<ChatMain />} /> */}
           <Route path="/Settings" element={<Settings />} />
+=======
+          <Route path="/Settings" element={<Settings />} />
+          {/* <Route path="/ChatMain" element={<ChatMain />} />  */}
+>>>>>>> a2f98540faf3034219218be73eee3e5f9e9c2c7c
         </Routes>
       </Router>
       <LoginModal
