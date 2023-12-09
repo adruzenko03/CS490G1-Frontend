@@ -65,6 +65,7 @@ function App() {
           <Route path="/MyWorkout" element={<MyWorkout />} />
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
         </Routes>
       </Router>
       <LoginModal
