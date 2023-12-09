@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/Progress.css";
 import CalorieGraph from "../Components/Progress/CalorieGraph";
+import WeightGraph from "../Components/Progress/WeightGraph";
 
 export default function Progress() {
   const data = [
@@ -75,7 +76,12 @@ export default function Progress() {
           <CalorieGraph data={data} />
         </div>
       </div>
-      <div className="form-container">Weight</div>
+      <div className="graph-container">
+        Daily Weight
+        <div className="graph">
+          <WeightGraph data={data} />
+        </div>
+      </div>
     </div>
   );
 }
