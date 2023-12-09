@@ -1,21 +1,67 @@
-/* .popup{
+
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+.overlay1{
+    background: rgba(49,49,49,0.8);
+}
+
+
+.oneCoach{
+    background-color: #1b6468;
+    color: white;
+    border-radius: 19px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition-duration: 0.2s;
+}
+
+.oneCoach:hover,
+.oneCoach:focus,
+.oneCoach:active {
+    transform: scale(1.01);
+    background-color: #103c3e;
+    cursor: pointer;
+}
+
+.content{
     display: flex;
     flex-direction: column;
     background-color: white;
     width: 600px;
-    border: 4px solid orangered;
+    border: 4px solid #ffffff;
     padding: 5px;
     justify-content: center;
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 34%;
-} */
-@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+    box-shadow: 0px 0px 18px #000000;
+}
+
 
 
 *{
     font-family: "Koulen", sans-serif;
     font-size: 1.1rem;
+}
+
+.cancel{
+    width: 30px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: local;
+    font-size: 1.4rem;
+    padding: 5px;
+    background:#FF4742;
+    border-radius: 8px;
+}
+
+.cancel:hover{
+    background: #c92222;
 }
 
 .coachName{
@@ -26,16 +72,6 @@
     margin-left: 9%;
 }
 
-.cancel{
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background: local;
-    font-size: 1.4rem;
-    padding: 5px;
-}
 
 .request{
     margin-top: 15px;
@@ -64,21 +100,5 @@
     position: fixed;
 }
 
-.overlay1{
-    background: rgba(49,49,49,0.8);
-}
 
-.content{
-   
 
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    width: 600px;
-    border: 4px solid #FF4742;
-    padding: 5px;
-    justify-content: center;
-    position: fixed;
-    top: 20%;
-    left: 34%;
-}
