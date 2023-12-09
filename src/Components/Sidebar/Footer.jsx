@@ -17,7 +17,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
   };
   // Conditionally render footer content based on userRole
   const renderFooterContent = () => {
-    if (userRole === 'COACH') {
+    if (userRole === 'coach') {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
@@ -78,7 +78,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
         </Link>
         </>
       );
-    } else if (userRole === 'CLIENT') {
+    } else if (userRole === 'client') {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
