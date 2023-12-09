@@ -15,8 +15,6 @@ import MyWorkout from './pages/MyWorkout';
 import ClientWorkouts from './pages/ClientWorkouts';
 import Settings from './pages/Settings';
 import ChatMain from './pages/ChatMain';
-import Clients from "./pages/Clients";
-import MyCoach from "./pages/MyCoach";
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
