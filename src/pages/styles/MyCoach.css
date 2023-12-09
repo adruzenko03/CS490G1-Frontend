@@ -3,6 +3,14 @@ body{
     margin: 0;
 }
 
+.myCoach{
+    width: 100%;
+}
+
+.container{
+    padding: 20px;
+}
+
 .coaches{
     width:100%;
     overflow: hidden;
@@ -11,11 +19,12 @@ body{
     overflow-y: auto;
 }
 
-.coaches-txt{
+.myCoach-txt{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 20px;
     font-family: "Koulen",sans-serif;
+    margin-top: 10px;
 }
 

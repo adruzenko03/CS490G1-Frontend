@@ -17,6 +17,10 @@ body{
     overflow-y: auto;
 }
 
+.container{
+    padding: 20px;
+}
+
 .coaches-txt{
     display: flex;
     justify-content: center;
