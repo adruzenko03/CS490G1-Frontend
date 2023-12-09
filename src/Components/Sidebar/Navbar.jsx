@@ -22,7 +22,7 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
 
 
   return (
-    <div className="navbar">
+    <div className="navBar">
       <div className="links">
         <Link id='navlogo' className={activeLink === 'navlogo' ? 'active' : ''} onClick={() => toggleLink('navlogo')} to='./' >
           <img 
