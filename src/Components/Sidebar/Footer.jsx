@@ -144,6 +144,36 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
 
   return (
     <div className="footer">
+
+
+      <Link id='myWorkout' className={activeLink === 'myWorkout' ? 'active' : ''} onClick={() => toggleLink('myWorkout')} to='/MyWorkout' >
+          <img 
+              src={homeDumbbell} 
+              style={{ 
+                width:"20px" ,marginRight: "10px"
+                }}
+          />
+          MyWorkout
+        </Link>
+      <Link id='activity' className={activeLink === 'activity' ? 'active' : ''} onClick={() => toggleLink('activity')} to='/Activity' >
+          <img 
+              src={activity} 
+              style={{ 
+                width:"20px" ,marginRight: "10px"
+                }}
+          />
+          Activity
+        </Link>
+      <Link id='progress' className={activeLink === 'progress' ? 'active' : ''} onClick={() => toggleLink('progress')} to='/Progress' >
+          <img 
+              src={progress} 
+              style={{ 
+                width:"20px" ,marginRight: "10px"
+                }}
+          />
+          Progress
+        </Link>
+
       {renderFooterContent()}
     </div>
   );

@@ -15,6 +15,8 @@ import MyWorkout from './pages/MyWorkout';
 import ClientWorkouts from './pages/ClientWorkouts';
 import Settings from './pages/Settings';
 import ChatMain from './pages/ChatMain';
+import Clients from "./pages/Clients";
+import MyCoach from "./pages/MyCoach";
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -64,14 +66,14 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="/Coaches" element={<Coaches />} />
           <Route path="/Workouts" element={<Workouts />} />
-          <Route path="/MyCoach" element={<MyCoach />} />
-          <Route path="/Clients" element={<Clients />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
-          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
           <Route path="/Settings" element={<Settings />} />
           {/* <Route path="/ChatMain" element={<ChatMain />} />  */}
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
         </Routes>
       </Router>
       <LoginModal

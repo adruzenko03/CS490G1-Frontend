@@ -7,10 +7,13 @@ import "./styles/Coaches.css";
 function Coaches() {
   return (
     <div className="coaches">
-      <div className="header">
-        <h1>Coaches</h1>
-      </div>
-      <Filter />
+        <div className="header">
+          <h1>Coaches</h1>
+        </div>
+        <div className="container">
+          <Filter />
+          {/* <AllCoaches /> */}
+        </div>
     </div>
   );
 }

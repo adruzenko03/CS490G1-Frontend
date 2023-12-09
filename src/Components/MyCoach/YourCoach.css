@@ -6,11 +6,9 @@
     width: 100%;
     margin-left: 0px;
     background-color: #7DBBC3;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    font: "Koulen" sans-serif;
-    display: inline-block;
+    height: auto;
+    width: 100%;
+    margin-left: 00px;
 }
 
 .specifier{

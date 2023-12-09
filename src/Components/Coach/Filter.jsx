@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FilterButton from './FilterButton';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -8,20 +8,81 @@ import Col from 'react-bootstrap/Col';
 import OneCoach from './OneCoach';
 import Stack from 'react-bootstrap';
 import AllCoaches from './AllCoaches';
+import axios from 'axios';
 
 
 
 const Filter = () => {
 
-    const goalList = ["Goal", "Resistance", "Boxing", "Lifting", "Running"];
-    const experienceList = ["Experience", "1 Year", "2 Years", "3 Years", "5 Years"];
-    const locationList = ["Location" ,"Newark", "Bloomfield", "Ridgewood", "Wayne"];
-    const costList = ["Cost" ,"$59/month", "$69/month", "$89/month", "$129/month"];
+
+    const [goalList, setGoalsList] = useState([]);
+    const [experienceList, setExperienceList] = useState([]);
+    const [locationList, setLocationList] = useState([]);
+    const [costList, setCostList] = useState([]);
+    // const costList = ["Cost" ,"$59/month", "$69/month", "$89/month", "$129/month"];
+
     
     const [clicked, setClicked] = useState(false);
-
     const [items, setItems] = useState([]);
-    
+
+    // Get all distinct type of goals from the database.
+    useEffect(() => {
+        const fetchAllGoals = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/goalsList`);
+            console.log(res.data);
+            setGoalsList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchAllGoals();
+      }, []); 
+
+    // Get experience list.
+    useEffect(() => {
+        const fetchAllExperiences = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/experienceList`);
+            console.log(res.data);
+            setExperienceList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchAllExperiences();
+      }, []); 
+
+    // Get location list.
+    useEffect(() => {
+        const fetchAllLocations = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/locationList`);
+            console.log(res.data);
+            setLocationList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchAllLocations();
+      }, []); 
+    // Get price list.
+    useEffect(() => {
+        const fetchCostList = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/costList`);
+            console.log(res.data);
+            setCostList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchCostList();
+      }, []); 
+
+
+
+
     const toggleBtn = () => {
         setClicked(true);
     }
@@ -39,60 +100,64 @@ const Filter = () => {
                     <Container>
                         <Row className='bla'>
                             <Col>
-                                <Dropdown>
-                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4">
-                                        {value1 || goalList[0]}
+                                <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                                    <span>Goal</span>
+                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"12.5vw"}}>
+                                        {value1 || (goalList[0] && goalList[0].goal)}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown">
                                         {goalList.slice(1).map((item, index) => (
-                                        <Dropdown.Item key={index} onClick={()=>setValue1(item)}>
-                                        {item}
+                                        <Dropdown.Item key={index} onClick={()=>setValue1(item.goal)}>
+                                        {item.goal}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Col>
                             <Col>
-                                <Dropdown>
-                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4">
-                                        {value2 || experienceList[0]}
+                                <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                                <span>Experience</span>
+                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
+                                        {value2 || (experienceList[0] && experienceList[0].experience)}
                                     </Dropdown.Toggle>
                                 
-                                    <Dropdown.Menu id="dropdown">
+                                    <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
                                         {experienceList.slice(1).map((item, index) => (
-                                        <Dropdown.Item key={index} onClick={()=>setValue2(item)}>
-                                        {item}
+                                        <Dropdown.Item key={index} onClick={()=>setValue2(item.experience)}>
+                                        {item.experience + " Years"}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Col>
                             <Col>
-                                <Dropdown>
-                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4">
-                                        {value3 || locationList[0]}
+                                <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                                    <span>State</span>
+                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
+                                        {value3 || (locationList[0] && locationList[0].state)}
                                     </Dropdown.Toggle>
                                 
-                                    <Dropdown.Menu id="dropdown">
+                                    <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
                                         {locationList.slice(1).map((item, index) => (
-                                        <Dropdown.Item key={index} onClick={()=>setValue3(item)}>
-                                        {item}
+                                        <Dropdown.Item key={index} onClick={()=>setValue3(item.state)}>
+                                        {item.state}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Col>
                             <Col>
-                                <Dropdown>
-                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4">
-                                        {value4 || costList[0]}
+                                <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                                    <span>Cost</span>
+                                    <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
+                                        {value4 || (costList[0] && costList[0].cost)}
                                     </Dropdown.Toggle>
                                 
-                                    <Dropdown.Menu id="dropdown">
+                                    <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
                                         {costList.slice(1).map((item, index) => (
-                                        <Dropdown.Item key={index} onClick={()=>setValue4(item)}>
-                                        {item}
+                                        <Dropdown.Item key={index} onClick={()=>setValue4(item.cost)}>
+                                        {"$" + item.cost + "/month"}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>

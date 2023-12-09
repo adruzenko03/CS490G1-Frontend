@@ -2,7 +2,15 @@ body{
     height: 100%;
     margin: 0;
 }
-/* 
+
+.myCoach{
+    width: 100%;
+}
+
+.container{
+    padding: 1.3vw;
+}
+
 .coaches{
     width:100%;
     overflow: hidden;
@@ -21,12 +29,13 @@ body{
     padding-left: 20px;
 }
 
-.coaches-txt{
+.myCoach-txt{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 20px;
     font-family: "Koulen",sans-serif;
+    margin-top: 10px;
 }
 
 .myCoach-txt{

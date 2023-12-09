@@ -3,7 +3,6 @@ import './YourCoachExpanded.css'
 
 const OneCoach = ({items}) => {
   const [modal, setModal] = useState(false);
- 
   const toggleModal = () =>{
     setModal(!modal);
   }

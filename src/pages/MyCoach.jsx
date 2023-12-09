@@ -9,8 +9,10 @@ const MyCoach = () => {
         <div className="myCoach-txt">
           <h1>My Coach</h1>
         </div>
-        <Requests />
-        <YourCoach />
+        <div className="container">
+          <Requests />
+          <YourCoach />
+        </div>
     </div>
   )
 }

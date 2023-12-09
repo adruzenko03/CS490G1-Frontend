@@ -36,7 +36,7 @@ const ClientRequests = () => {
             <span className="text-wrapper1">PENDING CLIENT REQUESTS:</span>
             {clientsList.map((client, index)=>{
               return(
-                  <Stack gap={3} key={index}>
+                  <Stack gap={3} key={index} className='stack'>
                       <div className='p-2'><ClientOneRequest items={client}/></div>
                   </Stack>
               );  

@@ -1,94 +1,28 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import OneCoach from './OneCoach'
 import Stack from 'react-bootstrap/Stack';
 import FilterButton from './FilterButton';
 import './AllCoaches.css'
 import { MyContext } from './MyContext';
+import axios from 'axios';
 
 const AllCoaches = ({vals}) => {
 
-    const [coachesList, setCoachesList] = useState([
-        {
-            name: "JOHN MOE",
-            goals: "Resistance",
-            experience: "1 Year",
-            location: "Newark",
-            cost: "$59/month",
-            schedule: "Monday, Tuesday, Thursday, Friday"
-        },
-        {
-            name: "ANDREW RICHEY",
-            goals: "Boxing",
-            experience: "2 Years",
-            location: "Newark",
-            cost: "$69/month",
-            schedule: "Monday, Saturday, Sunday"
-        },
-        {
-            name: "BEN LIAM",
-            goals: "Resistance",
-            experience: "5 Years",
-            location: "Bloomfield",
-            cost: "$89/month",
-            schedule: "Saturday, Sunday"
-        },
-        {
-            name: "JOSH NESTOR",
-            goals: "Lifting",
-            experience: "10 Years",
-            location: "Ridgewood",
-            cost: "$59/month",
-            schedule: "Weekdays"
-        },
-        {
-            name: "TRISTAN SMITH",
-            goals: "Lifting",
-            experience: "10 Years",
-            location: "Ridgewood",
-            cost: "$59/month",
-            schedule: "Weekdays"
-        },
-        {
-            name: "TYRON SMITH",
-            goals: "Running",
-            experience: "3 Years",
-            location: "Ridgewood",
-            cost: "$129/month",
-            schedule: "Everyday"
-        },
-        {
-            name: "TYRON SMITH",
-            goals: "Running",
-            experience: "3 Years",
-            location: "Ridgewood",
-            cost: "$129/month",
-            schedule: "Everyday"
-        },
-        {
-            name: "TYRON SMITH",
-            goals: "Running",
-            experience: "3 Years",
-            location: "Ridgewood",
-            cost: "$129/month",
-            schedule: "Everyday"
-        },
-        {
-            name: "TYRON SMITH",
-            goals: "Running",
-            experience: "3 Years",
-            location: "Ridgewood",
-            cost: "$129/month",
-            schedule: "Everyday"
-        },
-        {
-            name: "TYRON SMITH",
-            goals: "Running",
-            experience: "3 Years",
-            location: "Ridgewood",
-            cost: "$129/month",
-            schedule: "Everyday"
-        }
-      ]);
+    const [coachesList, setCoachesList] = useState([]);
+
+    // Get all coaches.
+    useEffect(() => {
+        const fetchAllCoaches = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/coachList`);
+            console.log(res.data);
+            setCoachesList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchAllCoaches();
+      }, []); 
 
     //   const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
       console.log({vals})

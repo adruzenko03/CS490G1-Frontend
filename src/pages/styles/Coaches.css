@@ -19,6 +19,10 @@ body{
     padding-right: 20px;
 }
 
+.container{
+    padding: 1.3px;
+}
+
 .coaches-txt{
     display: flex;
     justify-content: center;
