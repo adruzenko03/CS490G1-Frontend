@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
 
 
-.allRequests{
+.allRequestsss{
     background-color: #7DBBC3;
-    padding: 15px;
-    font: "Koulen" sans-serif;
-    color: white;
+    width: 100%;
+    margin-left: 0px;
 }
 
+
 .text-wrapper1{
-    text-decoration: underline;
+    color: white;
+    margin-left: 10px;
 }
+
