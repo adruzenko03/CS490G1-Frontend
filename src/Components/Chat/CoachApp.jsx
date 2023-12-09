@@ -5,7 +5,7 @@ import CoachChat from './CoachChat';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
 
 function CoachApp() {
 
@@ -18,12 +18,12 @@ function CoachApp() {
     username: username
   }
 
-  const joinRoom = ()=>{
-    if(username !== "" && room !== ""){
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  }
+  // const joinRoom = ()=>{
+  //   if(username !== "" && room !== ""){
+  //     socket.emit("join_room", room);
+  //     setShowChat(true);
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -46,12 +46,13 @@ function CoachApp() {
           }}
         />
         <button
-          onClick={joinRoom}
+          // onClick={joinRoom}
         >
           JOIN</button>
         </div>
       ):(
-        <CoachChat socket={socket} username={username} room={room}/>
+        // <CoachChat socket={socket} username={username} room={room}/>
+        <span>dfs</span>
       )}
     </div>
   );
