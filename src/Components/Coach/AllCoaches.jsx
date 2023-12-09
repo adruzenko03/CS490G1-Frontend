@@ -32,7 +32,8 @@ const AllCoaches = ({vals}) => {
         <br />
             <div className='allCoaches'>
                 {coachesList.map((coach)=>{
-                    if(coach.goal===vals[0] && coach.experience ===vals[1] && coach.state===vals[2] && coach.cost===vals[3]){
+                     /* ERROR HERE  vals[0] */ 
+                    if(coach.goal==='asdf' && coach.experience ===vals[1] && coach.state===vals[2] && coach.cost===vals[3]){
                         console.log('cldkdckcjdlcj' + coach);
                         return(
                             <Stack gap={3}>
@@ -46,7 +47,8 @@ const AllCoaches = ({vals}) => {
 
             {coachesList.every(
                 (coach) =>
-                coach.goal !== vals[0] ||
+                /* ERROR HERE  vals[0] */ 
+                coach.goal !== 'asdf' ||
                 coach.experience !== vals[1] ||
                 coach.state !== vals[2] ||
                 coach.cost !== vals[3]
