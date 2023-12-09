@@ -9,23 +9,11 @@ import {
   Legend,
 } from "recharts";
 
-const CalorieGraph = ({ data }) => {
+const WeightGraph = ({ data }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
 
   // Extract unique months and years from the data
-  const uniqueMonths = [
-    ...new Set(
-      data.map((item) => {
-        const date = new Date(item.Date);
-        return date.toLocaleDateString("en-US", {
-          month: "short",
-          year: "numeric",
-        });
-      })
-    ),
-  ];
-
-  // Sort months in chronological order
+  const uniqueMonths = [...new Set(data.map((item) => item.Date.slice(0, 7)))];
   uniqueMonths.sort();
 
   // Filter data based on selected month
@@ -51,10 +39,10 @@ const CalorieGraph = ({ data }) => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="Calorie" stroke="#8884d8" />
+        <Line type="monotone" dataKey="Weight" stroke="#82ca9d" />
       </LineChart>
     </div>
   );
 };
 
-export default CalorieGraph;
+export default WeightGraph;
