@@ -6,18 +6,18 @@ import SignupModal from "./Components/Sidebar/SignupModal";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Coaches from "./pages/Coaches";
 import Home from "./pages/Home";
+import MyCoach from "./pages/MyCoach";
+import Clients from "./pages/Clients";
 import Workouts from "./pages/Workouts";
 import Activity from "./pages/Activity";
 import Progress from "./pages/Progress";
 import MyWorkout from "./pages/MyWorkout";
-import Clients from "./pages/Clients";
 import ClientWorkouts from "./pages/ClientWorkouts";
-import MyCoach from "./pages/MyCoach";
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isSignupVisible, setSignupVisible] = useState(false);
-  const [/*user, */setUser] = useState(null); //user state can help display user info and/or manage user sessions
+  const [user, setUser] = useState(null); //user state can help display user info and/or manage user sessions
   const [userRole, setUserRole] = useState(null);
 
   const onLoginSuccess = (isSuccess, message, userData) => {
@@ -33,11 +33,13 @@ function App() {
     setUser(userData);
     setUserRole(userData.role);
   };
-  /*
   const logout = () => {
     setUser(null);
     setUserRole(null);
-  };*/
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+  };
 
   const toggleLoginModal = () => {
     setLoginVisible(!isLoginVisible);
@@ -63,6 +65,7 @@ function App() {
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/MyWorkout" element={<MyWorkout />} />
+          {/* <Route path="/ChatMain" element={<ChatMain />} />  */}
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />

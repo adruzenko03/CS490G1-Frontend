@@ -27,6 +27,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
         setError(data.message || "Login Failed");
       }
     } catch (err) {
+      console.log(err);
       setError("Network Error");
     }
   };

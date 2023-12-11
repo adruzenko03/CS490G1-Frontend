@@ -23,7 +23,6 @@ const CalorieGraph = ({ data }) => {
       })
     ),
   ];
-
   // Sort months in chronological order
   uniqueMonths.sort();
 
