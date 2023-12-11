@@ -60,7 +60,17 @@ const filteredData = selectedMonth
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="Date" />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          formatter={(value, name, props) => {
+            const date = new Date(props.payload.Date);
+            const formattedDate = `${date.toLocaleString("default", {
+              month: "long",
+            })} ${date.getDate()}`;
+
+            return [formattedDate, `Calories ${value}`];
+          }}
+        />
+
         <Legend />
         <Line type="monotone" dataKey="Calorie" stroke="#8884d8" />
       </LineChart>

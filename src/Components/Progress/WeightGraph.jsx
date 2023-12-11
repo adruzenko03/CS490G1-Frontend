@@ -61,7 +61,17 @@ const WeightGraph = ({ data }) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="Date" />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          formatter={(value, name, props) => {
+            const date = new Date(props.payload.Date);
+            const formattedDate = `${date.toLocaleString("default", {
+              month: "long",
+            })} ${date.getDate()}`;
+
+            return [formattedDate, `Weight ${value}`];
+          }}
+        />
+
         <Legend />
         <Line type="monotone" dataKey="Weight" stroke="#82ca9d" />
       </LineChart>
