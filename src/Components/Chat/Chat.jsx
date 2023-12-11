@@ -1,3 +1,4 @@
+/*
 import './App.css'
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
@@ -65,7 +66,7 @@ const Chat = ({socket, username, room}) => {
             />
             {/* <button
                 onClick={sendMessage}
-            >{sendIcon}</button> */}
+            >{sendIcon}</button> }
             <img src={sendIcon} alt="" onClick={sendMessage}/>
         </div>
     </div>
@@ -73,3 +74,4 @@ const Chat = ({socket, username, room}) => {
 }
 
 export default Chat
+*/

@@ -1,3 +1,4 @@
+/*
 import { useState, useEffect } from 'react';
 import './CoachApp.css';
 import io from 'socket.io-client'
@@ -58,3 +59,4 @@ function CoachApp() {
 }
 
 export default CoachApp;
+*/

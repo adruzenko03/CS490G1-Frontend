@@ -1,3 +1,4 @@
+/*
 import './CoachApp.css'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -56,7 +57,7 @@ const CoachChat = ({socket, username, room}) => {
         }
     }
 
-    /* RETRIEVE ALL MESSAGES FROM DATABASE */
+    /* RETRIEVE ALL MESSAGES FROM DATABASE 
     useEffect(()=>{
         const FetchAllMessages = async()=>{
             try{
@@ -138,7 +139,7 @@ const CoachChat = ({socket, username, room}) => {
       };
 
 
-    /* DISPLAY THE RECEIVED MESSAGE */
+    /* DISPLAY THE RECEIVED MESSAGE 
     useEffect(()=>{
         socket.on("receive_message", (data)=>{
             setMessageList((list)=>[...list, data])
@@ -204,7 +205,7 @@ const CoachChat = ({socket, username, room}) => {
 }
 
 export default CoachChat
-
+*/
 
 
     /* SEND MESSAGE -- NOT SENDING TO DATABASE YET */

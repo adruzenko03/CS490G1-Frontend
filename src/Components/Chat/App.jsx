@@ -1,3 +1,4 @@
+/*
 import { useState } from 'react';
 import './App.css';
 import io from 'socket.io-client'
@@ -55,3 +56,4 @@ function App() {
 }
 
 export default App;
+*/
