@@ -13,12 +13,36 @@ const WeightGraph = ({ data }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
 
   // Extract unique months and years from the data
-  const uniqueMonths = [...new Set(data.map((item) => item.Date.slice(0, 7)))];
+  const uniqueMonths = [
+    ...new Set(
+      data.map((item) => {
+        const date = new Date(item.Date);
+        const monthName = date.toLocaleString("default", { month: "long" });
+        const year = date.getFullYear();
+        return `${monthName} ${year}`;
+      })
+    ),
+  ];
+
+  // Sort months in chronological order
   uniqueMonths.sort();
 
   // Filter data based on selected month
   const filteredData = selectedMonth
-    ? data.filter((item) => item.Date.startsWith(selectedMonth))
+    ? data.filter((item) => {
+        const selectedMonthStart = selectedMonth.split(" ")[0];
+        const itemMonth = new Date(item.Date).toLocaleString("default", {
+          month: "long",
+        });
+        const itemMonthAbbrev = new Date(item.Date).toLocaleString("default", {
+          month: "short",
+        });
+
+        return (
+          itemMonth === selectedMonthStart ||
+          itemMonthAbbrev === selectedMonthStart
+        );
+      })
     : data;
 
   return (
