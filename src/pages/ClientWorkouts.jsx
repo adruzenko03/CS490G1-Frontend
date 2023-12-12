@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/ClientWorkouts.css'
-import ClWorkoutsPage from './WorkoutPlan/ClWorkoutsPage'
+import ClWorkoutsPage from '../Components/WorkoutPlan/ClWorkoutsPage'
 
 const ClientWorkouts = () => {
   return (

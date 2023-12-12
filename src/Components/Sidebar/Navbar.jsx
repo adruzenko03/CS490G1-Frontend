@@ -22,7 +22,7 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
 
 
   return (
-    <div className="navBar">
+    <div className="navbar">
       <div className="links">
         <Link id='navlogo' className={activeLink === 'navlogo' ? 'active' : ''} onClick={() => toggleLink('navlogo')} to='./' >
           <img 
@@ -51,43 +51,6 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
             marginRight: "12px"}} 
           />
           Coaches
-        </Link>
-        <Link id='link3' to='/MyCoach' className={activeLink === 'link3' ? 'active' : ''} onClick={() => toggleLink('link3')}>
-          <img 
-            src={mycoachIcon} 
-            style={{
-              width:"20px", 
-              display:"inline-block", 
-              marginRight: "12px"
-            }} 
-          />
-          MyCoach
-          </Link>
-        <Link id='link4' to='/Clients' className={activeLink === 'link4' ? 'active' : ''} onClick={() => toggleLink('link4')}>
-          <img 
-            src={clientsIcon} 
-            style={{
-              width:"20px", 
-              display:"inline-block", 
-              marginRight: "12px"
-            }} 
-          />
-          MyClients
-          </Link>
-        <Link id='link5' to='/ClientWorkouts' className={activeLink === 'link5' ? 'active' : ''} onClick={() => toggleLink('link5')} >
-          <img 
-            src={clientWorkout} 
-            style={{
-              width:"20px", 
-              display:"inline-block", 
-              marginRight: "12px"
-            }} 
-          />
-          Client Workouts
-        </Link>
-        <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
-          
-          Settings
         </Link>
         {/* <Link id='link6' to='/ChatMain' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
           <img 
