@@ -41,7 +41,7 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
               marginRight: "12px"
             }} 
           />
-          Workouts
+          Exercises
         </Link>
         <Link id='link2' to='/Coaches' className={activeLink === 'link2' ? 'active' : ''} onClick={() => toggleLink('link2')}>
           <img 

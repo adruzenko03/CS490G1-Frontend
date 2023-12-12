@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import "./Styles/WorkoutModal.css";
+import "../Workout/Styles/WorkoutModal.css";
 
 const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
   

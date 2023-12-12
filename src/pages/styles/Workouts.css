@@ -46,11 +46,20 @@ label {
 }
 
 .fliter-form select {
-    margin-right: 5px;
+    margin-left: 5px;
     border: none;
     border-radius: 15px;
     padding: 0px 50px;   
     font-size: 20px;
+    font-family: 'Koulen', sans-serif;
+}
+
+.fliter-form input {
+    margin-left: 5px;
+    border: none;
+    border-radius: 15px;
+    padding: 0px 50px;   
+    font-size: 25px;
     font-family: 'Koulen', sans-serif;
 }
 
