@@ -85,3 +85,7 @@ label {
     margin-left: 1px;
 }
 
+.Workout-details p.exercise-name {
+  font-size: 40px;
+}
+

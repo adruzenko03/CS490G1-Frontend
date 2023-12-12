@@ -19,7 +19,7 @@ function Workouts() {
     Modal.setAppElement("#root");
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array to fetch data only once when the component mounts
+  }, []);
 
   const fetchData = () => {
     axios
@@ -27,7 +27,7 @@ function Workouts() {
       .then((response) => {
         const exercises = response.data.exercises;
         setOriginalData(exercises);
-        setFilteredData(exercises); // Initialize filteredData with original data
+        setFilteredData(exercises);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -59,26 +59,22 @@ function Workouts() {
     setFilteredData(filtered);
   };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-    applyFilters(); // Apply filters instantly as the user types
-  };
 
-  const handleFilterChange = (newFilters) => {
-    setAppliedFilters(newFilters);
-    applyFilters(); // Apply filters instantly as the user types
-  };
+  useEffect(() => {
+    applyFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, appliedFilters]);
 
   return (
     <div className="Workout-page">
       <div className="header">
-        <h1>Workouts</h1>
+        <h1>Exercises</h1>
       </div>
       <div className="filter">
         <WorkoutFilter
           appliedFilters={appliedFilters}
           setAppliedFilters={setAppliedFilters}
-          handleFilterChange={handleFilterChange}
+          applyFilters={applyFilters}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
         />
@@ -90,7 +86,7 @@ function Workouts() {
             key={`${workout.exercise_name}-${index}`}
             onClick={() => openModal(workout)}
           >
-            <p>{workout.exercise_name}</p>
+            <p className="exercise-name">{workout.exercise_name}</p>
             <p>Equipment: {workout.equipment_name}</p>
           </div>
         ))}

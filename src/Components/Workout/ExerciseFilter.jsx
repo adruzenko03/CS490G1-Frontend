@@ -51,9 +51,6 @@ const ExerciseFilter = ({
       </label>
 
       <div>
-        <button id="apply-btn" onClick={handleApplyClick}>
-          Apply
-        </button>
         <button id="apply-btn" onClick={handleResetClick}>
           Reset
         </button>
