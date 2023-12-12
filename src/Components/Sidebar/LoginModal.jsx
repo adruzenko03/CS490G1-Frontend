@@ -20,6 +20,8 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
         });
         const data = await response.json();
         if( response.ok ) {
+          localStorage.setItem("userId", JSON.stringify(data.user.user_id));
+          console.log(data.user.user_id);
           localStorage.setItem("user", JSON.stringify(data.user));
           onLoginSuccess( true, '', data.user );
           onClose();
