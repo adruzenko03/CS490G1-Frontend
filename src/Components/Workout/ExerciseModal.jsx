@@ -22,11 +22,13 @@ const ExerciseModal = ({ isOpen, closeModal, selectedWorkout }) => {
       {selectedWorkout ? (
         <div>
           <h2 className="workout-name">{selectedWorkout.exercise_name}</h2>
-          <p>Equipment: {selectedWorkout.equipment_name}</p>
+          <p>
+            <strong>Equipment:</strong> {selectedWorkout.equipment_name}
+          </p>
 
           {selectedWorkout.link && (
             <p>
-              Link:{" "}
+              <strong>Link:</strong>{" "}
               <a
                 href={selectedWorkout.link}
                 target="_blank"
@@ -38,7 +40,7 @@ const ExerciseModal = ({ isOpen, closeModal, selectedWorkout }) => {
           )}
 
           <p>
-            Instructions:
+            <strong>Instructions:</strong>
             <br /> {selectedWorkout.steps}
           </p>
         </div>
