@@ -15,6 +15,8 @@ import MyWorkout from './pages/MyWorkout';
 import ClientWorkouts from './pages/ClientWorkouts';
 import Settings from './pages/Settings';
 import ChatMain from './pages/ChatMain';
+import Admin from './pages/Admin';
+
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -72,6 +74,7 @@ function App() {
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
+          <Route path="/Admin" element={<Admin />} />
         </Routes>
       </Router>
       <LoginModal
