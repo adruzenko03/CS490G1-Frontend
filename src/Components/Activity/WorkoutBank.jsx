@@ -16,16 +16,45 @@ export default function WorkoutBank() {
 
   const mockData = [
     {
-      name: "Jogging",
-      goal: "Weight Loss",
-      equipment: "No Equipment",
-      instructions:
-        "Start with a brisk walk, then gradually increase your pace.",
-      muscleTargetGroup: "Legs",
-      difficulty: "Beginner",
-      link: "https://example.com/jogging-workout-source",
+      workout_name: "Adventure",
+      goal: "improve endurance",
+      exercises: "Plank, Plank Jacks",
+      difficulty: "advanced",
+      muscle: "core",
+      equipment_list: "Bodyweight",
     },
- 
+    {
+      workout_name: "Assault",
+      goal: "lose weight",
+      exercises: "Calf Raises, Leg Press",
+      difficulty: "beginner",
+      muscle: "legs",
+      equipment_list: "Bodyweight, Machine",
+    },
+    {
+      workout_name: "Basics",
+      goal: "gain muscle",
+      exercises: "Jumping Jacks, Push-ups, Sit-ups",
+      difficulty: "advanced",
+      muscle: "cardio",
+      equipment_list: "Bodyweight",
+    },
+    {
+      workout_name: "Basics",
+      goal: "gain muscle",
+      exercises: "Jumping Jacks, Push-ups, Sit-ups",
+      difficulty: "intermediate",
+      muscle: "chest",
+      equipment_list: "Bodyweight",
+    },
+    {
+      workout_name: "Basics",
+      goal: "gain muscle",
+      exercises: "Jumping Jacks, Push-ups, Sit-ups",
+      difficulty: "advanced",
+      muscle: "core",
+      equipment_list: "Bodyweight",
+    },
   ];
 
   const openModal = (workout) => {
@@ -44,23 +73,24 @@ export default function WorkoutBank() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const applyFilters = () => {
-    const filtered = mockData.filter((workout) => {
-      return (
-        (appliedFilters.equipment === "" ||
-          workout.equipment === appliedFilters.equipment) &&
-        (appliedFilters.difficulty === "" ||
-          workout.difficulty.toLowerCase() ===
-            appliedFilters.difficulty.toLowerCase()) &&
-        (appliedFilters.goal === "" || workout.goal === appliedFilters.goal) &&
-        (appliedFilters.muscle === "" ||
-          workout.muscleTargetGroup.toLowerCase() ===
-            appliedFilters.muscle.toLowerCase())
-      );
-    });
+const applyFilters = () => {
+  const filtered = mockData.filter((workout) => {
+    return (
+      (appliedFilters.equipment === "" ||
+        workout.equipment_list.includes(appliedFilters.equipment)) &&
+      (appliedFilters.difficulty === "" ||
+        workout.difficulty === appliedFilters.difficulty) &&
+      (appliedFilters.goal === "" ||
+        workout.goal.toLowerCase().trim() ===
+          appliedFilters.goal.toLowerCase().trim()) &&
+      (appliedFilters.muscle === "" ||
+        workout.muscle.toLowerCase().trim() ===
+          appliedFilters.muscle.toLowerCase().trim())
+    );
+  });
 
-    setFilteredData(filtered);
-  };
+  setFilteredData(filtered);
+};
 
   return (
     <div className="Workout-page">
@@ -78,12 +108,11 @@ export default function WorkoutBank() {
         {filteredData.map((workout, index) => (
           <div
             className="Workout-details"
-            key={workout.name}
+            key={`${workout.workout_name}-${index}`} 
             onClick={() => openModal(workout)}
           >
-            <p>{workout.name}</p>
-            <p>Goal: {workout.goal}</p>
-            <p>Equipment: {workout.equipment}</p>
+            <p>{workout.workout_name}</p> <p>Goal: {workout.goal}</p>
+            <p>Equipment: {workout.equipment_list}</p>{" "}
           </div>
         ))}
       </div>
