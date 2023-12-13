@@ -22,9 +22,10 @@ const Exercise = ({elements, deactivate}) => {
               <h2 id='exerciseName'>{elements.exerciseName}</h2>
               <h5>Equipment: {Array.isArray(elements.exerciseEquipment) ? elements.exerciseEquipment.join(', ') : elements.exerciseEquipment}</h5>
               <h5>Steps: {elements.steps}</h5>
+              <div className="buttons">
                     <button className='activate' onClick={toggleBtn}>Activate</button>
                     <button className='deactivate' onClick={toggleBtn}>Dectivate</button>
-            
+                </div>
               
           </div>
       </div>
