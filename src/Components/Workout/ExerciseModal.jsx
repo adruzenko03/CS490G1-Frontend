@@ -2,13 +2,15 @@ import React from "react";
 import Modal from "react-modal";
 import "./Styles/WorkoutModal.css";
 
+Modal.setAppElement("#root"); // Make sure to set the root element for accessibility
+
 const ExerciseModal = ({ isOpen, closeModal, selectedWorkout }) => {
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       contentLabel="Workout Details"
-      className="workout-modal"
+      className="workout-modal center" // Add the "center" class
       overlayClassName="workout-overlay"
       shouldCloseOnOverlayClick={true}
     >

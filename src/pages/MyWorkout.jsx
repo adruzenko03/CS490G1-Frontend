@@ -173,7 +173,7 @@ export default function MyWorkout() {
 
   return (
     <div className="myworkout-page">
-      <div className="header">Your Workouts</div>
+      <div className="header">Workouts</div>
       <div className="myWorkoutform-container">
         {mockData.map((workout, index) => (
           <div

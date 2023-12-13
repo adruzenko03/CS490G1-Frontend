@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import WorkoutModal from "../Activity/WorkoutModal";
 import WorkoutFilter from "../Activity/WorkoutFilter";
+import axios from "axios"; // Import Axios
 
 export default function WorkoutBank() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -13,49 +14,6 @@ export default function WorkoutBank() {
     goal: "",
     muscle: "",
   });
-
-  const mockData = [
-    {
-      workout_name: "Adventure",
-      goal: "improve endurance",
-      exercises: "Plank, Plank Jacks",
-      difficulty: "advanced",
-      muscle: "core",
-      equipment_list: "Bodyweight",
-    },
-    {
-      workout_name: "Assault",
-      goal: "lose weight",
-      exercises: "Calf Raises, Leg Press",
-      difficulty: "beginner",
-      muscle: "legs",
-      equipment_list: "Bodyweight, Machine",
-    },
-    {
-      workout_name: "Basics",
-      goal: "gain muscle",
-      exercises: "Jumping Jacks, Push-ups, Sit-ups",
-      difficulty: "advanced",
-      muscle: "cardio",
-      equipment_list: "Bodyweight",
-    },
-    {
-      workout_name: "Basics",
-      goal: "gain muscle",
-      exercises: "Jumping Jacks, Push-ups, Sit-ups",
-      difficulty: "intermediate",
-      muscle: "chest",
-      equipment_list: "Bodyweight",
-    },
-    {
-      workout_name: "Basics",
-      goal: "gain muscle",
-      exercises: "Jumping Jacks, Push-ups, Sit-ups",
-      difficulty: "advanced",
-      muscle: "core",
-      equipment_list: "Bodyweight",
-    },
-  ];
 
   const openModal = (workout) => {
     setSelectedWorkout(workout);
@@ -69,12 +27,23 @@ export default function WorkoutBank() {
 
   useEffect(() => {
     Modal.setAppElement("#root");
-    applyFilters();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Fetch data from the backend using Axios
+    axios
+      .get("http://localhost:3001/Workouts")
+      .then((response) => {
+        if (response.data.ok) {
+          setFilteredData(response.data.exercises);
+        } else {
+          console.error("Error retrieving workouts");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
 const applyFilters = () => {
-  const filtered = mockData.filter((workout) => {
+  const filtered = filteredData.filter((workout) => {
     return (
       (appliedFilters.equipment === "" ||
         workout.equipment_list.includes(appliedFilters.equipment)) &&
@@ -92,6 +61,7 @@ const applyFilters = () => {
   setFilteredData(filtered);
 };
 
+
   return (
     <div className="Workout-page">
       <div className="header">
@@ -108,7 +78,7 @@ const applyFilters = () => {
         {filteredData.map((workout, index) => (
           <div
             className="Workout-details"
-            key={`${workout.workout_name}-${index}`} 
+            key={`${workout.workout_name}-${index}`}
             onClick={() => openModal(workout)}
           >
             <p>{workout.workout_name}</p> <p>Goal: {workout.goal}</p>

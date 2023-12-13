@@ -66,10 +66,10 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="Weight Loss">Lose Weight</option>
-          <option value="Muscle Gain">Gain Muscle</option>
-          <option value="Endurance">Improve Endurance</option>
-          <option value="Flexibility">Enhance Flexibility</option>
+          <option value="lose weight">Lose Weight</option>
+          <option value="gain muscle">Gain Muscle</option>
+          <option value="improve endurance">Improve Endurance</option>
+          <option value="enhance flexibility">Enhance Flexibility</option>
         </select>
       </label>
       <label>
