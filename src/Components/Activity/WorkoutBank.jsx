@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import WorkoutModal from "../Activity/WorkoutModal";
 import WorkoutFilter from "../Activity/WorkoutFilter";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 
 export default function WorkoutBank() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({
     equipment: "",
@@ -27,11 +28,11 @@ export default function WorkoutBank() {
 
   useEffect(() => {
     Modal.setAppElement("#root");
-    // Fetch data from the backend using Axios
     axios
       .get("http://localhost:3001/Workouts")
       .then((response) => {
         if (response.data.ok) {
+          setOriginalData(response.data.exercises);
           setFilteredData(response.data.exercises);
         } else {
           console.error("Error retrieving workouts");
@@ -42,25 +43,24 @@ export default function WorkoutBank() {
       });
   }, []);
 
-const applyFilters = () => {
-  const filtered = filteredData.filter((workout) => {
-    return (
-      (appliedFilters.equipment === "" ||
-        workout.equipment_list.includes(appliedFilters.equipment)) &&
-      (appliedFilters.difficulty === "" ||
-        workout.difficulty === appliedFilters.difficulty) &&
-      (appliedFilters.goal === "" ||
-        workout.goal.toLowerCase().trim() ===
-          appliedFilters.goal.toLowerCase().trim()) &&
-      (appliedFilters.muscle === "" ||
-        workout.muscle.toLowerCase().trim() ===
-          appliedFilters.muscle.toLowerCase().trim())
-    );
-  });
+  const applyFilters = () => {
+    const filtered = originalData.filter((workout) => {
+      return (
+        (appliedFilters.equipment === "" ||
+          workout.equipment_list.includes(appliedFilters.equipment)) &&
+        (appliedFilters.difficulty === "" ||
+          workout.difficulty === appliedFilters.difficulty) &&
+        (appliedFilters.goal === "" ||
+          workout.goal.toLowerCase().trim() ===
+            appliedFilters.goal.toLowerCase().trim()) &&
+        (appliedFilters.muscle === "" ||
+          workout.muscle.toLowerCase().trim() ===
+            appliedFilters.muscle.toLowerCase().trim())
+      );
+    });
 
-  setFilteredData(filtered);
-};
-
+    setFilteredData(filtered);
+  };
 
   return (
     <div className="Workout-page">
@@ -81,7 +81,7 @@ const applyFilters = () => {
             key={`${workout.workout_name}-${index}`}
             onClick={() => openModal(workout)}
           >
-            <p>{workout.workout_name}</p> <p>Goal: {workout.goal}</p>
+            <h2>{workout.workout_name}</h2> <p>Goal: {workout.goal}</p>
             <p>Equipment: {workout.equipment_list}</p>{" "}
           </div>
         ))}

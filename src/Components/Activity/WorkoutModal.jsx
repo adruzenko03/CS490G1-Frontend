@@ -18,13 +18,29 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
         </button>
       </div>
       <div>
-        <h2 className="workout-name">
+        <h1 className="workout-name">
           {selectedWorkout && selectedWorkout.workout_name}
-        </h2>
-        <p>Goal: {selectedWorkout && selectedWorkout.goal}</p>
-        <p>Equipment: {selectedWorkout && selectedWorkout.equipment_list}</p>
-        <p>Difficulty: {selectedWorkout && selectedWorkout.difficulty}</p>
-        <p>Muscle Target Group: {selectedWorkout && selectedWorkout.muscle}</p>
+        </h1>
+        <p>
+          <strong>Goal:</strong> {selectedWorkout && selectedWorkout.goal}
+        </p>
+        <p>
+          <strong>Equipment:</strong>{" "}
+          {selectedWorkout && selectedWorkout.equipment_list}
+        </p>
+        <p>
+          <strong>Difficulty:</strong>{" "}
+          {selectedWorkout && selectedWorkout.difficulty}
+        </p>
+        <p>
+          <strong>Muscle Target Group:</strong>{" "}
+          {selectedWorkout && selectedWorkout.muscle}
+        </p>
+        <p>
+          <strong>Exercises:</strong>{" "}
+          {selectedWorkout && selectedWorkout.exercises}
+        </p>
+
         {selectedWorkout && selectedWorkout.link && (
           <p>
             Link:{" "}

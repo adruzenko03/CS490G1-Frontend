@@ -84,15 +84,15 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="Legs">Legs</option>
-          <option value="Core">Core</option>
-          <option value="Arms">Arms</option>
-          <option value="Chest">Chest</option>
-          <option value="Shoulders">Shoulders</option>
-          <option value="FullBody">Full Body</option>
-          <option value="Cardio">Cardio</option>
-          <option value="Flexibility">Flexibility</option>
-          <option value="Back">Back</option>
+          <option value="legs">Legs</option>
+          <option value="core">Core</option>
+          <option value="arms">Arms</option>
+          <option value="chest">Chest</option>
+          <option value="shoulders">Shoulders</option>
+          <option value="full body">Full Body</option>
+          <option value="cardio">Cardio</option>
+          <option value="flexibility">Flexibility</option>
+          <option value="back">Back</option>
         </select>
       </label>
       <div>
