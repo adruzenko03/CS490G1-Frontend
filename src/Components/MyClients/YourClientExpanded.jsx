@@ -22,7 +22,7 @@ const OneClient = ({items}) => {
           <div className="content">
             <button className='cancel' onClick={toggleModal}>X</button>
             <h1 className='coachName' style={{fontSize:"1.5rem", textDecoration:"underline"}}>{items.first_name}</h1>
-            <span><b>GOAL:</b>  {items.goal_description}</span>
+            <span><b>GOAL:</b>  {items.goal}</span>
             <span><b>FITNESS LEVEL:</b>   {items.fitness_level}</span>
             <span><b>DIET:</b>  {items.diet}</span>
             <span><b>WEEKLY EXERCISE:</b>  {items.weekly_exercise}</span>

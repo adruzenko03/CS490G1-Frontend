@@ -17,7 +17,6 @@ export default function ActivityForm() {
       setErrorMessage("Please enter valid numbers.");
       return;
     }
-
     console.log("Form data saved:", {
       date: getFormattedDate(),
       calorieIntake: parseFloat(calorieIntake),
@@ -83,13 +82,6 @@ export default function ActivityForm() {
           </button>
         </form>
       )}
-      <div className="activity-form">
-        {formSaved && (
-          <button type="button" onClick={handleReset}>
-            Edit Check-in
-          </button>
-        )}
-      </div>
     </div>
   );
 }

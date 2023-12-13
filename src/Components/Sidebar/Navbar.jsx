@@ -22,7 +22,7 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
 
 
   return (
-    <div className="navbar">
+    <div className="navBar">
       <div className="links">
         <Link id='navlogo' className={activeLink === 'navlogo' ? 'active' : ''} onClick={() => toggleLink('navlogo')} to='./' >
           <img 
@@ -41,7 +41,7 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
               marginRight: "12px"
             }} 
           />
-          Workouts
+          Exercises
         </Link>
         <Link id='link2' to='/Coaches' className={activeLink === 'link2' ? 'active' : ''} onClick={() => toggleLink('link2')}>
           <img 
@@ -52,17 +52,6 @@ function Navbar({ onLoginClick, onSignupClick, userRole }) {
           />
           Coaches
         </Link>
-        {/* <Link id='link6' to='/ChatMain' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
-          <img 
-            src={chatlogo} 
-            style={{
-              width:"20px", 
-              display:"inline-block", 
-              marginRight: "12px"
-            }} 
-          />
-          Messages
-        </Link> */}
       </div>
       <Footer onLoginClick={onLoginClick} onSignupClick={onSignupClick} userRole={userRole}/>
     </div>
