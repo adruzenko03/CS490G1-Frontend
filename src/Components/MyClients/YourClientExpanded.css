@@ -1,0 +1,19 @@
+.yourClient{
+    background-color: #1b6468;
+    color: white;
+    border-radius: 19px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition-duration: 0.2s;
+}
+
+
+.yourClient:hover,
+.yourClient:focus,
+.yourClient:active {
+    transform: scale(1.01);
+    background-color: #103c3e;
+    cursor: pointer;
+}
