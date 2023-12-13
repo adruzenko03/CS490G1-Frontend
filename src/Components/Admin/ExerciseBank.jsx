@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import Stack from 'react-bootstrap/esm/Stack'
-import ExerciseDetails from './ExerciseDetails'
 import NewExercise from './NewExercise'
 import { DataContext } from '../Contexts/DataContext';
 import Exercise from './Exercise'
