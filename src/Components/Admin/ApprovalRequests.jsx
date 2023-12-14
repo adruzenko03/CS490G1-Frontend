@@ -7,8 +7,8 @@ import axios from 'axios';
 
 
 const ApprovalRequests = () => {
-    const [pendingCoaches, setPendingCoaches] = useState([
-        
+    const [pendingCoaches, setPendingCoaches] = useState([]);
+        /*
         {
             name: "Dorice Brotherton",
             experience: "11 Years",
@@ -22,7 +22,7 @@ const ApprovalRequests = () => {
             goal: "gain muscle",
             cost:"$25/hour"
         }
-      ]);
+      ]);*/
       /*
       useEffect(() => {
         const fetchAllRequests = async () => {
@@ -37,17 +37,33 @@ const ApprovalRequests = () => {
     
         fetchAllRequests();
       }, []); */
+      useEffect(() => {
+        fetch('http://localhost:3001/pendingCoaches') 
+          .then((response) => response.json())
+          .then((data) => setPendingCoaches(data))
+          .catch((error) => console.error('Fetch error:', error));
+      }, []);
     return (
         <>
             <div className='approvalRequests'>
             <h3>Pending Coach Approvals:</h3>
-            {pendingCoaches.map((coach)=>{
-              return(
+            {pendingCoaches.map((coach)=>(
                   <Stack gap={3}>
-                      <div className='p-2'><CoachDetails items={coach}/></div>
+                    
+                      <div className='p-2'>
+                        <CoachDetails items={coach}/>
+                        {/* <CoachDetails
+                          first_name={coach.first_name}
+                          last_name={coach.last_name}
+                          experience={coach.experience}
+                          goal={coach.goal}
+                          cost={coach.cost}
+                        /> */}
+                      </div>
+
                   </Stack>
-              );  
-            })}
+              ) 
+            )}
     
             </div>
     

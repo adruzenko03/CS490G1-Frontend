@@ -44,6 +44,10 @@ const ExerciseBank = () => {
         <>
             <div className='exerciseBank'>
             <h3>All Exercises:</h3>
+            <div className="addDiv">
+                <button className='addExercise' onClick={toggleBtn}> Add Exercise</button>
+            </div>
+            {clicked && (<NewExercise setClicked={setClicked} addExercise={addExercise} />)}
             {exerciseList.map((exercise)=>{
               return(
                 /*
@@ -58,10 +62,7 @@ const ExerciseBank = () => {
                 
               );  
             })}
-            <div className="addDiv">
-                <button className='addExercise' onClick={toggleBtn}> Add Exercise</button>
-            </div>
-            {clicked && (<NewExercise setClicked={setClicked} addExercise={addExercise} />)}
+            
             </div>
     
         </>

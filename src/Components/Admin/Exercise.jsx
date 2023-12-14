@@ -19,7 +19,7 @@ const Exercise = ({elements, deactivate}) => {
     <>
       <div className='exerciseContainer'>
           <div className="exerciseContent">
-              <h2 id='exerciseName'>{elements.exerciseName}</h2>
+              <h3 id='exerciseName'>{elements.exerciseName}</h3>
               <h5>Equipment: {Array.isArray(elements.exerciseEquipment) ? elements.exerciseEquipment.join(', ') : elements.exerciseEquipment}</h5>
               <h5>Steps: {elements.steps}</h5>
               <div className="buttons">
