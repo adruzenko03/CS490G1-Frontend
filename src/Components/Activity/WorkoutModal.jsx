@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "../Workout/Styles/WorkoutModal.css";
 import axios from "axios";
 
 const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const handleAddWorkout = () => {
-    console.log(userId, selectedWorkout.workout_id);
     axios
       .post("http://localhost:3001/workoutsadded", {
         userId,
         workoutId: selectedWorkout.workout_id,
       })
       .then((response) => {
+        setSuccessMessage("Workout added successfully!");
         console.log(response.data);
       })
       .catch((error) => {
+        setErrorMessage("Error adding workout. Please try again.");
         console.error(error);
       });
   };
 
   const handleRemoveWorkout = () => {
-    console.log(userId, selectedWorkout.workout_id);
     axios
       .delete("http://localhost:3001/workoutsremoved", {
         data: {
@@ -29,12 +32,19 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
         },
       })
       .then((response) => {
+        setSuccessMessage("Workout removed successfully!");
         console.log(response.data);
-        closeModal();
       })
       .catch((error) => {
+        setErrorMessage("Error removing workout. Please try again.");
         console.error(error);
       });
+  };
+
+  const handleModalClose = () => {
+    setSuccessMessage(null);
+    setErrorMessage(null);
+    closeModal();
   };
   return (
     <Modal
@@ -46,7 +56,7 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
       shouldCloseOnOverlayClick={true}
     >
       <div className="modal-header">
-        <button className="close-button" onClick={closeModal}>
+        <button className="close-button" onClick={handleModalClose}>
           X
         </button>
       </div>
@@ -89,6 +99,10 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
         <div className="weekdays">
           <button onClick={handleAddWorkout}>Add</button>
           <button onClick={handleRemoveWorkout}>Delete</button>
+          {successMessage && (
+            <p className="success-message">{successMessage}</p>
+          )}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
     </Modal>
