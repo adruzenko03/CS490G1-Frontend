@@ -7,19 +7,45 @@ export default function ActivityForm({ userId }) {
   const [formSaved, setFormSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const currentDate = getFormattedDate();
+  const [activities, setActivities] = useState([]);
 
   function getFormattedDate() {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date().toLocaleDateString(undefined, options);
   }
 
-  function getNumberedDate() {
-    const date = new Date();
+  function getNumberedDate(date) {
+    date = date || new Date(); // Use current date if no date is provided
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/activities")
+      .then((response) => {
+        if (response.data.ok) {
+          const filteredData = response.data.activities.filter(
+            (activity) => activity.user_id === userId
+          );
+          console.log("filteredData", filteredData);
+          setActivities(filteredData);
+        } else {
+          console.error("Error retrieving activities");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [userId]);
+
+  const shouldDisplayForm = activities.every((activity) => {
+    const activityDate = new Date(activity.entry_date);
+    const formattedActivityDate = getNumberedDate(activityDate);
+    return formattedActivityDate !== getNumberedDate();
+  });
 
   const handleSave = async () => {
     if (!isValidInput(calorieIntake) || !isValidInput(weight)) {
@@ -37,20 +63,16 @@ export default function ActivityForm({ userId }) {
           bodyWeight: parseFloat(weight),
         }
       );
-
       console.log("Form data saved:", response.data);
       setCalorieIntake("");
       setWeight("");
       setFormSaved(true);
       setErrorMessage("");
+      setActivities([...activities, response.data]);
     } catch (error) {
       console.error("Error saving form data:", error);
       setErrorMessage("Error saving form data.");
     }
-  };
-
-  const handleReset = () => {
-    setFormSaved(false);
   };
 
   const handleInputChange = (e, setValue) => {
@@ -64,7 +86,7 @@ export default function ActivityForm({ userId }) {
   };
 
   const isValidInput = (value) => {
-    // Use regex to check if the input is a valid number (integer or decimal)
+    // Use regex to check if the input is a valid number
     const numberRegex = /^-?\d+(\.\d*)?$/;
     return numberRegex.test(value);
   };
@@ -73,7 +95,7 @@ export default function ActivityForm({ userId }) {
     <div className="form-container">
       {formSaved ? (
         <div className="check-in-message">
-          Check-in completed for {getFormattedDate()}
+          Check-in Completed for {getFormattedDate()}
         </div>
       ) : (
         <form className="activity-form">
