@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ActivityForm() {
   const [calorieIntake, setCalorieIntake] = useState("");
@@ -12,13 +12,21 @@ export default function ActivityForm() {
     return new Date().toLocaleDateString(undefined, options);
   }
 
+  function getNumberedDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   const handleSave = () => {
     if (!isValidInput(calorieIntake) || !isValidInput(weight)) {
       setErrorMessage("Please enter valid numbers.");
       return;
     }
     console.log("Form data saved:", {
-      date: getFormattedDate(),
+      date: getNumberedDate(),
       calorieIntake: parseFloat(calorieIntake),
       weight: parseFloat(weight),
     });
