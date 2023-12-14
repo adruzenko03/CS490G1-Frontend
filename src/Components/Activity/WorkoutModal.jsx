@@ -5,7 +5,6 @@ import axios from "axios";
 
 const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
   const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleAddWorkout = () => {
     axios
@@ -14,11 +13,11 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
         workoutId: selectedWorkout.workout_id,
       })
       .then((response) => {
-        setSuccessMessage("Workout added successfully!");
+        setSuccessMessage("Workout added to Your Workouts!");
         console.log(response.data);
       })
       .catch((error) => {
-        setErrorMessage("Error adding workout. Please try again.");
+        setSuccessMessage("Workout Added Already!");
         console.error(error);
       });
   };
@@ -32,18 +31,17 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
         },
       })
       .then((response) => {
-        setSuccessMessage("Workout removed successfully!");
+        setSuccessMessage("Workout removed!");
         console.log(response.data);
       })
       .catch((error) => {
-        setErrorMessage("Error removing workout. Please try again.");
+        setSuccessMessage("Error removing workout. Please try again.");
         console.error(error);
       });
   };
 
   const handleModalClose = () => {
     setSuccessMessage(null);
-    setErrorMessage(null);
     closeModal();
   };
   return (
@@ -102,7 +100,6 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
           {successMessage && (
             <p className="success-message">{successMessage}</p>
           )}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
     </Modal>
