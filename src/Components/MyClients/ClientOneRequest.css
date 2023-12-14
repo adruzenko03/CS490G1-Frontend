@@ -1,8 +1,4 @@
-.allRequestss{
-    padding: 10px;
-}
-
-.stack{
+.oneRequest{
     background-color: #1b6468;
     color: white;
     border-radius: 19px;
@@ -14,9 +10,9 @@
     margin-top: 10px;
 }
 
-.stack:hover,
-.stack:focus,
-.stack:active {
+.oneRequest:hover,
+.oneRequest:focus,
+.oneRequest:active {
     transform: scale(1.01);
     background-color: #103c3e;
     cursor: pointer;

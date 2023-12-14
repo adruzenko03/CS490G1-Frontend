@@ -17,7 +17,7 @@ const ClientRequests = () => {
       try {
         const res = await axios.get(`http://localhost:3001/clientRequestsFetch/${coachId}`);
         console.log(res.data);
-        setClientsList(res.data.surveyData);
+        setClientsList(res.data.Data);
       } catch (err) {
         console.log(err);
       }
@@ -26,8 +26,22 @@ const ClientRequests = () => {
     fetchAllRequests();
   }, []); 
 
+  const onClientStatusChange = (clientId, newStatus) => {
+    if(newStatus === 'declined'){
+      setClientsList(clientsList.filter(client => client.user_id !== clientId));
+    }
+    else{
+      setClientsList(clientsList.map(client => {
+        if(client.user_id === clientId) {
+          return { ...client, status: newStatus };
+        } else {
+          return client;
+        }
+      }));
+    }
+  };
+  
 
-  // const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
 
   console.log('clientsList:', clientsList);
   return (
@@ -37,7 +51,7 @@ const ClientRequests = () => {
             {clientsList.map((client, index)=>{
               return(
                   <Stack gap={3} key={index} className='stack'>
-                      <div className='p-2'><ClientOneRequest items={client}/></div>
+                      <div className='p-2'><ClientOneRequest items={client} onClientStatusChange={onClientStatusChange}/></div>
                   </Stack>
               );  
             })}
@@ -49,25 +63,3 @@ const ClientRequests = () => {
 }
 
 export default ClientRequests
-
-// {
-//   name: "JOSH DUMONT",
-//   goals: "Gain Muscle, Lose Weight",
-//   fitnessLevel: "Beginner",
-//   diet: "Vegan",
-//   weeklyExercise: "Pushups"
-// },
-// {
-//   name: "MICHAEL SCOTT",
-//   goals: "Learn boxing",
-//   fitnessLevel: "Intermediate",
-//   diet: "Meat Based",
-//   weeklyExercise: "Pullups"
-// },
-// {
-//   name: "PAM WESLEY",
-//   goals: "Calinsthetics",
-//   fitnessLevel: "Beginner",
-//   diet: "Vegan",
-//   weeklyExercise: "Running"
-// },
