@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import './YourClientExpanded.css'
+import axios from 'axios';
 
-const OneClient = ({items}) => {
+const OneClient = ({items, onClientRemoved}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () =>{
     setModal(!modal);
+  }
+
+  const removeClient = async () => {
+    try{
+      await axios.delete(`http://localhost:3001/removeClient/${items.user_id}`);
+      onClientRemoved(items.user_id);
+    } catch(error){
+      console.error('Error removing client:', error);
+    }
   }
 
   return (
@@ -28,7 +38,7 @@ const OneClient = ({items}) => {
             <span><b>WEEKLY EXERCISE:</b>  {items.weekly_exercise}</span>
             <div className='buttons'>
                 <button className='request1' onClick={event =>  window.location.href='/ChatMain'}>CONTACT CLIENT</button>
-                <button className='request2'>REMOVE CLIENT</button>
+                <button className='request2' onClick={removeClient}>REMOVE CLIENT</button>
             </div>
           </div>
         </div>

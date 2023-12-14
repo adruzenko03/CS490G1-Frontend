@@ -24,6 +24,10 @@ const YourClients = () => {
 
     fetchAllRequests();
   }, []); 
+  const handleClientRemoval = (removedClientId) => {
+    setCoachesList(coachesList.filter(client => client.client_id !== removedClientId));
+  };
+  
 
   return (
     <>
@@ -34,7 +38,9 @@ const YourClients = () => {
                   {coachesList.map((coach)=>{
                           return(
                               <Stack gap={3}>
-                                  <div className='p-2'><YourClientExpanded items={coach}/></div>
+                                  <div className='p-2'>
+                                    <YourClientExpanded items={coach} onClientRemoved={handleClientRemoval}/>
+                                  </div>
                               </Stack>
                           ) 
                   })}
