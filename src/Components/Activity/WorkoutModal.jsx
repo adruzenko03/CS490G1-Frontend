@@ -1,8 +1,41 @@
 import React from "react";
 import Modal from "react-modal";
 import "../Workout/Styles/WorkoutModal.css";
+import axios from "axios";
 
-const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
+const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
+  const handleAddWorkout = () => {
+    console.log(userId, selectedWorkout.workout_id);
+    axios
+      .post("http://localhost:3001/workoutsadded", {
+        userId,
+        workoutId: selectedWorkout.workout_id,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleRemoveWorkout = () => {
+    console.log(userId, selectedWorkout.workout_id);
+    axios
+      .delete("http://localhost:3001/workoutsremoved", {
+        data: {
+          userId,
+          workoutId: selectedWorkout.workout_id,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -54,7 +87,8 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
           </p>
         )}
         <div className="weekdays">
-          <button>Add</button>
+          <button onClick={handleAddWorkout}>Add</button>
+          <button onClick={handleRemoveWorkout}>Delete</button>
         </div>
       </div>
     </Modal>

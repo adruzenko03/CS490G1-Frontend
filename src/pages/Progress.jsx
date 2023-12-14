@@ -3,7 +3,7 @@ import "./styles/Progress.css";
 import CalorieGraph from "../Components/Progress/CalorieGraph";
 import WeightGraph from "../Components/Progress/WeightGraph";
 
-export default function Progress() {
+export default function Progress({ userId }) {
   const data = [
     { Date: "2024-05-18", Weight: "142", Calorie: "1565" },
     { Date: "2025-09-11", Weight: "137", Calorie: "1350" },

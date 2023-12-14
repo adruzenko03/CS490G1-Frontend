@@ -4,7 +4,7 @@ import WorkoutModal from "../Activity/WorkoutModal";
 import WorkoutFilter from "../Activity/WorkoutFilter";
 import axios from "axios";
 
-export default function WorkoutBank() {
+export default function WorkoutBank({ userId }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [originalData, setOriginalData] = useState([]);
@@ -88,12 +88,12 @@ export default function WorkoutBank() {
           </div>
         ))}
       </div>
-
-      <WorkoutModal
-        isOpen={modalIsOpen}
-        closeModal={closeModal}
-        selectedWorkout={selectedWorkout}
-      />
+        <WorkoutModal
+          isOpen={modalIsOpen}
+          closeModal={closeModal}
+          selectedWorkout={selectedWorkout}
+          userId={userId}
+        />
     </div>
   );
 }

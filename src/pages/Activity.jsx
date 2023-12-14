@@ -4,13 +4,13 @@ import ActivityForm from "../Components/Activity/ActivityForm";
 import WorkoutBank from "../Components/Activity/WorkoutBank";
 import RepTracker from "../Components/Activity/RepTracker";
 
-export default function Activity() {
+export default function Activity({ userId }) {
   return (
     <div className="activity-page">
       <div className="header">Your Daily Activity</div>
-      <ActivityForm></ActivityForm>
+      <ActivityForm userId={userId} />
       {/* <RepTracker></RepTracker> */}
-      <WorkoutBank></WorkoutBank>
+      <WorkoutBank userId={userId} />
     </div>
   );
 }
