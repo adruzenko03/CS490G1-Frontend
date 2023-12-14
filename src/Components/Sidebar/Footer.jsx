@@ -178,14 +178,14 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             Progress
           </Link>
-          {/* <Link
+           <Link
             id="link6"
             to="/Settings"
             className={activeLink === "link6" ? "active" : ""}
             onClick={() => toggleLink("link6")}
           >
             Settings
-          </Link> */}
+          </Link> 
         </>
       );
     } else {
