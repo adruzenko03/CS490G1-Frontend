@@ -5,14 +5,15 @@ import axios from 'axios';
 const OneClient = ({items, onClientRemoved}) => {
   const [modal, setModal] = useState(false);
 
+  const coachId = localStorage.getItem("userId");
   const toggleModal = () =>{
     setModal(!modal);
   }
-
   const removeClient = async () => {
     try{
-      await axios.delete(`http://localhost:3001/removeClient/${items.user_id}`);
+      await axios.delete(`http://localhost:3001/removeClient/${items.user_id}/${coachId}`);
       onClientRemoved(items.user_id);
+      alert("Client has been successfully removed. Please reload Page");
     } catch(error){
       console.error('Error removing client:', error);
     }

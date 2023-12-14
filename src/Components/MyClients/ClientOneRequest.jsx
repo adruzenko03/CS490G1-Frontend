@@ -5,13 +5,17 @@ import axios from 'axios';
 const ClientOneRequest = ({items, onClientStatusChange}) => {
   const [modal, setModal] = useState(false);
 
+  const coachId = localStorage.getItem("userId");
   const toggleModal = () =>{
     setModal(!modal);
   }
 
   const acceptClient = async () => {
     try {
-      const response = await axios.post(`http://localhost:3001/acceptClient/${items.user_id}`);
+      const response = await axios.post(`http://localhost:3001/acceptClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
       if(response.status === 200) {
         onClientStatusChange(items.user_id, 'accepted');
       }
@@ -21,7 +25,10 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
   }
   const declineClient = async () => {
     try {
-      const response = await axios.post(`http://localhost:3001/declineClient/${items.user_id}`);
+      const response = await axios.post(`http://localhost:3001/declineClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
       if(response.status === 200) {
         onClientStatusChange(items.user_id, 'declined');
       }
