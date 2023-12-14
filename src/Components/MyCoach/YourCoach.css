@@ -2,28 +2,9 @@
 
 
 .container1{
-    height: auto;
-    width: 100%;
-    margin-left: 0px;
     background-color: #7DBBC3;
     height: auto;
     width: 100%;
     margin-left: 00px;
 }
 
-.specifier{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 11%;
-}
-
-.myCoachDiv{
-    width: 96%;
-}
-
-.kot{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}

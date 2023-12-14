@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import WorkoutModal from "../Components/Workout/ExerciseModal";
-import WorkoutFilter from "../Components/Workout/ExerciseFilter";
+import WorkoutModal from "../Activity/WorkoutModal";
+import WorkoutFilter from "../Activity/WorkoutFilter";
 import axios from "axios";
-import "./styles/Workouts.css";
 
-function Workouts() {
+export default function WorkoutBank() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({
     equipment: "",
+    difficulty: "",
+    goal: "",
+    muscle: "",
   });
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    Modal.setAppElement("#root");
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchData = () => {
-    axios
-      .get("http://localhost:3001/exercises")
-      .then((response) => {
-        const exercises = response.data.exercises;
-        setOriginalData(exercises);
-        setFilteredData(exercises);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
 
   const openModal = (workout) => {
     setSelectedWorkout(workout);
@@ -44,50 +26,63 @@ function Workouts() {
     setModalIsOpen(false);
   };
 
+  useEffect(() => {
+    Modal.setAppElement("#root");
+    axios
+      .get("http://localhost:3001/Workouts")
+      .then((response) => {
+        if (response.data.ok) {
+          setOriginalData(response.data.exercises);
+          setFilteredData(response.data.exercises);
+        } else {
+          console.error("Error retrieving workouts");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   const applyFilters = () => {
     const filtered = originalData.filter((workout) => {
       return (
         (appliedFilters.equipment === "" ||
-          workout.equipment_name === appliedFilters.equipment) &&
-        (searchTerm === "" ||
-          workout.exercise_name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()))
+          workout.equipment_list.includes(appliedFilters.equipment)) &&
+        (appliedFilters.difficulty === "" ||
+          workout.difficulty === appliedFilters.difficulty) &&
+        (appliedFilters.goal === "" ||
+          workout.goal.toLowerCase().trim() ===
+            appliedFilters.goal.toLowerCase().trim()) &&
+        (appliedFilters.muscle === "" ||
+          workout.muscle.toLowerCase().trim() ===
+            appliedFilters.muscle.toLowerCase().trim())
       );
     });
 
     setFilteredData(filtered);
   };
 
-
-  useEffect(() => {
-    applyFilters();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, appliedFilters]);
-
   return (
     <div className="Workout-page">
       <div className="header">
-        <h1>Exercises</h1>
+        <h2>Workouts</h2>
       </div>
       <div className="filter">
         <WorkoutFilter
           appliedFilters={appliedFilters}
           setAppliedFilters={setAppliedFilters}
           applyFilters={applyFilters}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
         />
       </div>
       <div className="list">
         {filteredData.map((workout, index) => (
           <div
             className="Workout-details"
-            key={`${workout.exercise_name}-${index}`}
+            key={`${workout.workout_name}-${index}`}
             onClick={() => openModal(workout)}
           >
-            <p className="exercise-name">{workout.exercise_name}</p>
-            <p>Equipment: {workout.equipment_name}</p>
+            <h2>{workout.workout_name}</h2> <p>Goal: {workout.goal}</p>
+            <p>Equipment: {workout.equipment_list}</p>{" "}
           </div>
         ))}
       </div>
@@ -100,5 +95,3 @@ function Workouts() {
     </div>
   );
 }
-
-export default Workouts;

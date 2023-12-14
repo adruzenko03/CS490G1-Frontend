@@ -28,15 +28,13 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="No Equipment">No Equipment</option>
-          <option value="Pull-up Bar">Pull-up Bar</option>
-          <option value="Dumbbells">Dumbbell</option>
-          <option value="Mat">Mat</option>
-          <option value="Stationary Bike">Stationary Bike</option>
-          <option value="TRX Straps">TRX Straps</option>
-          <option value="Swimsuit">Swimsuit</option>
-          <option value="Kettlebell">Kettlebell</option>
-          <option value="Stairs">Stairs</option>
+          <option value="Barbell">Barbell</option>
+          <option value="Dumbbells">Dumbbells</option>
+          <option value="Bodyweight">Bodyweight</option>
+          <option value="Machine">Machine</option>
+          <option value="Kettlebells">Kettlebells</option>
+          <option value="Cables">Cables</option>
+          <option value="Band">Band</option>
         </select>
       </label>
       <label>
@@ -68,12 +66,10 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="Weight Loss">Weight Loss</option>
-          <option value="Muscle Gain">Muscle Gain</option>
-          <option value="Overall Fitness">Overall Fitness</option>
-          <option value="Core Strengthening">Core Strengthening</option>
-          <option value="Endurance">Endurance</option>
-          <option value="Flexibility">Flexibility</option>
+          <option value="lose weight">Lose Weight</option>
+          <option value="gain muscle">Gain Muscle</option>
+          <option value="improve endurance">Improve Endurance</option>
+          <option value="enhance flexibility">Enhance Flexibility</option>
         </select>
       </label>
       <label>
@@ -88,12 +84,15 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="Chest">Chest</option>
-          <option value="Back">Back</option>
-          <option value="Abs">Abs</option>
-          <option value="Arms">Arms</option>
-          <option value="Legs">Legs</option>
-          <option value="Cardio">Cardio</option>
+          <option value="legs">Legs</option>
+          <option value="core">Core</option>
+          <option value="arms">Arms</option>
+          <option value="chest">Chest</option>
+          <option value="shoulders">Shoulders</option>
+          <option value="full body">Full Body</option>
+          <option value="cardio">Cardio</option>
+          <option value="flexibility">Flexibility</option>
+          <option value="back">Back</option>
         </select>
       </label>
       <div>

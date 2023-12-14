@@ -15,8 +15,6 @@ body{
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .container{

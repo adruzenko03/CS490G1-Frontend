@@ -8,15 +8,15 @@ import axios from 'axios';
 const YourClients = () => {
   const [coachesList, setCoachesList] = useState([]);
 
-  const coachId = localStorage.getItem("userId");
+  const coachId = 2;
+
 
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/acceptedClients/${coachId}`);
         console.log(res.data);
-        console.log(res.data.acceptedClients);
-        setCoachesList(res.data.acceptedClients);
+        setCoachesList(res.data.surveyData);
       } catch (err) {
         console.log(err);
       }

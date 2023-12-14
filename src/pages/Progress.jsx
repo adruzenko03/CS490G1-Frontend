@@ -69,7 +69,7 @@ export default function Progress() {
   ];
   return (
     <div className="progress-page">
-      <div className="header">Progress</div>
+      <h1 className="header">Progress</h1>
       <div className="graph-container">
         Daily Calorie Intake
         <div className="graph">
