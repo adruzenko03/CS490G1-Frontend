@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function ActivityForm() {
+export default function ActivityForm({ userId }) {
   const [calorieIntake, setCalorieIntake] = useState("");
   const [weight, setWeight] = useState("");
   const [formSaved, setFormSaved] = useState(false);
@@ -20,20 +21,32 @@ export default function ActivityForm() {
     return `${year}-${month}-${day}`;
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!isValidInput(calorieIntake) || !isValidInput(weight)) {
       setErrorMessage("Please enter valid numbers.");
       return;
     }
-    console.log("Form data saved:", {
-      date: getNumberedDate(),
-      calorieIntake: parseFloat(calorieIntake),
-      weight: parseFloat(weight),
-    });
-    setCalorieIntake("");
-    setWeight("");
-    setFormSaved(true);
-    setErrorMessage("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/activitySurvey",
+        {
+          userId,
+          entryDate: getNumberedDate(),
+          calorieIntake: parseFloat(calorieIntake),
+          bodyWeight: parseFloat(weight),
+        }
+      );
+
+      console.log("Form data saved:", response.data);
+      setCalorieIntake("");
+      setWeight("");
+      setFormSaved(true);
+      setErrorMessage("");
+    } catch (error) {
+      console.error("Error saving form data:", error);
+      setErrorMessage("Error saving form data.");
+    }
   };
 
   const handleReset = () => {
