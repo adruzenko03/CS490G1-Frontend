@@ -33,8 +33,8 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
           {selectedWorkout && selectedWorkout.difficulty}
         </p>
         <p>
-          <strong>Muscle Target Group:</strong>{" "}
-          {selectedWorkout && selectedWorkout.muscle}
+          <strong>Muscle Target Groups:</strong>{" "}
+          {selectedWorkout && selectedWorkout.muscle_groups}
         </p>
         <p>
           <strong>Exercises:</strong>{" "}

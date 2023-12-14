@@ -54,8 +54,10 @@ export default function WorkoutBank() {
           workout.goal.toLowerCase().trim() ===
             appliedFilters.goal.toLowerCase().trim()) &&
         (appliedFilters.muscle === "" ||
-          workout.muscle.toLowerCase().trim() ===
-            appliedFilters.muscle.toLowerCase().trim())
+          workout.muscle_groups
+            .toLowerCase()
+            .trim()
+            .includes(appliedFilters.muscle))
       );
     });
 
@@ -65,7 +67,7 @@ export default function WorkoutBank() {
   return (
     <div className="Workout-page">
       <div className="header">
-        <h2>Workouts</h2>
+        <h2>Add Workouts</h2>
       </div>
       <div className="filter">
         <WorkoutFilter
