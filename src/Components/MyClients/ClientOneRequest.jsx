@@ -1,25 +1,42 @@
 import React, {useState} from 'react'
 import './ClientOneRequest.css'
+import axios from 'axios';
 
-const ClientOneRequest = ({items}) => {
+const ClientOneRequest = ({items, onClientStatusChange}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () =>{
     setModal(!modal);
   }
 
-  
+  const acceptClient = async () => {
+    try {
+      const response = await axios.post(`http://localhost:3001/acceptClient/${items.user_id}`);
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'accepted');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
+    }
+  }
+  const declineClient = async () => {
+    try {
+      const response = await axios.post(`http://localhost:3001/declineClient/${items.user_id}`);
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'declined');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
+    }
+  }
 
   return (
     <>
-      {items ? (
-        <div className="oneRequest" onClick={toggleModal}>
-          <div className="text-wrapper">{items.first_name + " " + items.last_name}</div>
-          <div className="div" style={{color:'orange'}}>{items.status}</div>
-        </div>
-      ) : (
-        <p></p>
-      )}
+      <div className="oneRequest" onClick={toggleModal}>
+        <span className="name">{items.first_name + " " + items.last_name}</span>
+        <span className="div" style={{color:'orange'}}>{items.status}</span>
+      </div>
+
 
       {modal && (
         <div className='popup'>
@@ -27,13 +44,13 @@ const ClientOneRequest = ({items}) => {
           <div className="content">
             <button className='cancel' onClick={toggleModal}>X</button>
             <h1 className='coachName' style={{fontSize:"1.5rem", textDecoration:"underline"}}>{items.first_name}</h1>
-            <span><b>GOAL:</b>  {items.goal}</span>
+            <span><b>GOAL:</b>  {items.goal_description}</span>
             <span><b>FITNESS LEVEL:</b>   {items.fitness_level}</span>
             <span><b>DIET:</b>  {items.diet}</span>
             <span><b>WEEKLY EXERCISE:</b>  {items.weekly_exercise}</span>
             <div className="buttons2">
-              <button className='request'>ACCEPT CLIENT</button>
-              <button className='request'>DECLINE CLIENT</button>
+              <button className='request' onClick={acceptClient}>ACCEPT CLIENT</button>
+              <button className='request' onClick={declineClient}>DECLINE CLIENT</button>
             </div>
           </div>
         </div>
@@ -43,5 +60,3 @@ const ClientOneRequest = ({items}) => {
 }
 
 export default ClientOneRequest
-
-
