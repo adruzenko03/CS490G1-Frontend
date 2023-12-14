@@ -1,22 +1,13 @@
-import React, { useState } from "react";
-import MyWorkoutModal from "../Components/Workout/MyWorkoutModal";
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import WorkoutModal from "../Components/Activity/WorkoutModal";
+import axios from "axios";
 import "./styles/MyWorkout.css";
 
-export default function MyWorkout({ onLoginSuccess, userId }) {
+export default function MyWorkout({ userId }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
-  const mockData = [
-    {
-      name: "Jogging",
-      goal: "Weight Loss",
-      equipment: "No Equipment",
-      instructions:
-        "Start with a brisk walk, then gradually increase your pace.",
-      muscleTargetGroup: "Legs",
-      difficulty: "Beginner",
-      link: "https://example.com/jogging-workout-source",
-    },
-  ];
+  const [originalData, setOriginalData] = useState([]);
 
   const openModal = (workout) => {
     setSelectedWorkout(workout);
@@ -28,25 +19,41 @@ export default function MyWorkout({ onLoginSuccess, userId }) {
     setModalIsOpen(false);
   };
 
+useEffect(() => {
+  Modal.setAppElement("#root");
+  axios
+    .get("http://localhost:3001/myWorkouts")
+    .then((response) => {
+      if (response.data.ok) {
+        const filteredData = response.data.exercises.filter(
+          (workout) => workout.user_id === userId
+        );
+        setOriginalData(filteredData);
+      } else {
+        console.error("Error retrieving workouts");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}, []);
+
   return (
     <div className="myworkout-page">
       <div className="header">Your Workouts</div>
       <div className="myWorkoutform-container">
-        {mockData.map((workout, index) => (
+        {originalData.map((workout, index) => (
           <div
-            key={index}
             className="myWorkout-container"
+            key={`${workout.workout_name}-${index}`}
             onClick={() => openModal(workout)}
           >
-            <div className="workout-name">{workout.name}</div>
-            <div className="workout-goal">Goal: {workout.goal}</div>
-            <div className="workout-equipment">
-              Equipment: {workout.equipment}
-            </div>
+            <h2>{workout.workout_name}</h2> <p>Goal: {workout.goal}</p>
+            <p>Equipment: {workout.equipment_list}</p>
           </div>
         ))}
       </div>
-      <MyWorkoutModal
+      <WorkoutModal
         isOpen={modalIsOpen}
         closeModal={closeModal}
         selectedWorkout={selectedWorkout}

@@ -84,7 +84,7 @@ export default function WorkoutBank() {
             onClick={() => openModal(workout)}
           >
             <h2>{workout.workout_name}</h2> <p>Goal: {workout.goal}</p>
-            <p>Equipment: {workout.equipment_list}</p>{" "}
+            <p>Equipment: {workout.equipment_list}</p>
           </div>
         ))}
       </div>
