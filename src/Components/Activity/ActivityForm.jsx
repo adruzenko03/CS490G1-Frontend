@@ -24,14 +24,10 @@ export default function ActivityForm({ userId }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/activities")
+      .get(`http://localhost:3001/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
-          const filteredData = response.data.activities.filter(
-            (activity) => activity.user_id === userId
-          );
-          console.log("filteredData", filteredData);
-          setActivities(filteredData);
+          setActivities(response.data.activities);
         } else {
           console.error("Error retrieving activities");
         }
@@ -97,7 +93,7 @@ export default function ActivityForm({ userId }) {
         <div className="check-in-message">
           Check-in Completed for {getFormattedDate()}
         </div>
-      ) : (
+      ) : shouldDisplayForm ? (
         <form className="activity-form">
           <div className="title">{currentDate}</div>
           <label>
@@ -124,6 +120,10 @@ export default function ActivityForm({ userId }) {
             Save
           </button>
         </form>
+      ) : (
+        <div className="check-in-message">
+          Check-in Completed for {getFormattedDate()}
+        </div>
       )}
     </div>
   );
