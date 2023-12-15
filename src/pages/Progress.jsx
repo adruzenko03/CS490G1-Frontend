@@ -9,13 +9,10 @@ export default function Progress({ userId }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/activities")
+      .get(`http://localhost:3001/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
-          const filteredData = response.data.activities.filter(
-            (activity) => activity.user_id === userId
-          );
-          setActivities(filteredData);
+          setActivities(response.data.activities);
         } else {
           console.error("Error retrieving activities");
         }

@@ -20,26 +20,24 @@ export default function MyWorkout({ userId }) {
     setModalIsOpen(false);
   };
 
-  const updateWorkouts = () => {
-    axios
-      .get("http://localhost:3001/myWorkouts")
-      .then((response) => {
-        if (response.data.ok) {
-          const filteredData = response.data.exercises.filter(
-            (workout) => workout.user_id === userId
-          );
-          setOriginalData(filteredData);
-        } else {
-          console.error("Error retrieving workouts");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+const updateWorkouts = () => {
+  axios.get(`http://localhost:3001/myworkouts/${userId}`)
+
+    .then((response) => {
+      if (response.data.ok) {
+        setOriginalData(response.data.exercises); 
+      } else {
+        console.error("Error retrieving workouts");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
+
 
   useEffect(() => {
     Modal.setAppElement("#root");
