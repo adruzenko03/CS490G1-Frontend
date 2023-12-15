@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ExerciseBank from './ExerciseBank'
 import './NewExercise.css'
 import {v4 as uuidv4} from 'uuid';
 import Select from 'react-select';
@@ -14,13 +13,13 @@ const NewExercise = ({setClicked, addExercise}) => {
         steps: ''
     })
     const equipmentOptions = [
-        { value: 'barbell', label: 'Barbell' },
-        { value: 'dumbell', label: 'Dumbell' },
-        { value: 'bodyweight', label: 'Bodyweight' },
-        { value: 'machine', label: 'Machine' },
-        { value: 'kettlebells', label: 'Kettlebells' },
-        { value: 'cables', label: 'Cables' },
-        { value: 'band', label: 'Band' },
+        { value: 1, label: 'Barbell' },
+        { value: 2, label: 'Dumbell' },
+        { value: 3, label: 'Bodyweight' },
+        { value: 4, label: 'Machine' },
+        { value: 5, label: 'Kettlebells' },
+        { value: 6, label: 'Cables' },
+        { value: 7, label: 'Band' },
       ];
 
     const handleInputChange = (event)=>{
@@ -49,10 +48,27 @@ const NewExercise = ({setClicked, addExercise}) => {
 
     const handleAddExercise = () => {
         const isValid = validateFields();
-
+        const requestData = {
+            exercise_name: exerciseData.exerciseName,
+            steps: exerciseData.steps,
+            equipmentList: exerciseData.exerciseEquipment,
+          };
         if(isValid){
-            const newExercise = { ...exerciseData }; 
-            addExercise(newExercise); // Send new workout data to parent component
+            addExercise(requestData); 
+            fetch(`http://localhost:3001/addExercise`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify(requestData),
+            })
+                .then((response) => response.json())
+                .then((result) => {    
+                    console.log(`Exercise Added:`, result);
+            })
+                .catch((error) => {
+                    console.error(`Error adding exercise:`, error);
+            });
             toggleModal();
         }else{
             alert("Please fill all fields.");   
@@ -126,7 +142,7 @@ const NewExercise = ({setClicked, addExercise}) => {
                     </div>
 
                     <div className="addButton">
-                        <button onClick={handleAddExercise}> Add Exercise</button>
+                        <button className='add' onClick={handleAddExercise}> Add Exercise</button>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 
 .exerciseContainer{
     background-color: #1B6468;
-    margin-top: 20px;
+    margin-top: 10px;
     height: auto;
     width: auto;
     border-radius: 20px;
@@ -17,7 +17,9 @@
 
 .exerciseContent{
     color: white;
-    padding: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     justify-content: center;
     
 }

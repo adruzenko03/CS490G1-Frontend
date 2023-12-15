@@ -1,8 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Stack from 'react-bootstrap/esm/Stack'
 import NewExercise from './NewExercise'
-import { DataContext } from '../Contexts/DataContext';
 import Exercise from './Exercise'
 import './ExerciseBank.css';
 
@@ -13,7 +12,8 @@ const ExerciseBank = () => {
         setClicked(!clicked);
     }
     
-    const [exerciseList, setExerciseList] = useState([
+    const [exerciseList, setExerciseList] = useState([]);
+      /*
         {
             exerciseName: "Push-ups",
             exerciseEquipment: ["Bodyweight"],
@@ -36,10 +36,17 @@ const ExerciseBank = () => {
             steps: "Get into a push-up position with your forearms on the ground, elbows beneath your shoulders. Keep your body in a straight line from head to heels, engage your core muscles, and hold the position for the desired duration, focusing on maintaining proper form."
         }
       ])
+      */
       const addExercise = (newExercise) =>{
         // setModal(false);
-        setExerciseList([...exerciseList, newExercise]);
+        setExerciseList([newExercise,...exerciseList]);
       }
+      useEffect(() => {
+        fetch('http://localhost:3001/exerciseList') 
+          .then((response) => response.json())
+          .then((data) => setExerciseList(data))
+          .catch((error) => console.error('Fetch error:', error));
+      }, []);
     return (
         <>
             <div className='exerciseBank'>
@@ -50,15 +57,15 @@ const ExerciseBank = () => {
             {clicked && (<NewExercise setClicked={setClicked} addExercise={addExercise} />)}
             {exerciseList.map((exercise)=>{
               return(
-                /*
+                
                   <Stack gap={3}>
-                      <div className='p-2'><ExerciseDetails items={exercise}/></div>
+                      <div className='p-2'><Exercise elements={exercise}/></div>
                   </Stack>
-                  */
+                  
                  
-                  <DataContext.Provider value={{exerciseList, setExerciseList}}>
-                    <Exercise elements={exercise}/>
-                </DataContext.Provider>
+                //   <DataContext.Provider value={{exerciseList, setExerciseList}}>
+                //     <Exercise elements={exercise}/>
+                // </DataContext.Provider>
                 
               );  
             })}

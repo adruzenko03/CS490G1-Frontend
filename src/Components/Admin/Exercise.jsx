@@ -1,17 +1,15 @@
 import React, { createContext, useContext } from 'react'
 import './Exercise.css'
-import { useState } from 'react'
-import { DataContext } from '../Contexts/DataContext';
+import { useState} from 'react'
 
 
-const Exercise = ({elements, deactivate}) => {
+const Exercise = ({elements}) => {
   const [clicked, setClicked1] = useState(false);
 
   const toggleBtn = () => {
     setClicked1(!clicked);
   }
   
-  const {exerciseList, setExerciseList} = useContext(DataContext);
 
   
 
@@ -19,8 +17,8 @@ const Exercise = ({elements, deactivate}) => {
     <>
       <div className='exerciseContainer'>
           <div className="exerciseContent">
-              <h3 id='exerciseName'>{elements.exerciseName}</h3>
-              <h5>Equipment: {Array.isArray(elements.exerciseEquipment) ? elements.exerciseEquipment.join(', ') : elements.exerciseEquipment}</h5>
+              <h3 id='exerciseName'>{elements.exercise_name}</h3>
+              <h5>Equipment: {elements.equipment_list}</h5>
               <h5>Steps: {elements.steps}</h5>
               <div className="buttons">
                     <button className='activate' onClick={toggleBtn}>Activate</button>
@@ -36,3 +34,4 @@ const Exercise = ({elements, deactivate}) => {
 }
 
 export default Exercise
+
