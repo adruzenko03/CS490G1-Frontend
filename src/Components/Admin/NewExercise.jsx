@@ -49,12 +49,26 @@ const NewExercise = ({setClicked, addExercise}) => {
     const handleAddExercise = () => {
         const isValid = validateFields();
         const requestData = {
+            exercise_id: exerciseData.exercise_id,
             exercise_name: exerciseData.exerciseName,
             steps: exerciseData.steps,
             equipmentList: exerciseData.exerciseEquipment,
           };
+          const selectedEquipment = exerciseData.exerciseEquipment.map(value => {
+            const option = equipmentOptions.find(option => option.value === value);
+            return option ? option.label : value;
+          });
+          const requestData2 = {
+            exercise_id: exerciseData.exercise_id,
+            status: "activated",
+            exercise_name: exerciseData.exerciseName,
+            steps: exerciseData.steps,
+            equipment_list: selectedEquipment.join(', '),
+          };
+          console.log("Req2: ",requestData2)
+          console.log(exerciseData)
         if(isValid){
-            addExercise(requestData); 
+            addExercise(requestData2); 
             fetch(`http://localhost:3001/addExercise`, {
                 method: 'POST',
                 headers: {

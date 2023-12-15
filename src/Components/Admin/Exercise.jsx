@@ -1,15 +1,25 @@
-import React, { createContext, useContext } from 'react'
+import React from 'react'
 import './Exercise.css'
-import { useState} from 'react'
 
 
-const Exercise = ({elements}) => {
-  const [clicked, setClicked1] = useState(false);
+const Exercise = ({elements, onUpdateStatus}) => {
 
-  const toggleBtn = () => {
-    setClicked1(!clicked);
-  }
-  
+ 
+  const exerciseStatus = elements.status === 'deactivated' ? 'deactivated' : 'activated';
+
+  const handleUpdateStatus = (exercise_id, actionType) => {
+    onUpdateStatus(exercise_id, actionType);
+    fetch(`http://localhost:3001/updateExercise/${exercise_id}/${actionType}`, {
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .then((result) => {    
+        console.log(`Exercise ${exercise_id} ${actionType}d:`, result);
+      })
+      .catch((error) => {
+        console.error(`Error ${actionType}ing exercise:`, error);
+      });
+  };
 
   
 
@@ -18,13 +28,14 @@ const Exercise = ({elements}) => {
       <div className='exerciseContainer'>
           <div className="exerciseContent">
               <h3 id='exerciseName'>{elements.exercise_name}</h3>
+              <h5 className={exerciseStatus}>Status: {elements.status}</h5>
               <h5>Equipment: {elements.equipment_list}</h5>
               <h5>Steps: {elements.steps}</h5>
               <div className="buttons">
-                    <button className='activate' onClick={toggleBtn}>Activate</button>
-                    <button className='deactivate' onClick={toggleBtn}>Dectivate</button>
+                    <button className='activate' onClick={() => handleUpdateStatus(elements.exercise_id, 'activate')}>Activate</button>
+                    <button className='deactivate' onClick={() => handleUpdateStatus(elements.exercise_id, 'deactivate')}>Dectivate</button>
                 </div>
-              
+                
           </div>
       </div>
 

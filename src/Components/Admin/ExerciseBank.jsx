@@ -13,6 +13,13 @@ const ExerciseBank = () => {
     }
     
     const [exerciseList, setExerciseList] = useState([]);
+    const handleUpdateStatus = (exercise_id, actionType) => {
+      fetch('http://localhost:3001/exerciseList') 
+          .then((response) => response.json())
+          .then((data) => setExerciseList(data))
+          .catch((error) => console.error('Fetch error:', error));
+      setExerciseList(exerciseList => exerciseList);
+    };
       /*
         {
             exerciseName: "Push-ups",
@@ -38,7 +45,6 @@ const ExerciseBank = () => {
       ])
       */
       const addExercise = (newExercise) =>{
-        // setModal(false);
         setExerciseList([newExercise,...exerciseList]);
       }
       useEffect(() => {
@@ -59,7 +65,7 @@ const ExerciseBank = () => {
               return(
                 
                   <Stack gap={3}>
-                      <div className='p-2'><Exercise elements={exercise}/></div>
+                      <div className='p-2'><Exercise elements={exercise} onUpdateStatus={handleUpdateStatus}/></div>
                   </Stack>
                   
                  
