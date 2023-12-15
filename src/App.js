@@ -33,7 +33,7 @@ function App() {
     setUser(userData);
     setUserRole(userData.role);
   };
-  
+
   const logout = () => {
     setUser(null);
     setUserRole(null);
@@ -48,6 +48,7 @@ function App() {
     setSignupVisible(!isSignupVisible);
     setLoginVisible(false);
   };
+
   return (
     <div className="App">
       <Router>
@@ -60,9 +61,33 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="/Coaches" element={<Coaches />} />
           <Route path="/Workouts" element={<Workouts />} />
-          <Route path="/Activity" element={<Activity />} />
-          <Route path="/Progress" element={<Progress />} />
-          <Route path="/MyWorkout" element={<MyWorkout />} />
+          <Route
+            path="/Activity"
+            element={
+              <Activity
+                onLoginSuccess={onLoginSuccess}
+                userId={user?.user_id}
+              />
+            }
+          />
+          <Route
+            path="/Progress"
+            element={
+              <Progress
+                onLoginSuccess={onLoginSuccess}
+                userId={user?.user_id}
+              />
+            }
+          />
+          <Route
+            path="/MyWorkout"
+            element={
+              <MyWorkout
+                onLoginSuccess={onLoginSuccess}
+                userId={user?.user_id}
+              />
+            }
+          />
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts />} />

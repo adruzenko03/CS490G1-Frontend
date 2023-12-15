@@ -4,7 +4,7 @@ import WorkoutModal from "../Activity/WorkoutModal";
 import WorkoutFilter from "../Activity/WorkoutFilter";
 import axios from "axios";
 
-export default function WorkoutBank() {
+export default function WorkoutBank({ userId }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [originalData, setOriginalData] = useState([]);
@@ -54,8 +54,10 @@ export default function WorkoutBank() {
           workout.goal.toLowerCase().trim() ===
             appliedFilters.goal.toLowerCase().trim()) &&
         (appliedFilters.muscle === "" ||
-          workout.muscle.toLowerCase().trim() ===
-            appliedFilters.muscle.toLowerCase().trim())
+          workout.muscle_groups
+            .toLowerCase()
+            .trim()
+            .includes(appliedFilters.muscle))
       );
     });
 
@@ -65,7 +67,7 @@ export default function WorkoutBank() {
   return (
     <div className="Workout-page">
       <div className="header">
-        <h2>Workouts</h2>
+        <h2>Add Workouts</h2>
       </div>
       <div className="filter">
         <WorkoutFilter
@@ -82,16 +84,16 @@ export default function WorkoutBank() {
             onClick={() => openModal(workout)}
           >
             <h2>{workout.workout_name}</h2> <p>Goal: {workout.goal}</p>
-            <p>Equipment: {workout.equipment_list}</p>{" "}
+            <p>Equipment: {workout.equipment_list}</p>
           </div>
         ))}
       </div>
-
-      <WorkoutModal
-        isOpen={modalIsOpen}
-        closeModal={closeModal}
-        selectedWorkout={selectedWorkout}
-      />
+        <WorkoutModal
+          isOpen={modalIsOpen}
+          closeModal={closeModal}
+          selectedWorkout={selectedWorkout}
+          userId={userId}
+        />
     </div>
   );
 }
