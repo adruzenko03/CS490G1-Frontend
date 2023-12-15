@@ -3,11 +3,14 @@ import { useState, useEffect } from 'react'
 import Stack from 'react-bootstrap/esm/Stack'
 import CoachDetails from './CoachDetails'
 import './ApprovalRequests.css';
-import axios from 'axios';
 
 
 const ApprovalRequests = () => {
     const [pendingCoaches, setPendingCoaches] = useState([]);
+    const handleUpdateStatus = (coach_id, actionType) => {
+      const updatedPendingCoaches = pendingCoaches.filter(coach => coach.user_id !== coach_id);
+      setPendingCoaches(updatedPendingCoaches);
+    };
         /*
         {
             name: "Dorice Brotherton",
@@ -51,7 +54,7 @@ const ApprovalRequests = () => {
                   <Stack gap={3}>
                     
                       <div className='p-2'>
-                        <CoachDetails items={coach}/>
+                        <CoachDetails items={coach} onUpdateStatus={handleUpdateStatus}/>
                         {/* <CoachDetails
                           first_name={coach.first_name}
                           last_name={coach.last_name}

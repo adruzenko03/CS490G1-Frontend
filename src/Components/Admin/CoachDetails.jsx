@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-import ApprovalRequests from './ApprovalRequests';
 import './CoachDetails.css'
 
-const CoachDetails = ({items}) => {
+const CoachDetails = ({items, onUpdateStatus}) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () =>{
     setModal(!modal);
   }
   const handleUpdateStatus = (coach_id, actionType) => {
+    onUpdateStatus(coach_id, actionType);
     fetch(`http://localhost:3001/updateCoachStatus/${coach_id}/${actionType}`, {
       method: 'POST',
     })
@@ -19,6 +19,7 @@ const CoachDetails = ({items}) => {
       .catch((error) => {
         console.error(`Error ${actionType}ing coach:`, error);
       });
+      toggleModal();
   };
   return (
     <>
