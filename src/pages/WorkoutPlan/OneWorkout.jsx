@@ -1,53 +1,74 @@
-import React, { createContext, useContext } from 'react'
+import React, { useEffect } from 'react'
 import './OneWorkout.css'
 import { useState } from 'react'
 import EditWorkoutModal from './EditWorkoutModal';
-import { DataContext } from './DataContext';
+import axios from 'axios';
 
 
 const OneWorkout = ({elements, deleteWorkout}) => {
+
   const [clicked, setClicked1] = useState(false);
+  const [exerciseCount, setExerciseCount] = useState('');
+  const [workoutClicked, setWorkoutClicked] = useState('');
 
-  const toggleBtn = () => {
+  const toggleBtn = (id) => {
     setClicked1(!clicked);
+    setWorkoutClicked(id);
   }
-  
-  const {workouts, setWorkouts} = useContext(DataContext);
 
-  // Keep in mind to generate ids for every individual workout 
-  // when getting data from the database
-  const updateWorkout = (updatedWorkout) => {
-    const updatedWorkouts = workouts.map((workout) =>
-      workout.id === updatedWorkout.id ? updatedWorkout : workout
-    );
-    setWorkouts(updatedWorkouts);
-  };
 
+
+  const workoutId = elements.workout_id;
+
+  useEffect(() => {
+    const fetchExerciseCount = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/exerciseCount/${workoutId}`);
+        setExerciseCount(res.data.surveyData[0].exercise_count);
+        // setGoalsList(res.data.surveyData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchExerciseCount();
+  }, [elements]); 
   
+
+
+  const MAX_DESCRIPTION_LENGTH = 100; // Set your desired maximum length
+
+  // Assuming element.steps contains the description
+  let limitedDescription = elements.steps;
+  // Check if elements exist and limitedDescription has a length
+  if (elements && limitedDescription && limitedDescription.length > MAX_DESCRIPTION_LENGTH) {
+    limitedDescription = `${limitedDescription.substring(0, MAX_DESCRIPTION_LENGTH)}...`;
+  }
+
 
   return (
     <>
       <div className='oneWorkoutContainer'>
           <div className="oneWorkoutContent">
-              <h2 id='workoutTitle'>{elements.workoutName}</h2>
+              <h2 id='workoutTitle'>{elements.workout_name}</h2>
               <h5>GOAL: {elements.goal}</h5>
               <h5>DIFFICULTY: {elements.difficulty}</h5>
-              <h5>EQUIPMENT: {elements.equipment}</h5>
-              <h5>MUSCLE GROUP: {elements.muscleGroup}</h5>
-              <h5>DESCRIPTION: {elements.description}</h5>
+              {/* <h5>EQUIPMENT: {elements.equipment_name}</h5> */}
+              <h5>MUSCLE GROUP: {elements.muscle}</h5>
+              {/* <h5>DESCRIPTION: {limitedDescription}</h5> */}
+              <h5>EXERCISE COUNT: {exerciseCount}</h5>
               <div className="myButton">
                   <button 
                     className='editButton'
-                    onClick={toggleBtn}
+                    onClick={()=>toggleBtn(elements.workout_id)}
                     >
                     EDIT WORKOUT</button>
               </div> 
           </div>
-      </div>
+        </div>
 
       {clicked && (
         <div className="editModal">
-          <EditWorkoutModal setClicked1={setClicked1} items={elements} updateWorkout={updateWorkout} deleteWorkout={deleteWorkout}/>
+          <EditWorkoutModal setClicked1={setClicked1} items={elements} deleteWorkout={deleteWorkout} />
         </div>
       )}
     </>

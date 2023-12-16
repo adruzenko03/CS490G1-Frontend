@@ -6,10 +6,10 @@ import "./ClientRequests.css"
 import axios from 'axios';
 
 
-const ClientRequests = () => {
+const ClientRequests = ({userId}) => {
   const [clientsList, setClientsList] = useState([]);
 
-  const coachId = 2;
+  const coachId = userId;
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const ClientRequests = () => {
     };
 
     fetchAllRequests();
-  }, []); 
+  }, [clientsList]); 
 
 
   // const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
@@ -34,14 +34,16 @@ const ClientRequests = () => {
     <>
         <div className='allRequestss'>
             <span className="text-wrapper1">PENDING CLIENT REQUESTS:</span>
-            {clientsList.map((client, index)=>{
-              return(
-                  <Stack gap={3} key={index} className='stack'>
-                      <div className='p-2'><ClientOneRequest items={client}/></div>
-                  </Stack>
-              );  
-            })}
-
+                {clientsList.length>0 ? (
+                    clientsList.map((client, index) => (
+                      <Stack gap={3} key={index} className='stack'>
+                        <div className='p-0'><ClientOneRequest items={client}/></div>
+                      </Stack>
+                  ))
+                  ) : (
+                    <h1 style={{padding:"20px", textAlign:"center"}}>You currently have no requests.</h1>
+                    )
+                }
         </div>
 
     </>

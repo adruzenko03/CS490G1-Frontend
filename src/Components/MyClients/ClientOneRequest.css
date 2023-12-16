@@ -3,10 +3,10 @@
 }
 
 .stack{
-    background-color: #1b6468;
+    /* background-color: #1b6468; */
     color: white;
     border-radius: 19px;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,10 +14,10 @@
     margin-top: 10px;
 }
 
-.stack:hover,
+/* .stack:hover,
 .stack:focus,
 .stack:active {
     transform: scale(1.01);
     background-color: #103c3e;
     cursor: pointer;
-}
+} */

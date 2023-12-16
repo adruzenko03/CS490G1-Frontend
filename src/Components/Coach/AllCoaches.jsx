@@ -3,29 +3,33 @@ import OneCoach from './OneCoach'
 import Stack from 'react-bootstrap/Stack';
 import FilterButton from './FilterButton';
 import './AllCoaches.css'
-import { MyContext } from './MyContext';
 import axios from 'axios';
 
 const AllCoaches = ({vals}) => {
 
+    console.log('okokokkookkokokko'  + {vals})
     const [coachesList, setCoachesList] = useState([]);
 
     // Get all coaches.
     useEffect(() => {
+      // Fetch coaches only when vals has values
+      if (vals && vals.length === 4) {
         const fetchAllCoaches = async () => {
           try {
             const res = await axios.get(`http://localhost:3001/coachList`);
-            console.log(res.data);
             setCoachesList(res.data.surveyData);
           } catch (err) {
             console.log(err);
           }
         };
         fetchAllCoaches();
-      }, []); 
-
+      }
+    }, [vals]);
     //   const lst = ['Yoga', '5 Years', 'Ridgefield', '$59/month'];
-      console.log({vals})
+
+    if (!vals || vals.length !== 4) {
+      return null; // or render loading state or default content
+    }
 
     return (
         <>
@@ -33,7 +37,7 @@ const AllCoaches = ({vals}) => {
             <div className='allCoaches'>
                 {coachesList.map((coach)=>{
                      /* ERROR HERE  vals[0] */ 
-                    if(coach.goal==='asdf' && coach.experience ===vals[1] && coach.state===vals[2] && coach.cost===vals[3]){
+                    if(coach.goal===vals[0] && coach.experience ===vals[1] && coach.state===vals[2] && coach.cost===vals[3]){
                         console.log('cldkdckcjdlcj' + coach);
                         return(
                             <Stack gap={3}>
@@ -48,7 +52,7 @@ const AllCoaches = ({vals}) => {
             {coachesList.every(
                 (coach) =>
                 /* ERROR HERE  vals[0] */ 
-                coach.goal !== 'asdf' ||
+                coach.goal !== vals[0] ||
                 coach.experience !== vals[1] ||
                 coach.state !== vals[2] ||
                 coach.cost !== vals[3]

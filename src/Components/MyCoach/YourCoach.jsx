@@ -1,20 +1,32 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './YourCoach.css'
 import OneRequest from './CoachOneRequest'
 import Stack from 'react-bootstrap/esm/Stack'
 import YourCoachExpanded from './YourCoachExpanded'
+import axios from 'axios';
 
-const YourCoach = () => {
-  const [coachesList, setCoachesList] = useState([
-    {
-      name: "JOHN MOE",
-      goals: "Gain Muscle, Lose Weight",
-      experience: "3 Years",
-      location: "Bloomfield",
-      cost: "$59/month",
-      schedule: "Monday, Tuesday, Thursday, Friday"
-    }
-  ])
+const YourCoach = ({userId}) => {
+  const [coachesList, setCoachesList] = useState([]);
+
+  const clientId = userId;
+
+  useEffect(() => {
+    const fetchAcceptedCoach = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
+        console.log(res.data);
+        setCoachesList(res.data.surveyData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+
+    fetchAcceptedCoach();
+  }, [coachesList]);
+  
+  
+  console.log('hhhhhhhhh' + coachesList);
 
   return (
     <>

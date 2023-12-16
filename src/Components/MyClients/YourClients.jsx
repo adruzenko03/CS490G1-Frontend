@@ -5,25 +5,24 @@ import Stack from 'react-bootstrap/esm/Stack'
 import YourClientExpanded from './YourClientExpanded'
 import axios from 'axios';
 
-const YourClients = () => {
-  const [coachesList, setCoachesList] = useState([]);
+const YourClients = ({userId}) => {
+  const [clientsList, setClientsList] = useState([]);
 
-  const coachId = 2;
+  const coachId = userId;
 
 
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/acceptedClients/${coachId}`);
+        const res = await axios.get(`http://localhost:3001/acceptedClients2/${coachId}`);
         console.log(res.data);
-        setCoachesList(res.data.surveyData);
+        setClientsList(res.data.surveyData);
       } catch (err) {
         console.log(err);
       }
     };
-
     fetchAllRequests();
-  }, []); 
+  }, [clientsList]); 
 
   return (
     <>
@@ -31,13 +30,16 @@ const YourClients = () => {
       <div className='containerr1'>
         <div className='inContainer'>
           <span style={{marginLeft:"12px", color:"white"}}>YOUR CLIENTS</span>
-                  {coachesList.map((coach)=>{
-                          return(
-                              <Stack gap={3}>
-                                  <div className='p-2'><YourClientExpanded items={coach}/></div>
-                              </Stack>
-                          ) 
-                  })}
+                  {clientsList && clientsList.length>0 ? (
+                    clientsList.map((client, index) => (
+                      <Stack key={index} gap={3}>
+                          <div className='p-2'><YourClientExpanded items={client}/></div>
+                      </Stack>
+                  ))
+                  ) : (
+                    <h1 style={{padding:"20px", textAlign:"center"}}>You currently have no clients.</h1>
+                    )
+                }
         </div>
         </div>
     </>

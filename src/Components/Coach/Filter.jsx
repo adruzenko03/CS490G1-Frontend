@@ -9,7 +9,7 @@ import OneCoach from './OneCoach';
 import Stack from 'react-bootstrap';
 import AllCoaches from './AllCoaches';
 import axios from 'axios';
-
+import RandomCoaches from './RandomCoaches';
 
 
 const Filter = () => {
@@ -18,6 +18,7 @@ const Filter = () => {
     const [goalList, setGoalsList] = useState([]);
     const [experienceList, setExperienceList] = useState([]);
     const [locationList, setLocationList] = useState([]);
+    const [cityList, setCityList] = useState([]);
     const [costList, setCostList] = useState([]);
     // const costList = ["Cost" ,"$59/month", "$69/month", "$89/month", "$129/month"];
 
@@ -66,6 +67,21 @@ const Filter = () => {
         };
         fetchAllLocations();
       }, []); 
+
+    // Get city list.
+    useEffect(() => {
+        const fetchAllCities = async () => {
+          try {
+            const res = await axios.get(`http://localhost:3001/cityList`);
+            console.log(res.data);
+            setCityList(res.data.surveyData);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchAllCities();
+      }, []); 
+
     // Get price list.
     useEffect(() => {
         const fetchCostList = async () => {
@@ -91,6 +107,9 @@ const Filter = () => {
     const [value2, setValue2] = useState('');
     const [value3, setValue3] = useState('');
     const [value4, setValue4] = useState('');
+    const [cityVal, setCityVal] = useState('');
+
+ 
 
     return (
         <>
@@ -101,7 +120,7 @@ const Filter = () => {
                         <Row className='bla'>
                             <Col>
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                                    <span>Goal</span>
+                                  <span style={{marginRight:"5px"}}>Goal</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"12.5vw"}}>
                                         {value1 || (goalList[0] && goalList[0].goal)}
                                     </Dropdown.Toggle>
@@ -117,9 +136,9 @@ const Filter = () => {
                             </Col>
                             <Col>
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                                <span>Experience</span>
+                                <span style={{marginRight:"5px"}}>Experience</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
-                                        {value2 || (experienceList[0] && experienceList[0].experience)}
+                                        {value2 + " Years" || (experienceList[0] && experienceList[0].experience) + " Years"}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
@@ -133,9 +152,9 @@ const Filter = () => {
                             </Col>
                             <Col>
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                                    <span>State</span>
+                                    <span style={{marginRight:"5px"}}>State</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
-                                        {value3 || (locationList[0] && locationList[0].state)}
+                                        {value3  || (locationList[0] && locationList[0].state)}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
@@ -149,9 +168,9 @@ const Filter = () => {
                             </Col>
                             <Col>
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                                    <span>Cost</span>
+                                    <span style={{marginRight:"5px"}}>Cost</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
-                                        {value4 || (costList[0] && costList[0].cost)}
+                                        {"$" + value4 + "/month" || "$" + (costList[0] && costList[0].cost) + "/month"}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
@@ -177,7 +196,10 @@ const Filter = () => {
                     </Button>
                 </div>
             </div>
-            {clicked ? <AllCoaches vals = {[value1, value2, value3, value4]}/> : <p>not clicked</p>}
+            {clicked ? 
+              <AllCoaches vals = {[value1, value2, value3, value4]}/> 
+              : 
+              <RandomCoaches vals={[value1, value2, value3, value4]}/>}
         </>
       );
 }
@@ -185,3 +207,12 @@ const Filter = () => {
 export default Filter
 
  
+
+/*
+
+<div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+  <span style={{marginRight:"5px"}}>Location</span>
+  <input type="checkbox" checked={isChecked}  onChange={handleCheckboxChange} />
+</div>
+
+*/
