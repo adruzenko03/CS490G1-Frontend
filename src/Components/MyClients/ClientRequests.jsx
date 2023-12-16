@@ -34,7 +34,7 @@ const ClientRequests = ({userId}) => {
     <>
         <div className='allRequestss'>
             <span className="text-wrapper1">PENDING CLIENT REQUESTS:</span>
-                {clientsList.length>0 ? (
+                {clientsList && clientsList.length>0 ? (
                     clientsList.map((client, index) => (
                       <Stack gap={3} key={index} className='stack'>
                         <div className='p-0'><ClientOneRequest items={client}/></div>

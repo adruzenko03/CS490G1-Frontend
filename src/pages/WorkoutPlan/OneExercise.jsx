@@ -51,14 +51,16 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
         try {
           const res = await axios.put(`http://localhost:3001/updateExercise/${workoutId}`, data);
           console.log("successsssss");
+          handleClick();
         //   updateExercise(res.data.surveyData); 
         //   setShowDiv1(true);
         // setClicked1(false);
-        handleClick();
+        
 
         } catch (err) {
           console.log(err);
-          alert('The exercise already exists. Please choose another one.')
+          alert(err);
+        //   alert('The exercise already exists. Please choose another one.')
         }
       };
 

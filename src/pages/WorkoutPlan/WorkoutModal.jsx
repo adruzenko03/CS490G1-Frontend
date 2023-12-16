@@ -22,6 +22,11 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
         setShowAddExercise(!showAddExercise);
     };
 
+    const [modal, setModal] = useState(true);
+    const toggleModal = ()=>{
+        setModal(!modal)   
+    }
+
     const [workoutData, setWorkoutData] = useState({
         // id: uuidv4(),
         client_id: clientId,
@@ -47,8 +52,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
           alert("The workout needs to have a name.");
         }
       };
-      
-
+    
    
 
     const handleInputChange = (event)=>{
@@ -59,33 +63,30 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
         });
     };
 
-    const validateFields = () => {
-        const requiredFields = ['workoutName', 'goal', 'difficulty', 'equipment', 'muscleGroup'];
-        for (const field of requiredFields) {
-            if (!workoutData[field].trim()) {
-                return false; // Return false if any required field is empty
-            }
-        }
-        return true; // All required fields are filled out
-    };
+    // const validateFields = () => {
+    //     const requiredFields = ['workoutName', 'goal', 'difficulty', 'equipment', 'muscleGroup'];
+    //     for (const field of requiredFields) {
+    //         if (!workoutData[field].trim()) {
+    //             return false; // Return false if any required field is empty
+    //         }
+    //     }
+    //     return true; // All required fields are filled out
+    // };
 
 
-    const handleAddWorkout = () => {
-        const isValid = validateFields();
+    // const handleAddWorkout = () => {
+    //     const isValid = validateFields();
 
-        if(isValid){
-            const newWorkout = { ...workoutData }; // Create a copy of workoutData
-            addWorkout(newWorkout); // Send new workout data to parent component
-            toggleModal();
-        }else{
-            alert("Please fill/select all the required fields. Only the description field is optional.");   
-        }
-    };
+    //     if(isValid){
+    //         const newWorkout = { ...workoutData }; // Create a copy of workoutData
+    //         addWorkout(newWorkout); // Send new workout data to parent component
+    //         toggleModal();
+    //     }else{
+    //         alert("Please fill/select all the required fields. Only the description field is optional.");   
+    //     }
+    // };
 
-    const [modal, setModal] = useState(true);
-    const toggleModal = ()=>{
-        setModal(!modal)   
-    }
+    
 
     const handleButtonClick = ()=>{
         toggleModal();

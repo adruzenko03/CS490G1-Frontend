@@ -35,7 +35,7 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
         //   setShowDiv1(true);
         // setClicked1(false);
         } catch (err) {
-          console.log(err);
+          console.log(err.response);
         //   setShow(true);
         alert("The exercise you're trying to add already exists in this workout. Please choose another exercise!")
       };
@@ -65,13 +65,13 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
                 <span style={{fontSize:"2rem"}}>ADD NEW EXERCISE</span>
                     <div style={{display:"flex", flexDirection:"row"}}>
                         <select name="equipment_name" className='select-menu' value={exerciseName} onChange={handleChange}> 
-                            {exercisesList.map(exercise => (
+                            {exercisesList && exercisesList.map(exercise => (
                                 <option id={exercise.exercise_id} value={exercise.exercise_name}>{exercise.exercise_name}</option>
                                 ))}
                         </select>
                     </div>
                     <div>
-                        {exercisesList.map((exercise) => {
+                        {exercisesList && exercisesList.map((exercise) => {
                             if (exercise.exercise_name === exerciseName) {
                                 return <div className='exercise-steps' key={exercise.id}>{exercise.steps}</div>;
                             } else {
