@@ -8,6 +8,7 @@ import mycoachIcon from "../icons/mycoach.png";
 import clientWorkout from "../icons/clientworkout.png";
 import clientsIcon from "../icons/clients.png";
 import adminIcon from '../icons/admin.png'
+import settingsIcon from '../icons/settings.png'
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);

@@ -10,6 +10,7 @@ const NewExercise = ({setClicked, addExercise}) => {
         id: uuidv4(),
         exerciseName: '',
         exerciseEquipment: [],
+        muscle: '',
         steps: ''
     })
     const equipmentOptions = [
@@ -21,7 +22,18 @@ const NewExercise = ({setClicked, addExercise}) => {
         { value: 6, label: 'Cables' },
         { value: 7, label: 'Band' },
       ];
-
+      // ('legs','core','arms','chest','shoulders','full body','cardio','flexibility','back'),
+      const muscleOptions = [
+        { value: 'legs', label: 'Legs' },
+        { value: 'core', label: 'Core' },
+        { value: 'arms', label: 'Arms' },
+        { value: 'chest', label: 'Chest' },
+        { value: 'shoulders', label: 'Shoulders' },
+        { value: 'full body', label: 'Full Body' },
+        { value: 'cardio', label: 'Cardio' },
+        { value: 'flexibility', label: 'Flexibility' },
+        { value: 'back', label: 'Back' },
+      ];
     const handleInputChange = (event)=>{
         const {name, value} = event.target;
         setExerciseData({
@@ -33,6 +45,13 @@ const NewExercise = ({setClicked, addExercise}) => {
         const vals = event.map((option) => option.value);
         exerciseData.exerciseEquipment = event;
         setExerciseData({ ...exerciseData, exerciseEquipment: vals });
+      };
+      const handleMuscleChange = (event) => {
+        const val = event ? event.value : null;
+
+        setExerciseData({ 
+            ...exerciseData, 
+            muscle: val });
       };
 
     const validateFields = () => {
@@ -53,22 +72,14 @@ const NewExercise = ({setClicked, addExercise}) => {
             exercise_name: exerciseData.exerciseName,
             steps: exerciseData.steps,
             equipmentList: exerciseData.exerciseEquipment,
+            muscle: exerciseData.muscle,
           };
+          // exercise names instead of id
           const selectedEquipment = exerciseData.exerciseEquipment.map(value => {
             const option = equipmentOptions.find(option => option.value === value);
             return option ? option.label : value;
           });
-          const requestData2 = {
-            exercise_id: exerciseData.exercise_id,
-            status: "activated",
-            exercise_name: exerciseData.exerciseName,
-            steps: exerciseData.steps,
-            equipment_list: selectedEquipment.join(', '),
-          };
-          console.log("Req2: ",requestData2)
-          console.log(exerciseData)
         if(isValid){
-            addExercise(requestData2); 
             fetch(`http://localhost:3001/addExercise`, {
                 method: 'POST',
                 headers: {
@@ -79,6 +90,15 @@ const NewExercise = ({setClicked, addExercise}) => {
                 .then((response) => response.json())
                 .then((result) => {    
                     console.log(`Exercise Added:`, result);
+                    const requestData2 = {
+                        exercise_id: result[0].insertId,
+                        status: "activated",
+                        exercise_name: exerciseData.exerciseName,
+                        steps: exerciseData.steps,
+                        equipment_list: selectedEquipment.join(', '),
+                        muscle: exerciseData.muscle
+                      };
+                    addExercise(requestData2); 
             })
                 .catch((error) => {
                     console.error(`Error adding exercise:`, error);
@@ -107,7 +127,7 @@ const NewExercise = ({setClicked, addExercise}) => {
         }),
         option: (provided) => ({
             ...provided,
-            color: 'black', 
+            color: 'black',
           }),
       };
 
@@ -127,6 +147,7 @@ const NewExercise = ({setClicked, addExercise}) => {
                         <div className="exerciseElements">
                             <span>Exercise Name:</span><br />
                             <span>Equipment:</span><br />
+                            <span>Muscle:</span><br />
                             <span>Steps:</span><br />
                         </div>
 
@@ -140,6 +161,17 @@ const NewExercise = ({setClicked, addExercise}) => {
                                 isMulti
                                 value={equipmentOptions.filter(option => exerciseData.exerciseEquipment.includes(option.value))}
                                 onChange={handleEquipmentChange}
+                                placeholder="Select Equipment"
+                                
+                            />
+                            <Select
+                                styles={dropdownStyle}
+                                // className="multi-select"
+                                options={muscleOptions}
+                                value={muscleOptions.find(option => option.value === exerciseData.muscle)}
+                                //value={exerciseData.muscle}
+                                onChange={handleMuscleChange}
+                                placeholder="Select Muscle"
                                 
                             />
                             <textarea 

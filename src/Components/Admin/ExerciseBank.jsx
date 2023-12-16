@@ -23,7 +23,7 @@ const ExerciseBank = () => {
     };
     const [currentPage, setCurrentPage] = useState(1);
 
-    const items = 3;
+    const items = 5;
     const start = (currentPage - 1) * items;
     const end = start + items;
   
