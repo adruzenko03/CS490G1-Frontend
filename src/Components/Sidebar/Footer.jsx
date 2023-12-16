@@ -20,9 +20,6 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     if (userRole === "coach") {
       return (
         <>
-          {/* <Link to="/MyWorkout">My Workout</Link>
-          <Link to="/Activity">Activity</Link>
-          <Link to="/Progress">Progress</Link> */}
           <Link
             id="link4"
             to="/Clients"
@@ -190,9 +187,6 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     } else if (userRole === "client") {
       return (
         <>
-          {/* <Link to="/MyWorkout">My Workout</Link>
-          <Link to="/Activity">Activity</Link>
-          <Link to="/Progress">Progress</Link> <div>My Coach</div> */}
           <Link
             id="link5"
             to="/ClientWorkouts"
@@ -226,6 +220,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             MyCoach
           </Link>
           <Link
+            id="myWorkout"
+            className={activeLink === "myWorkout" ? "active" : ""}
+            onClick={() => toggleLink("myWorkout")}
+            to="/MyWorkout"
+          >
+            <img
+              src={homeDumbbell}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            MyWorkout
+          </Link>
+          <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}
             onClick={() => toggleLink("activity")}
@@ -255,14 +264,14 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             Progress
           </Link>
-           <Link
+          <Link
             id="link6"
             to="/Settings"
             className={activeLink === "link6" ? "active" : ""}
             onClick={() => toggleLink("link6")}
           >
             Settings
-          </Link> 
+          </Link>
         </>
       );
     } else {
