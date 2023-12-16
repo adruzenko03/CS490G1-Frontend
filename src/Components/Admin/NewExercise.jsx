@@ -102,12 +102,12 @@ const NewExercise = ({setClicked, addExercise}) => {
         control: (provided) => ({
           ...provided,
           marginTop: '10px',
-          border: '1px solid black', // Set border style
-          borderRadius: '10px', // Set border radius
+          border: '1px solid black', 
+          borderRadius: '10px', 
         }),
         option: (provided) => ({
             ...provided,
-            color: 'black', // Set text color
+            color: 'black', 
           }),
       };
 
