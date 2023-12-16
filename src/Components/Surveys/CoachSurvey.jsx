@@ -38,7 +38,6 @@ function CoachSurvey({ onClose }) {
         const userID = localStorage.getItem('userId');
         const role = localStorage.getItem('role');
         const surveyDataWithUserId = {userID,...surveyData};
-        //Post this survey on localStorage to display ing settings
         try {
           const response = await fetch('http://localhost:3001/coach-survey', {
             method: 'POST',
