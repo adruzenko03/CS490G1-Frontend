@@ -12,6 +12,7 @@ const ExerciseBank = () => {
         setClicked(!clicked);
     }
     
+    
     const [exerciseList, setExerciseList] = useState([]);
     const handleUpdateStatus = (exercise_id, actionType) => {
       fetch('http://localhost:3001/exerciseList') 
@@ -20,6 +21,13 @@ const ExerciseBank = () => {
           .catch((error) => console.error('Fetch error:', error));
       setExerciseList(exerciseList => exerciseList);
     };
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const items = 3;
+    const start = (currentPage - 1) * items;
+    const end = start + items;
+  
+    const onePage = exerciseList.slice(start, end);
       /*
         {
             exerciseName: "Push-ups",
@@ -56,12 +64,12 @@ const ExerciseBank = () => {
     return (
         <>
             <div className='exerciseBank'>
-            <h3>All Exercises:</h3>
-            <div className="addDiv">
+            <span classname='title'><h3>All Exercises:  <button className='addExercise' onClick={toggleBtn}> Add Exercise</button></h3></span>
+            {/* <div className="addDiv">
                 <button className='addExercise' onClick={toggleBtn}> Add Exercise</button>
-            </div>
+            </div> */}
             {clicked && (<NewExercise setClicked={setClicked} addExercise={addExercise} />)}
-            {exerciseList.map((exercise)=>{
+            {onePage.map((exercise)=>{
               return(
                 
                   <Stack gap={3}>
@@ -75,8 +83,12 @@ const ExerciseBank = () => {
                 
               );  
             })}
-            
+            <div className='pageButtons'>
+              <button className='pageButton' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}> Previous </button>
+              <span>Page {currentPage}</span>
+              <button className='pageButton' onClick={() => setCurrentPage(currentPage + 1)} disabled={end >= exerciseList.length}> Next</button>
             </div>
+          </div>
     
         </>
       )

@@ -28,14 +28,12 @@ const Exercise = ({elements, onUpdateStatus}) => {
       <div className='exerciseContainer'>
           <div className="exerciseContent">
               <h3 id='exerciseName'>{elements.exercise_name}</h3>
-              <h5 className={exerciseStatus}>Status: {elements.status}</h5>
+              <h5 className={exerciseStatus}>Status: {elements.status}
+                <button className='activate' onClick={() => handleUpdateStatus(elements.exercise_id, 'activate')}>Activate</button> 
+                <button className='deactivate' onClick={() => handleUpdateStatus(elements.exercise_id, 'deactivate')}>Dectivate</button>
+                </h5>
               <h5>Equipment: {elements.equipment_list}</h5>
               <h5>Steps: {elements.steps}</h5>
-              <div className="buttons">
-                    <button className='activate' onClick={() => handleUpdateStatus(elements.exercise_id, 'activate')}>Activate</button>
-                    <button className='deactivate' onClick={() => handleUpdateStatus(elements.exercise_id, 'deactivate')}>Dectivate</button>
-                </div>
-                
           </div>
       </div>
 
