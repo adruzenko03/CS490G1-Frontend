@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "../Workout/Styles/WorkoutModal.css";
+import axios from "axios";
 
-const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
+const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const handleAddWorkout = () => {
+    axios
+      .post("http://localhost:3001/workoutsadded", {
+        userId,
+        workoutId: selectedWorkout.workout_id,
+      })
+      .then((response) => {
+        setSuccessMessage("Workout added to Your Workouts!");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        setSuccessMessage("Workout Added Already!");
+        console.error(error);
+      });
+  };
+
+  const handleRemoveWorkout = () => {
+    axios
+      .delete("http://localhost:3001/workoutsremoved", {
+        data: {
+          userId,
+          workoutId: selectedWorkout.workout_id,
+        },
+      })
+      .then((response) => {
+        setSuccessMessage("Workout removed!");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        setSuccessMessage("Error removing workout. Please try again.");
+        console.error(error);
+      });
+  };
+
+  const handleModalClose = () => {
+    setSuccessMessage(null);
+    closeModal();
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -13,7 +54,7 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
       shouldCloseOnOverlayClick={true}
     >
       <div className="modal-header">
-        <button className="close-button" onClick={closeModal}>
+        <button className="close-button" onClick={handleModalClose}>
           X
         </button>
       </div>
@@ -33,8 +74,8 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
           {selectedWorkout && selectedWorkout.difficulty}
         </p>
         <p>
-          <strong>Muscle Target Group:</strong>{" "}
-          {selectedWorkout && selectedWorkout.muscle}
+          <strong>Muscle Target Groups:</strong>{" "}
+          {selectedWorkout && selectedWorkout.muscle_groups}
         </p>
         <p>
           <strong>Exercises:</strong>{" "}
@@ -54,7 +95,11 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout }) => {
           </p>
         )}
         <div className="weekdays">
-          <button>Add</button>
+          <button onClick={handleAddWorkout}>Add</button>
+          <button onClick={handleRemoveWorkout}>Delete</button>
+          {successMessage && (
+            <p className="success-message">{successMessage}</p>
+          )}
         </div>
       </div>
     </Modal>

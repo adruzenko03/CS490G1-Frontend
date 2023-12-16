@@ -16,7 +16,7 @@ const CalorieGraph = ({ data }) => {
   const uniqueMonths = [
     ...new Set(
       data.map((item) => {
-        const date = new Date(item.Date);
+        const date = new Date(item.entry_date);
         const monthName = date.toLocaleString("default", { month: "long" });
         const year = date.getFullYear();
         return `${monthName} ${year}`;
@@ -30,12 +30,15 @@ const CalorieGraph = ({ data }) => {
 const filteredData = selectedMonth
   ? data.filter((item) => {
       const selectedMonthStart = selectedMonth.split(" ")[0];
-      const itemMonth = new Date(item.Date).toLocaleString("default", {
+      const itemMonth = new Date(item.entry_date).toLocaleString("default", {
         month: "long",
       });
-      const itemMonthAbbrev = new Date(item.Date).toLocaleString("default", {
-        month: "short",
-      });
+      const itemMonthAbbrev = new Date(item.entry_date).toLocaleString(
+        "default",
+        {
+          month: "short",
+        }
+      );
 
       return (
         itemMonth === selectedMonthStart ||
@@ -62,7 +65,7 @@ const filteredData = selectedMonth
         <YAxis />
         <Tooltip
           formatter={(value, name, props) => {
-            const date = new Date(props.payload.Date);
+            const date = new Date(props.payload.entry_date);
             const formattedDate = `${date.toLocaleString("default", {
               month: "long",
             })} ${date.getDate()}`;
@@ -72,7 +75,7 @@ const filteredData = selectedMonth
         />
 
         <Legend />
-        <Line type="monotone" dataKey="Calorie" stroke="#8884d8" />
+        <Line type="monotone" dataKey="calorie_intake" stroke="#8884d8" />
       </LineChart>
     </div>
   );
