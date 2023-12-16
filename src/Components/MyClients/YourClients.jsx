@@ -33,7 +33,7 @@ const YourClients = ({userId}) => {
                   {clientsList && clientsList.length>0 ? (
                     clientsList.map((client, index) => (
                       <Stack key={index} gap={3}>
-                          <div className='p-2'><YourClientExpanded items={client}/></div>
+                          <div className='p-2'><YourClientExpanded items={client} userId={userId}/></div>
                       </Stack>
                   ))
                   ) : (

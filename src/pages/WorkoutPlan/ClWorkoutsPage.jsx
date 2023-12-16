@@ -34,8 +34,8 @@ const ClWorkoutsPage = ({userId}) => {
     const fetchClientInfo = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
-        console.log('aaaaaaaaaaaaaaaa: ' + res.data);
-        setClientInfo(res.data.surveyData);
+        console.log('aaaaaaaaaaaaaaaa: ' + res.data.surveyData);
+        setClientInfo(res.data.surveyData[0]);
       } catch (err) {
         console.log(err);
       }

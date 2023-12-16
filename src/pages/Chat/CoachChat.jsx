@@ -71,7 +71,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchAllMessages();
-    },[userId])
+    },[selectedChatMessages])
 
     useEffect(()=>{
         const FetchChats = async()=>{
@@ -84,7 +84,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchChats();
-    }, [userId]);
+    }, [chats]);
 
     useEffect(()=>{
         const FetchUsers = async()=>{
@@ -97,7 +97,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchUsers();
-    }, [userId]);
+    }, [users]);
 
     
     useEffect(() => {
@@ -123,7 +123,7 @@ const CoachChat = ({userId}) => {
           if (chats.length > 0) {
             fetchAllSideNames(); // Trigger the function when the component mounts
           }
-    }, [chats, coachId]);
+    }, [chats, users]);
     
     const handleChatClick = async (chatId, receiverId) => {
         setSelectedChatId(chatId);
