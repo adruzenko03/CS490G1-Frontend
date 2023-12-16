@@ -16,7 +16,7 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
         const fetchExercisesList = async () => {
             try {
                 const res = await axios.get(`http://localhost:3001/exercisesList`);
-                console.log(res.data);
+                // console.log(res.data);
                 setExercisesList(res.data.surveyData);
             } catch (err) {
                 console.log(err);
@@ -35,7 +35,7 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
         //   setShowDiv1(true);
         // setClicked1(false);
         } catch (err) {
-          console.log(err.response);
+          console.log('errrrrrrrrrrr', err.response);
         //   setShow(true);
         alert("The exercise you're trying to add already exists in this workout. Please choose another exercise!")
       };
@@ -66,14 +66,14 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
                     <div style={{display:"flex", flexDirection:"row"}}>
                         <select name="equipment_name" className='select-menu' value={exerciseName} onChange={handleChange}> 
                             {exercisesList && exercisesList.map(exercise => (
-                                <option id={exercise.exercise_id} value={exercise.exercise_name}>{exercise.exercise_name}</option>
+                                <option key={exercise.exercise_id} id={exercise.exercise_id} value={exercise.exercise_name}>{exercise.exercise_name}</option>
                                 ))}
                         </select>
                     </div>
                     <div>
                         {exercisesList && exercisesList.map((exercise) => {
                             if (exercise.exercise_name === exerciseName) {
-                                return <div className='exercise-steps' key={exercise.id}>{exercise.steps}</div>;
+                                return <div className='exercise-steps' key={exercise.exercise_id}>{exercise.steps}</div>;
                             } else {
                                 return null; // or return any default element if needed
                             }

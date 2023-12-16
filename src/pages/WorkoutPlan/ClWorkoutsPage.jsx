@@ -9,6 +9,8 @@ import './WorkoutModal.css'
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
+
+
 const ClWorkoutsPage = ({userId}) => {
 
   const clientId = userId;
@@ -17,24 +19,30 @@ const ClWorkoutsPage = ({userId}) => {
   const [clientInfo, setClientInfo] = useState(null);
 
   useEffect(() => {
-    const fetchClientWorkouts = async () => {
-      try {
-        const res = await axios.get(`http://localhost:3001/clientWorkouts/${clientId}`);
-        console.log(res.data);
-        setWorkouts(res.data.surveyData);
-      } catch (err) {
-        console.log(err);
-      }
+    const fetchClientWorkouts = ()=>{
+      axios.get(`http://localhost:3001/clientWorkouts/${clientId}`)
+        .then((response)=>{
+          if(response.data.ok){
+            setWorkouts(response.data.surveyData);
+          }else{
+            console.log("error retrieving workouts");
+          }
+        })
+        .catch((error)=>{
+          console.log("Error fetching data:", error);
+        })
     };
-  
     fetchClientWorkouts();
   }, [workouts]);
+
+
+
 
   useEffect(() => {
     const fetchClientInfo = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
-        console.log('aaaaaaaaaaaaaaaa: ' + res.data.surveyData);
+        // console.log('aaaaaaaaaaaaaaaa: ' + res.data.surveyData);
         setClientInfo(res.data.surveyData[0]);
       } catch (err) {
         console.log(err);
@@ -87,7 +95,9 @@ const ClWorkoutsPage = ({userId}) => {
             {workouts.map((workout)=>{
               return(
                 // <DataContext.Provider value={{workouts, setWorkouts}}>
+                <div key={workout.workout_id}>
                   <OneWorkout elements={workout} deleteWorkout={deleteWorkout}/>
+                </div>
                 // </DataContext.Provider>
               )
             })}

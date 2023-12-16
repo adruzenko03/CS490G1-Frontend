@@ -37,21 +37,41 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
     })
 
 
-    const createNewWorkout = async () => {
-        if (workoutData.workout_name) {
-          try {
-            const res = await axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData);
-            console.log("Success!");
-            // window.location.reload();
-            // setShowDiv1(true);
-            setClicked(false);
-          } catch (err) {
-            console.log(err);
-          }
-        } else {
-          alert("The workout needs to have a name.");
-        }
+    // const createNewWorkout = async () => {
+    //     if (workoutData.workout_name) {
+    //       try {
+    //         const res = await axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData);
+    //         console.log("Success!");
+    //         // window.location.reload();
+    //         // setShowDiv1(true);
+    //         setClicked(false);
+    //       } catch (err) {
+    //         console.log(err);
+    //       }
+    //     } else {
+    //       alert("The workout needs to have a name.");
+    //     }
+    //   };
+
+      const createNewWorkout = async () => {
+            axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData)
+            .then((response)=>{
+                if(response.data.ok){
+                    setClicked(false);
+                }else{
+                    console.log("Error sending workout data.");
+                }
+            })
+            .catch((error)=>{
+                console.log("error fetching data");
+            })
+         
       };
+
+
+    //   const handleSaveChanges = () => {
+    //     createNewWorkout();
+    //   }
     
    
 
@@ -63,30 +83,6 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
         });
     };
 
-    // const validateFields = () => {
-    //     const requiredFields = ['workoutName', 'goal', 'difficulty', 'equipment', 'muscleGroup'];
-    //     for (const field of requiredFields) {
-    //         if (!workoutData[field].trim()) {
-    //             return false; // Return false if any required field is empty
-    //         }
-    //     }
-    //     return true; // All required fields are filled out
-    // };
-
-
-    // const handleAddWorkout = () => {
-    //     const isValid = validateFields();
-
-    //     if(isValid){
-    //         const newWorkout = { ...workoutData }; // Create a copy of workoutData
-    //         addWorkout(newWorkout); // Send new workout data to parent component
-    //         toggleModal();
-    //     }else{
-    //         alert("Please fill/select all the required fields. Only the description field is optional.");   
-    //     }
-    // };
-
-    
 
     const handleButtonClick = ()=>{
         toggleModal();

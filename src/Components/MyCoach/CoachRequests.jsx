@@ -14,7 +14,7 @@ const Requests = ({userId}) => {
     const fetchPendingCoach = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/pendingCoach/${clientId}`);
-        console.log(res.data);
+        // console.log(res.data);
         setCoachesList(res.data.surveyData);
       } catch (err) {
         console.log(err);
@@ -34,7 +34,7 @@ const Requests = ({userId}) => {
 
             {coachesList.map((coach)=>{
               return(
-                  <Stack gap={3}>
+                  <Stack gap={3} key={coach.coach_id}>
                       <div className='p-2'><CoachOneRequest items={coach}/></div>
                   </Stack>
               );  

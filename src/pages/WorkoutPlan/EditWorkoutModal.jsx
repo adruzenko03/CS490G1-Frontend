@@ -16,7 +16,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
     const handleClick = () => {
         setShowAddExercise(!showAddExercise);
     };
-    console.log(items);
+    // console.log(items);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -34,7 +34,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
         try {
         const data = {editedItems, oldMuscleId};
           const res = await axios.put(`http://localhost:3001/sendWorkoutData/${workoutId}`, data);
-          console.log("successsssss");
+          // console.log("successsssss");
           // setEditedItems(res.data.surveyData);
           // window.location.reload();
         //   setShowDiv1(true);
@@ -58,7 +58,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
         fetchAllExercises();
       }, [exercises]); 
 
-      console.log('------------------------',exercises);
+      // console.log('------------------------',exercises);
 
 
 
@@ -166,7 +166,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
                             {exercises.map((exercise) => {
                                 return (
                                     // JSX code here for each exercise
-                                    <div className="one-exercise">
+                                    <div className="one-exercise" key={exercise.exercise_id}>
                                         <OneExercise exerciseDetails={exercise} editedItems={editedItems}/>
                                     </div>
                                 );

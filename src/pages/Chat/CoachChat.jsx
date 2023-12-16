@@ -71,7 +71,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchAllMessages();
-    },[selectedChatMessages])
+    },[messageList])
 
     useEffect(()=>{
         const FetchChats = async()=>{

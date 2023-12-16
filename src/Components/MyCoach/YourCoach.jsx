@@ -14,7 +14,7 @@ const YourCoach = ({userId}) => {
     const fetchAcceptedCoach = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
-        console.log(res.data);
+        // console.log(res.data);
         setCoachesList(res.data.surveyData);
       } catch (err) {
         console.log(err);
@@ -26,7 +26,7 @@ const YourCoach = ({userId}) => {
   }, [coachesList]);
   
   
-  console.log('hhhhhhhhh' + coachesList);
+  // console.log('hhhhhhhhh' + coachesList);
 
   return (
     <>
@@ -36,8 +36,8 @@ const YourCoach = ({userId}) => {
           <span style={{marginLeft:"12px", color:"white"}}>YOUR COACH</span>
                   {coachesList.map((coach)=>{
                           return(
-                              <Stack gap={3}>
-                                  <div className='p-2'><YourCoachExpanded items={coach}/></div>
+                              <Stack gap={3} key={coach.coach_id}>
+                                  <div className='p-2'><YourCoachExpanded items={coach} userId={userId}/></div>
                               </Stack>
                           ) 
                   })}

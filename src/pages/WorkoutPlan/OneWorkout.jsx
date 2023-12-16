@@ -21,14 +21,18 @@ const OneWorkout = ({elements, deleteWorkout}) => {
   const workoutId = elements.workout_id;
 
   useEffect(() => {
-    const fetchExerciseCount = async () => {
-      try {
-        const res = await axios.get(`http://localhost:3001/exerciseCount/${workoutId}`);
-        setExerciseCount(res.data.surveyData[0].exercise_count);
-        // setGoalsList(res.data.surveyData);
-      } catch (err) {
-        console.log(err);
-      }
+    const fetchExerciseCount = ()=>{
+      axios.get(`http://localhost:3001/exerciseCount/${workoutId}`)
+        .then((response)=>{
+          if(response.data.ok){
+            setExerciseCount(response.data.surveyData[0].exercise_count);
+          }else{
+            console.log("error retrieving exercise count");
+          }
+        })
+        .catch((error)=>{
+          console.log("Error fetching data:", error);
+        })
     };
     fetchExerciseCount();
   }, [exerciseCount]); 

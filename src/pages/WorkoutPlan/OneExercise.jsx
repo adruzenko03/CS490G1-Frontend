@@ -13,35 +13,25 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
         setClicked(!clicked);
     }
 
-
-    // const updateExercise = (updatedExerciseData) => {
-    //     // Assuming you're using useState hook to manage exercisesList state
-    //     // Set the updated exercise data in the state
-    //     setExercisesList(prevExercises => {
-    //       // Find the index of the updated exercise in the list
-    //       const index = prevExercises.findIndex(exercise => exercise.exercise_id === updatedExerciseData.exercise_id);
-      
-    //       // Create a new array with the updated exercise
-    //       const updatedExercises = [...prevExercises];
-    //       updatedExercises[index] = updatedExerciseData;
-      
-    //       // Return the updated array to update the state
-    //       return updatedExercises;
-    //     });
-    //   };
     
     useEffect(() => {
-        const fetchExercisesList = async () => {
-            try {
-                const res = await axios.get(`http://localhost:3001/exercisesList`);
-                console.log(res.data);
-                setExercisesList(res.data.surveyData);
-            } catch (err) {
-                console.log(err);
+      const fetchExercisesList = () => {
+        axios.get(`http://localhost:3001/exercisesList`)
+          .then((response)=>{
+            if(response.data.ok){
+              setExercisesList(response.data.surveyData);
+            }else{
+              console.log("Error retrieving exercises.");
             }
-        };
-        fetchExercisesList();
+          })
+          .catch((errro)=>{
+            console.log("Error fetching exercises");
+          })
+      }
+      fetchExercisesList();
     }, [exercisesList]);
+
+    
 
     const oldExerciseId = exerciseDetails.exercise_id;
     const workoutId = exerciseDetails.workout_id;
@@ -50,7 +40,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
         const data = {oldExerciseId, selectedId}
         try {
           const res = await axios.put(`http://localhost:3001/updateExercise/${workoutId}`, data);
-          console.log("successsssss");
+        //   console.log("successsssss");
           handleClick();
         //   updateExercise(res.data.surveyData); 
         //   setShowDiv1(true);
@@ -59,8 +49,8 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
 
         } catch (err) {
           console.log(err);
-          alert(err);
-        //   alert('The exercise already exists. Please choose another one.')
+          // alert(err);
+          alert('The exercise already exists. Please choose another one.');
         }
       };
 
@@ -95,7 +85,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
     };
   
 
-    console.log(exercisesList);
+    // console.log(exercisesList);
 
     return (
         <>
@@ -113,7 +103,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
                     <button className='exercise-cancelButton' onClick={handleClick}>X</button>
                     <select name="equipment_name" className='select-menu' value={exerciseName} onChange={handleChange}> 
                         {exercisesList.map(exercise => (
-                            <option id={exercise.exercise_id} value={exercise.exercise_name}>{exercise.exercise_name}</option>
+                            <option key={exercise.exercise_id} id={exercise.exercise_id} value={exercise.exercise_name}>{exercise.exercise_name}</option>
                             ))}
                     </select>
                 </div>
@@ -123,7 +113,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
                         <span className='exercise-name'>{exerciseName}</span>
                         {exercisesList.map((exercise) => {
                             if (exercise.exercise_name === exerciseName) {
-                                return <div className='exercise-steps' key={exercise.id}>{exercise.steps}</div>;
+                                return <div className='exercise-steps' key={exercise.exercise_id}>{exercise.steps}</div>;
                             } else {
                                 return null; // or return any default element if needed
                             }
@@ -136,7 +126,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
                     </div>
                     )}
 
-                    {console.log('**********************', selectedId)}
+                    {/* {console.log('**********************', selectedId)} */}
               <div className='buttons'>
                   <button className='request1' onClick={()=>handleUpdateExercise(selectedId)}>Save changes</button>
                   <button className='request2' onClick={deleteExercise}>Remove exercise</button>
