@@ -24,20 +24,20 @@ export default function ActivityForm({ userId }) {
     return `${year}-${month}-${day}`;
   }
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
-      .then((response) => {
-        if (response.data.ok) {
-          setActivities(response.data.activities);
-        } else {
-          console.error("Error retrieving activities");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, [userId]);
+useEffect(() => {
+  axios
+    .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
+    .then((response) => {
+      if (response.data.ok) {
+        setActivities(response.data.activities);
+      } else {
+        console.error("Error retrieving activities");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}, [userId, activities]);
 
   const shouldDisplayForm = activities.every((activity) => {
     const activityDate = new Date(activity.entry_date);
@@ -91,12 +91,15 @@ export default function ActivityForm({ userId }) {
   };
 
   return (
-    <div className="form-container">
-      {formSaved ? (
+    <div className="form-containerja">
+      {activities.some(
+        (activity) =>
+          getNumberedDate(new Date(activity.entry_date)) === getNumberedDate()
+      ) ? (
         <div className="check-in-message">
           Check-in Completed for {getFormattedDate()}
         </div>
-      ) : shouldDisplayForm ? (
+      ) : (
         <form className="activity-form">
           <div className="title">{currentDate}</div>
           <label>
@@ -119,8 +122,11 @@ export default function ActivityForm({ userId }) {
 
           <label>
             Current Mood:
-            <div>1 - Very Sad<br/>
-            10 - Very Happy</div>
+            <div>
+              1 - Very Sad
+              <br />
+              10 - Very Happy
+            </div>
             <select
               value={mood}
               onChange={(e) => handleInputChange(e, setMood)}
@@ -139,10 +145,6 @@ export default function ActivityForm({ userId }) {
             Save
           </button>
         </form>
-      ) : (
-        <div className="check-in-message">
-          Check-in Completed for {getFormattedDate()}
-        </div>
       )}
     </div>
   );

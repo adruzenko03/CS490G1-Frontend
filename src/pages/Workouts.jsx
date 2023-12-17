@@ -46,26 +46,25 @@ function Workouts() {
     setModalIsOpen(false);
   };
 
-  const applyFilters = () => {
-    const filtered = originalData.filter((workout) => {
-      return (
-        (appliedFilters.equipment === "" ||
-          workout.equipment_name === appliedFilters.equipment) &&
-        (appliedFilters.muscle === "" ||
-          workout.muscle
-            .toLowerCase()
-            .trim()
+const applyFilters = () => {
+  const filtered = originalData.filter((workout) => {
+    const selectedEquipment = appliedFilters.equipment.split(",");
 
-            .includes(appliedFilters.muscle)) &&
-        (searchTerm === "" ||
-          workout.exercise_name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()))
-      );
-    });
+    return (
+      (selectedEquipment.length === 0 ||
+        selectedEquipment.some((equipment) =>
+          workout.equipment_names.includes(equipment.trim())
+        )) &&
+      (appliedFilters.muscle === "" ||
+        workout.muscle.toLowerCase().trim().includes(appliedFilters.muscle)) &&
+      (searchTerm === "" ||
+        workout.exercise_name.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
 
-    setFilteredData(filtered);
-  };
+  setFilteredData(filtered);
+};
+
 
 
   useEffect(() => {
@@ -95,7 +94,7 @@ function Workouts() {
             onClick={() => openModal(workout)}
           >
             <p className="exercise-name">{workout.exercise_name}</p>
-            <p>Equipment: {workout.equipment_name}</p>
+            <p>Equipment: {workout.equipment_names}</p>
           </div>
         ))}
       </div>
