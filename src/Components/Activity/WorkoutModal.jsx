@@ -8,7 +8,7 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
 
   const handleAddWorkout = () => {
     axios
-      .post("http://localhost:3001/workoutsadded", {
+      .post(process.env.REACT_APP_HOST+"/workoutsadded", {
         userId,
         workoutId: selectedWorkout.workout_id,
       })
@@ -24,7 +24,7 @@ const WorkoutModal = ({ isOpen, closeModal, selectedWorkout, userId }) => {
 
   const handleRemoveWorkout = () => {
     axios
-      .delete("http://localhost:3001/workoutsremoved", {
+      .delete(process.env.REACT_APP_HOST+"/workoutsremoved", {
         data: {
           userId,
           workoutId: selectedWorkout.workout_id,

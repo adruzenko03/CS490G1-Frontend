@@ -40,7 +40,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
     // const createNewWorkout = async () => {
     //     if (workoutData.workout_name) {
     //       try {
-    //         const res = await axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData);
+    //         const res = await axios.post(`${process.env.REACT_APP_HOST}/sendNewWorkoutData`, workoutData);
     //         console.log("Success!");
     //         // window.location.reload();
     //         // setShowDiv1(true);
@@ -54,7 +54,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
     //   };
 
       const createNewWorkout = async () => {
-            axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData)
+            axios.post(`${process.env.REACT_APP_HOST}/sendNewWorkoutData`, workoutData)
             .then((response)=>{
                 if(response.data.ok){
                     // setClicked(false);

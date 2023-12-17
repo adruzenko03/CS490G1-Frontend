@@ -9,7 +9,7 @@ const CoachDetails = ({items, onUpdateStatus}) => {
   }
   const handleUpdateStatus = (coach_id, actionType) => {
     onUpdateStatus(coach_id, actionType);
-    fetch(`http://localhost:3001/updateCoachStatus/${coach_id}/${actionType}`, {
+    fetch(`${process.env.REACT_APP_HOST}/updateCoachStatus/${coach_id}/${actionType}`, {
       method: 'POST',
     })
       .then((response) => response.json())

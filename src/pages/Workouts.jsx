@@ -24,9 +24,10 @@ function Workouts() {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:3001/exercises")
+      .get(process.env.REACT_APP_HOST+"/exercises")
       .then((response) => {
         const exercises = response.data.exercises;
+        console.log(exercises)
         setOriginalData(exercises);
         setFilteredData(exercises);
       })

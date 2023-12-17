@@ -32,7 +32,7 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
 
   const acceptClientRequest = async () => {
     try {
-      const response = await axios.post(`http://localhost:3001/acceptClient`,{
+      const response = await axios.post(`${process.env.REACT_APP_HOST}/acceptClient`,{
         clientId: items.user_id,
         coachId: coachId
       });
@@ -46,7 +46,7 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
 
   const declineClientRequest = async () => {
     try {
-      const response = await axios.post(`http://localhost:3001/declineClient`,{
+      const response = await axios.post(`${process.env.REACT_APP_HOST}/declineClient`,{
         clientId: items.user_id,
         coachId: coachId
       });
