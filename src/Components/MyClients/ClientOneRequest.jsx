@@ -26,6 +26,7 @@ const ClientOneRequest = ({items}) => {
   }
 
   const connectionId = items.coach_client_id;
+  const clientId = items.client_id;
   console.log('aaaaaaaaa'  + connectionId);
 
   const acceptClientRequest = async () => {

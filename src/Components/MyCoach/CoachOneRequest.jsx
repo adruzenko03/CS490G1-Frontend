@@ -3,7 +3,7 @@ import './CoachOneRequest.css'
 import axios from 'axios';
 import successBlue from '../icons/success-blue.png'
 
-const CoachOneRequest = ({items}) => {
+const CoachOneRequest = ({items, userId}) => {
   const [modal, setModal] = useState(false);
   const [showDiv, setShowDiv] = useState(false);
 

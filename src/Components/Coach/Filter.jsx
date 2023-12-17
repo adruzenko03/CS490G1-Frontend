@@ -12,7 +12,7 @@ import axios from 'axios';
 import RandomCoaches from './RandomCoaches';
 
 
-const Filter = () => {
+const Filter = ({userId}) => {
 
 
     const [goalList, setGoalsList] = useState([]);
@@ -97,6 +97,13 @@ const Filter = () => {
       }, []); 
 
 
+      const modifiedList = [''].concat(goalList); // Add an empty string at the beginning
+      const modifiedExperience = [''].concat(experienceList); // Add an empty string at the beginning
+      const modifiedState = [''].concat(locationList); // Add an empty string at the beginning
+      const modifiedCost = [''].concat(costList); // Add an empty string at the beginning
+
+
+
 
 
     const toggleBtn = () => {
@@ -122,13 +129,13 @@ const Filter = () => {
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                                   <span style={{marginRight:"5px"}}>Goal</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"12.5vw"}}>
-                                        {value1 || (goalList[0] && goalList[0].goal)}
+                                        {value1 || (modifiedList[0] && modifiedList[0].goal) + " goal"}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown">
-                                        {goalList.slice(1).map((item, index) => (
-                                        <Dropdown.Item key={index} onClick={()=>setValue1(item.goal)}>
-                                        {item.goal}
+                                        {modifiedList.map((item, index) => (
+                                        <Dropdown.Item key={index}  onClick={()=>setValue1(item.goal)}>
+                                        {item.goal + " goal"}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
@@ -142,7 +149,7 @@ const Filter = () => {
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
-                                        {experienceList.slice(1).map((item, index) => (
+                                        {modifiedExperience.map((item, index) => (
                                         <Dropdown.Item key={index} onClick={()=>setValue2(item.experience)}>
                                         {item.experience + " Years"}
                                         </Dropdown.Item>
@@ -154,13 +161,13 @@ const Filter = () => {
                                 <Dropdown style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                                     <span style={{marginRight:"5px"}}>State</span>
                                     <Dropdown.Toggle className='button-4' variant="success" id="button-4" style={{width:"11.5vw"}}>
-                                        {value3  || (locationList[0] && locationList[0].state)}
+                                        {value3  || (modifiedState[0] && modifiedState[0].state) + " state"}
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
-                                        {locationList.slice(1).map((item, index) => (
+                                        {modifiedState.map((item, index) => (
                                         <Dropdown.Item key={index} onClick={()=>setValue3(item.state)}>
-                                        {item.state}
+                                        {item.state + " "}
                                         </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
@@ -174,7 +181,7 @@ const Filter = () => {
                                     </Dropdown.Toggle>
                                 
                                     <Dropdown.Menu id="dropdown" style={{maxHeight:"30vh", overflowY:"auto"}}>
-                                        {costList.slice(1).map((item, index) => (
+                                        {modifiedCost.map((item, index) => (
                                         <Dropdown.Item key={index} onClick={()=>setValue4(item.cost)}>
                                         {"$" + item.cost + "/month"}
                                         </Dropdown.Item>
@@ -197,9 +204,9 @@ const Filter = () => {
                 </div>
             </div>
             {clicked ? 
-              <AllCoaches vals = {[value1, value2, value3, value4]}/> 
+              <AllCoaches vals = {[value1, value2, value3, value4]} userId={userId}/> 
               : 
-              <RandomCoaches vals={[value1, value2, value3, value4]}/>}
+              <RandomCoaches vals={[value1, value2, value3, value4]}  userId={userId}/>}
         </>
       );
 }

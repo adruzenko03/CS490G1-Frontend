@@ -5,10 +5,13 @@ import FilterButton from './FilterButton';
 import './AllCoaches.css'
 import axios from 'axios';
 
-const AllCoaches = ({vals}) => {
+const AllCoaches = ({vals, userId}) => {
 
-    console.log('okokokkookkokokko'  + {vals})
+
+    // console.log('okokokkookkokokko'  + {vals})
     const [coachesList, setCoachesList] = useState([]);
+
+    // alert(userId);
 
     // Get all coaches.
     useEffect(() => {
@@ -37,11 +40,18 @@ const AllCoaches = ({vals}) => {
             <div className='allCoaches'>
                 {coachesList.map((coach)=>{
                      /* ERROR HERE  vals[0] */ 
-                    if(coach.goal===vals[0] && coach.experience ===vals[1] && coach.state===vals[2] && coach.cost===vals[3]){
+                     if (
+                      (!vals[0] || coach.goal === vals[0]) &&
+                      (!vals[1] || coach.experience === vals[1]) &&
+                      (!vals[2] || coach.state === vals[2]) &&
+                      (!vals[3] || coach.cost === vals[3])
+                  ) {
                         console.log('cldkdckcjdlcj' + coach);
                         return(
                             <Stack gap={3}>
-                                <div className='p-2'><OneCoach items={coach}/></div>
+                                <div className='p-2'>
+                                  <OneCoach userId={userId} items={coach} />
+                                </div>
                             </Stack>
                         );
                     }else{
@@ -49,21 +59,20 @@ const AllCoaches = ({vals}) => {
                     }
                 })}
 
-            {coachesList.every(
-                (coach) =>
-                /* ERROR HERE  vals[0] */ 
-                coach.goal !== vals[0] ||
-                coach.experience !== vals[1] ||
-                coach.state !== vals[2] ||
-                coach.cost !== vals[3]
-            ) && (
-                <Stack gap={3} style={{paddingLeft:"10px", marginTop:"10px"}}>
-                    <p>No coaches meet the specified conditions.</p>
-                    {/* <p>Would you like to display a list of coaches near you?</p>
-                    <button>Yes</button>
-                    <button>No</button> */}
-                </Stack>
-            )}
+              {coachesList.every(coach =>
+                  (vals[0] && coach.goal !== vals[0]) ||
+                  (vals[1] && coach.experience !== vals[1]) ||
+                  (vals[2] && coach.state !== vals[2]) ||
+                  (vals[3] && coach.cost !== vals[3])
+              ) ? (
+                  <Stack gap={3} style={{ paddingLeft: "10px", marginTop: "10px" }}>
+                      <p>No coaches meet the specified conditions.</p>
+                      {/* Additional content */}
+                  </Stack>
+              ) : (
+                  // Your other code here
+                <p></p>
+              )}
                 
             </div>
 
