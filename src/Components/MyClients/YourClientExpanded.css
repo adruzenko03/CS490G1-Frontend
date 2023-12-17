@@ -3,13 +3,16 @@
     color: white;
     border-radius: 19px;
     padding: 10px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     transition-duration: 0.2s;
 }
 
 
+.popup .content{
+    padding: 10px; /* Padding around content */
+    width: 40%; /* Width of the modal content */
+    max-height: 80%;
+    overflow-y: auto; /* Make it scrollable */
+}
 .yourClient:hover,
 .yourClient:focus,
 .yourClient:active {

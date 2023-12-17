@@ -11,13 +11,13 @@ import clientsIcon from "../icons/clients.png";
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
-
+  const coachStatus = localStorage.getItem("coachStatus");
   const toggleLink = (linkId) => {
     setActiveLink(linkId === activeLink ? null : linkId);
   };
   // Conditionally render footer content based on userRole
   const renderFooterContent = () => {
-    if (userRole === "coach") {
+    if (userRole === "coach" && coachStatus === "accepted") {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
@@ -110,7 +110,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
           </Link>
         </>
       );
-    } else if (userRole === "client") {
+    } else if (userRole === "client" || (userRole === "coach" && coachStatus !=="accepted")) {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
