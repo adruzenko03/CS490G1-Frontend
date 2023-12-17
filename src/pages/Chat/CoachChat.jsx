@@ -115,7 +115,7 @@ const CoachChat = ({userId}) => {
           for (const chat of chatsRef.current) {
             updateChatId(chat.coach_client_id);
             const res = await axios.get(`http://localhost:3001/users1/${chat.coach_client_id}/${coachId}`);
-            if (res.data.surveyData[0] && res.data.surveyData[0].first_name && res.data.surveyData[0].last_name) {
+            if (res.data.surveyData[0] ) {
               const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;
               names.push(fullName);
             } else {
@@ -124,14 +124,14 @@ const CoachChat = ({userId}) => {
           }
           setSideName(names);
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
       };
     
-      if (chatsRef.current.length > 0) {
+      if (chats.length > 0) {
         fetchAllSideNames();
       }
-    }, [userId]);
+    }, [chats]);
     
     const handleChatClick = async (chatId, receiverId) => {
         setSelectedChatId(chatId);
@@ -185,12 +185,8 @@ const CoachChat = ({userId}) => {
                             className={`one-client ${selectedClientId === chat.coach_client_id ? 'selected' : ''}`} // Apply 'selected' class based on state
 
                         >
-                            {sideName && sideName[index] ? (
-                            <span>{sideName[index]}</span>
-                            ) : (
-                            <span>Loading...</span>
-                            )}
-                            <p>client  {index}</p>
+                            
+                            <span>{sideName && sideName[index]}</span>
                         </div>
                     )
                 })}
@@ -230,3 +226,11 @@ const CoachChat = ({userId}) => {
 }
 
 export default CoachChat
+
+
+{/* {sideName && sideName[index] ? (
+                            <span>{sideName[index]}</span>
+                            ) : (
+                            <span>Loading...</span>
+                            )}
+                            <p>client  {index}</p> */}
