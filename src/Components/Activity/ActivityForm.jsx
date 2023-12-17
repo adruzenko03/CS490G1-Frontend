@@ -4,6 +4,8 @@ import axios from "axios";
 export default function ActivityForm({ userId }) {
   const [calorieIntake, setCalorieIntake] = useState("");
   const [weight, setWeight] = useState("");
+  const [mood, setMood] = useState("");
+
   const [formSaved, setFormSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const currentDate = getFormattedDate();
@@ -24,7 +26,7 @@ export default function ActivityForm({ userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/activities/${userId}`)
+      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
           setActivities(response.data.activities);
@@ -51,12 +53,13 @@ export default function ActivityForm({ userId }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/activitySurvey",
+        process.env.REACT_APP_HOST+"/activitySurvey",
         {
           userId,
           entryDate: getNumberedDate(),
           calorieIntake: parseFloat(calorieIntake),
           bodyWeight: parseFloat(weight),
+          mood: parseFloat(mood),
         }
       );
       console.log("Form data saved:", response.data);
@@ -112,6 +115,22 @@ export default function ActivityForm({ userId }) {
               value={weight}
               onChange={(e) => handleInputChange(e, setWeight)}
             />
+          </label>
+
+          <label>
+            Current Mood:
+            <div>1 - Very Sad<br/>
+            10 - Very Happy</div>
+            <select
+              value={mood}
+              onChange={(e) => handleInputChange(e, setMood)}
+            >
+              {[...Array(10).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
           </label>
 
           {errorMessage && <div className="error-message">{errorMessage}</div>}

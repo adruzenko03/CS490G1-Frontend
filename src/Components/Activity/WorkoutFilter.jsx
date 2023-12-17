@@ -28,13 +28,13 @@ const WorkoutFilter = ({ appliedFilters, setAppliedFilters, applyFilters }) => {
           }
         >
           <option value=""></option>
-          <option value="Barbell">Barbell</option>
-          <option value="Dumbbells">Dumbbells</option>
-          <option value="Bodyweight">Bodyweight</option>
-          <option value="Machine">Machine</option>
-          <option value="Kettlebells">Kettlebells</option>
-          <option value="Cables">Cables</option>
-          <option value="Band">Band</option>
+          <option value="barbell">Barbell</option>
+          <option value="dumbbell">Dumbbell</option>
+          <option value="bodyweight">Bodyweight</option>
+          <option value="machine">Machine</option>
+          <option value="kettlebell">Kettlebell</option>
+          <option value="cables">Cables</option>
+          <option value="band">Band</option>
         </select>
       </label>
       <label>

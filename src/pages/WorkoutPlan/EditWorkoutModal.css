@@ -14,3 +14,39 @@
     background-color: rgb(234, 54, 54);
     box-shadow: 0px 0px 10px rgb(157, 41, 41);
 }
+
+.plus-icon{
+    display: block; 
+    margin: auto; 
+    margin-top: 10px; 
+    cursor: pointer;
+    width: 50px;
+    transition-duration: 0.15s;
+}
+
+.plus-icon:hover{
+    scale: 1.09;
+}
+
+.exercises-parent{
+    display: flex;
+    justify-content: center;
+    max-height: 24vh;
+    overflow-y: auto;
+}
+
+.exercises{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 0.5vw;
+    align-items: center;
+    width: 85%;
+}
+
+.one-exercise{
+    flex: 1;
+    width: "80%";
+    height: "20vh";
+    cursor: pointer;
+}

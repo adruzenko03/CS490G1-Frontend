@@ -12,6 +12,7 @@ function Workouts() {
   const [filteredData, setFilteredData] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({
     equipment: "",
+    muscle:"",
   });
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -23,9 +24,10 @@ function Workouts() {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:3001/exercises")
+      .get(process.env.REACT_APP_HOST+"/exercises")
       .then((response) => {
         const exercises = response.data.exercises;
+        console.log(exercises)
         setOriginalData(exercises);
         setFilteredData(exercises);
       })
@@ -49,6 +51,12 @@ function Workouts() {
       return (
         (appliedFilters.equipment === "" ||
           workout.equipment_name === appliedFilters.equipment) &&
+        (appliedFilters.muscle === "" ||
+          workout.muscle
+            .toLowerCase()
+            .trim()
+
+            .includes(appliedFilters.muscle)) &&
         (searchTerm === "" ||
           workout.exercise_name
             .toLowerCase()

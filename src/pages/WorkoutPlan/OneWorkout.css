@@ -2,20 +2,23 @@
     display: flex;
     justify-content: center;
     text-decoration: underline;
-    margin-top: 0px;
+    margin-bottom: 3vh;
 }
 
 .oneWorkoutContainer{
     background-color: #1B6468;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 3vh;
     /* max-width: 30vw;  */
-    min-height: 36vh;
+
+    min-height: 35vh;
     /* width: fit-content; */
     min-width: 280px;
     max-width: 25vw;
     border-radius: 20px;
     transition: all 0.2s ease-out;
+    /* overflow-y: auto; */
 }
 
 .oneWorkoutContainer:hover{
@@ -27,13 +30,15 @@
 .oneWorkoutContent{
     color: white;
     padding: 20px;
+
 }
 
 
 .myButton{
+    height: 4.5vh;
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 4vh;
 }
 
 .editButton{
