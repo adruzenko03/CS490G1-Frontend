@@ -43,6 +43,7 @@ const ClWorkoutsPage = ({userId}) => {
         const response = await axios.get(`${process.env.REACT_APP_HOST}/getlast5Workouts/${clientId}`);
         if(response.status === 200) {
           setLast5Workouts(response.data);
+          console.log(response.data);
         } else {
           console.log("Error fetching last 5 workouts");
         }
@@ -137,7 +138,8 @@ const ClWorkoutsPage = ({userId}) => {
             <div className='last5Workouts'>
               {last5Workouts.map((workout, index) => (
               <div key={index} className="workout-entry">
-                <div>Exercise ID: {workout.exercise_id}</div>
+                <div>{workout.workout_name}</div>
+                <div>{workout.exercise_name}</div>
                 <div>Set Number: {workout.set_number}</div>
                 <div>Reps: {workout.reps}</div>
                 <div>Weight: {workout.weight}</div>
