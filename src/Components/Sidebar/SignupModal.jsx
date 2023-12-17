@@ -29,7 +29,7 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-
+    formData.state=formData.state.toUpperCase()
     try {
       const response = await fetch(process.env.REACT_APP_HOST+"/signup", {
         method: "POST",
@@ -43,7 +43,7 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
 
       if (response.ok) {
         console.log("Account created:", data);
-        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("userId", data.userID);
         localStorage.setItem("role", formData.role);
         onSignupSuccess(formData);
         if (formData.role === "coach") {
@@ -98,14 +98,14 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="*EMAIL"
                 required
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="password" 
                 name="password"
                 placeholder="*PASSWORD"
                 required
@@ -135,9 +135,9 @@ function SignupModal({ isVisible, onClose, onSignupSuccess }) {
               <input
                 type="text"
                 name="state"
-                placeholder="*STATE"
+                placeholder="*STATE (ABBR.)"
                 required
-                onChange={handleChange}
+                onChange={handleChange} 
               />
               <input
                 type="text"
