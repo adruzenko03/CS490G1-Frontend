@@ -22,7 +22,7 @@ const OneWorkout = ({elements, deleteWorkout}) => {
 
   useEffect(() => {
     const fetchExerciseCount = ()=>{
-      axios.get(`http://localhost:3001/exerciseCount/${workoutId}`)
+      axios.get(`${process.env.REACT_APP_HOST}/exerciseCount/${workoutId}`)
         .then((response)=>{
           if(response.data.ok){
             setExerciseCount(response.data.surveyData[0].exercise_count);

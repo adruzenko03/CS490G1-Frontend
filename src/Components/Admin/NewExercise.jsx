@@ -80,7 +80,7 @@ const NewExercise = ({setClicked, addExercise}) => {
             return option ? option.label : value;
           });
         if(isValid){
-            fetch(`http://localhost:3001/addExercise`, {
+            fetch(`${process.env.REACT_APP_HOST}/addExercise`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

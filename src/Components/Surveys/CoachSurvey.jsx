@@ -39,7 +39,7 @@ function CoachSurvey({ onClose }) {
     const role = localStorage.getItem('role');
     const surveyDataWithUserId = { userID, ...surveyData };
     try {
-      const response = await fetch('http://localhost:3001/coach-survey', {
+      const response = await fetch(process.env.REACT_APP_HOST+'/coach-survey', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

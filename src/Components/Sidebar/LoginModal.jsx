@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/Modal.css";
 import { useState } from "react";
-import "dotenv";
 
 function LoginModal({ isVisible, onClose, onLoginSuccess }) {
   const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError("");
     try {
-      const response = await fetch(process.env.BACK_HOST+"/login", {
+      const response = await fetch(process.env.REACT_APP_HOST+"/login", {
         //TEST USING POSTMAN
         method: "POST",
         headers: {

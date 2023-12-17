@@ -51,7 +51,7 @@ const CoachChat = ({userId}) => {
     const handleNewMessage = async(e)=>{
         e.preventDefault();
         try{
-            await axios.post("http://localhost:3001/newMessage", newMessage);
+            await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
             setSelectedChatMessages([...selectedChatMessages, newMessage])
             setCurrentMessage('');
         }catch(err){
@@ -63,7 +63,7 @@ const CoachChat = ({userId}) => {
     useEffect(()=>{
         const FetchAllMessages = async()=>{
             try{
-                const res = await axios.get(`http://localhost:3001/messages/chat/${coachId}`)
+                const res = await axios.get(`${process.env.REACT_APP_HOST}/messages/chat/${coachId}`)
                 console.log(res.data.surveyData);
                 setMessageList(res.data.surveyData);
             }catch(err){
@@ -76,7 +76,7 @@ const CoachChat = ({userId}) => {
     useEffect(()=>{
         const FetchChats = async()=>{
             try{
-                const res = await axios.get(`http://localhost:3001/messages/coach/${coachId}`)
+                const res = await axios.get(`${process.env.REACT_APP_HOST}/messages/coach/${coachId}`)
                 setChats(res.data.surveyData);
                 // console.log('this one' + chats);
             }catch(err){
@@ -89,7 +89,7 @@ const CoachChat = ({userId}) => {
     useEffect(()=>{
         const FetchUsers = async()=>{
             try{
-                const res = await axios.get(`http://localhost:3001/users/${coachId}`)
+                const res = await axios.get(`${process.env.REACT_APP_HOST}/users/${coachId}`)
                 setUsers(res.data.surveyData);
                 console.log(users);
             }catch(err){
@@ -106,7 +106,7 @@ const CoachChat = ({userId}) => {
               const names = [];
               for (const chat of chats) {
                 updateChatId(chat.coach_client_id);
-                const res = await axios.get(`http://localhost:3001/users1/${chat.coach_client_id}/${coachId}`);
+                const res = await axios.get(`${process.env.REACT_APP_HOST}/users1/${chat.coach_client_id}/${coachId}`);
                 if (res.data.surveyData[0] && res.data.surveyData[0].first_name && res.data.surveyData[0].last_name) {
                   const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;
                   names.push(fullName);
@@ -131,7 +131,7 @@ const CoachChat = ({userId}) => {
         setSelectedClientId(chatId);
         
         try {
-            const res = await axios.get(`http://localhost:3001/messages1/chat/${chatId}`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/messages1/chat/${chatId}`);
             setSelectedChatMessages(res.data.surveyData);
             updateChatId(chatId);
 

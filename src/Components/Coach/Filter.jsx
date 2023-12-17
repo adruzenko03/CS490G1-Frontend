@@ -30,7 +30,7 @@ const Filter = ({userId}) => {
     useEffect(() => {
         const fetchAllGoals = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/goalsList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/goalsList`);
             console.log(res.data);
             setGoalsList(res.data.surveyData);
           } catch (err) {
@@ -44,7 +44,7 @@ const Filter = ({userId}) => {
     useEffect(() => {
         const fetchAllExperiences = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/experienceList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/experienceList`);
             console.log(res.data);
             setExperienceList(res.data.surveyData);
           } catch (err) {
@@ -58,7 +58,7 @@ const Filter = ({userId}) => {
     useEffect(() => {
         const fetchAllLocations = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/locationList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/locationList`);
             console.log(res.data);
             setLocationList(res.data.surveyData);
           } catch (err) {
@@ -72,7 +72,7 @@ const Filter = ({userId}) => {
     useEffect(() => {
         const fetchAllCities = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/cityList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/cityList`);
             console.log(res.data);
             setCityList(res.data.surveyData);
           } catch (err) {
@@ -86,7 +86,7 @@ const Filter = ({userId}) => {
     useEffect(() => {
         const fetchCostList = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/costList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/costList`);
             console.log(res.data);
             setCostList(res.data.surveyData);
           } catch (err) {

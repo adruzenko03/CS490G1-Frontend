@@ -13,7 +13,7 @@ const YourCoach = ({userId}) => {
   useEffect(() => {
     const fetchAcceptedCoach = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/acceptedCoach/${clientId}`);
         // console.log(res.data);
         setCoachesList(res.data.surveyData);
       } catch (err) {

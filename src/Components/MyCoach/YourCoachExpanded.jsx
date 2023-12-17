@@ -36,7 +36,7 @@ import successBlue from '../icons/success-blue.png'
       //   ...newMessage,
       //   message: message
       // });
-        await axios.post("http://localhost:3001/newMessage", newMessage);
+        await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
         // setCurrentMessage('');
     }catch(err){
         console.log(err); 
@@ -47,7 +47,7 @@ import successBlue from '../icons/success-blue.png'
 
   const deleteCurrentCoach = async () => {
     try {
-      const res = await axios.delete(`http://localhost:3001/deleteCurrentCoach/${connectionId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteCurrentCoach/${connectionId}`);
       // console.log(res.data);
       // setCoachesList(res.data.surveyData);
       if (res.data.ok) {

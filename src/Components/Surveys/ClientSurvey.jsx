@@ -31,7 +31,7 @@ function ClientSurvey({ onClose }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3001/client-survey", {
+      const response = await fetch(process.env.REACT_APP_HOST+"/client-survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

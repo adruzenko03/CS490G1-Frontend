@@ -32,7 +32,7 @@ const OneCoach = ({userId, items}) => {
   useEffect(() => {
     const fetchClientInfo = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/clientInfo/${clientId}`);
         console.log('aaaaaaaaaaaaaaaa: ' + res.data);
         setClientInfo(res.data.surveyData);
       } catch (err) {
@@ -45,7 +45,7 @@ const OneCoach = ({userId, items}) => {
 
     const fetchAcceptedCoach = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/acceptedCoach/${clientId}`);
         // console.log(res.data);
         setCoachesList(res.data.surveyData);
       } catch (err) {
@@ -69,7 +69,7 @@ const OneCoach = ({userId, items}) => {
     if(userId){
       if(!hasCurrentCoach){
         try {
-          const response = await axios.post(`http://localhost:3001/requestCoach`, {clientId, items});
+          const response = await axios.post(`${process.env.REACT_APP_HOST}/requestCoach`, {clientId, items});
           console.log('Response:', response.data);
           toggleModal();
           if (response.data.ok) {

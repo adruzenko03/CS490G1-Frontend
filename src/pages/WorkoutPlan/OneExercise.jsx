@@ -16,7 +16,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
     
     useEffect(() => {
       const fetchExercisesList = () => {
-        axios.get(`http://localhost:3001/exercisesList`)
+        axios.get(`${process.env.REACT_APP_HOST}/exercisesList`)
           .then((response)=>{
             if(response.data.ok){
               setExercisesList(response.data.surveyData);
@@ -39,7 +39,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
     const handleUpdateExercise = async (selectedId) => {
         const data = {oldExerciseId, selectedId}
         try {
-          const res = await axios.put(`http://localhost:3001/updateExercise/${workoutId}`, data);
+          const res = await axios.put(`${process.env.REACT_APP_HOST}/updateExercise/${workoutId}`, data);
         //   console.log("successsssss");
           handleClick();
         //   updateExercise(res.data.surveyData); 
@@ -56,7 +56,7 @@ const OneExercise = ({exerciseDetails, editedItems}) => {
 
       const deleteExercise = async () => {
         try {
-            const res = await axios.delete(`http://localhost:3001/deleteExercise/${workoutId}`, {
+            const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteExercise/${workoutId}`, {
                 data: { oldExerciseId }
               });
           if (res.data.ok) {

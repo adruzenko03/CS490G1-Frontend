@@ -22,7 +22,7 @@ const CoachOneRequest = ({items, userId}) => {
 
   const deletePendingRequest = async () => {
     try {
-      const res = await axios.delete(`http://localhost:3001/deleteCoachRequest/${requestId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteCoachRequest/${requestId}`);
       // console.log(res.data);
       // setCoachesList(res.data.surveyData);
       if (res.data.ok) {
