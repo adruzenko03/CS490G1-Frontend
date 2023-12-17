@@ -204,7 +204,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
           </Link>
           </>
         );
-    } else if (userRole === "client") {
+    } else if (userRole === "client" || (userRole === "coach" && coachStatus !== "accepted")) {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
