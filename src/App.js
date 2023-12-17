@@ -14,6 +14,7 @@ import Clients from "./pages/Clients";
 import ClientWorkouts from "./pages/ClientWorkouts";
 import MyCoach from "./pages/MyCoach";
 import ChatMain from './pages/ChatMain';
+import Admin from './pages/Admin';
 
 function App() {
   const [isLoginVisible, setLoginVisible] = useState(false);
@@ -34,7 +35,7 @@ function App() {
     setUser(userData);
     setUserRole(userData.role);
   };
-  
+
   const logout = () => {
     setUser(null);
     setUserRole(null);
@@ -49,6 +50,7 @@ function App() {
     setSignupVisible(!isSignupVisible);
     setLoginVisible(false);
   };
+
   return (
     <div className="App">
       <Router>
@@ -96,33 +98,6 @@ function App() {
             }
           />
           <Route 
-            path="/Clients" 
-            element={
-              <Clients 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-            } 
-            />
-          <Route 
-            path="/MyCoach" 
-            element={
-              <MyCoach 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-              } 
-            />
-          <Route
-            path="/ClientWorkouts"
-            element={
-              <ClientWorkouts
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-            }
-          />
-          <Route 
             path="/ChatMain" 
             element={
             <ChatMain 
@@ -131,6 +106,7 @@ function App() {
             />  
             } 
             />
+            <Route path="/Admin" element={<Admin />} />
 
         </Routes>
       </Router>

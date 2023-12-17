@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import "./styles/Footer.css";
 import { Link } from "react-router-dom";
-
 import homeDumbbell from "../icons/homedumbbell.png";
 import activity from "../icons/activity.png";
 import progress from "../icons/progress.png";
@@ -9,6 +8,8 @@ import mycoachIcon from "../icons/mycoach.png";
 import clientWorkout from "../icons/clientworkout.png";
 import clientsIcon from "../icons/clients.png";
 import chatIcon from "../icons/chat.png";
+import adminIcon from '../icons/admin.png'
+import settingsIcon from '../icons/settings.png'
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
@@ -54,6 +55,22 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             MyWorkout
+          </Link>
+          <Link
+            id="link3"
+            to="/MyCoach"
+            className={activeLink === "link3" ? "active" : ""}
+            onClick={() => toggleLink("link3")}
+          >
+            <img
+              src={mycoachIcon}
+              style={{
+                width: "20px",
+                display: "inline-block",
+                marginRight: "12px",
+              }}
+            />
+            MyCoach
           </Link>
           <Link
             id="activity"
@@ -147,6 +164,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             MyCoach
+          </Link>
+          <Link
+            id="myWorkout"
+            className={activeLink === "myWorkout" ? "active" : ""}
+            onClick={() => toggleLink("myWorkout")}
+            to="/MyWorkout"
+          >
+            <img
+              src={homeDumbbell}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            MyWorkout
           </Link>
           <Link
             id="activity"
