@@ -14,9 +14,11 @@ import axios from 'axios';
 const ClWorkoutsPage = ({userId}) => {
 
   const clientId = userId;
+  console.log(clientId);
   
   const [workouts, setWorkouts] = useState([]);
   const [clientInfo, setClientInfo] = useState(null);
+  const [last5Workouts, setLast5Workouts] = useState([]);
 
   useEffect(() => {
     const fetchClientWorkouts = ()=>{
@@ -35,7 +37,23 @@ const ClWorkoutsPage = ({userId}) => {
     fetchClientWorkouts();
   }, [workouts]);
 
-
+  useEffect(() => {
+    const fetchLast5Workouts = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_HOST}/getlast5Workouts/${clientId}`);
+        if(response.status === 200) {
+          setLast5Workouts(response.data);
+        } else {
+          console.log("Error fetching last 5 workouts");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchLast5Workouts();
+  }, [clientId]);
+  
 
 
   useEffect(() => {
@@ -51,6 +69,8 @@ const ClWorkoutsPage = ({userId}) => {
   
     fetchClientInfo();
   }, [workouts]);
+
+  //ADD HERE
 
 
 
@@ -112,10 +132,25 @@ const ClWorkoutsPage = ({userId}) => {
               CREATE WORKOUT
             </button>
           </div>
+
+          {last5Workouts.length > 0 ? (
+            <div className='last5Workouts'>
+              {last5Workouts.map((workout, index) => (
+              <div key={index} className="workout-entry">
+                <div>Exercise ID: {workout.exercise_id}</div>
+                <div>Set Number: {workout.set_number}</div>
+                <div>Reps: {workout.reps}</div>
+                <div>Weight: {workout.weight}</div>
+                <div>Entry Date: {new Date(workout.entry_date).toLocaleDateString()}</div>
+                {/* Optionally display last_update if needed */}
+              </div>
+              ))}
+            </div>) : (
+            <div>No recent workouts found.</div>
+          )}
         </div>
 
         {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout} clientId={clientId}/>)}
-
       </div>
     </>
   )

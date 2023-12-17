@@ -102,7 +102,7 @@ function App() {
           />
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
-          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts userId={user?.user_id}/>} />
           <Route 
             path="/ChatMain" 
             element={
