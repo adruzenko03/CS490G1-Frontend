@@ -1,8 +1,9 @@
 .allRequestss{
     padding: 10px;
 }
-.oneRequest{
-    background-color: #1b6468;
+
+.stack{
+    /* background-color: #1b6468; */
     color: white;
     border-radius: 19px;
     /* padding: 10px 15px; */
@@ -12,10 +13,10 @@
     transition-duration: 0.2s;
     margin-top: 10px;
 }
-/*
-.oneRequest:hover,
-.oneRequest:focus,
-.oneRequest:active {
+
+/* .stack:hover,
+.stack:focus,
+.stack:active {
     transform: scale(1.01);
     background-color: #103c3e;
     cursor: pointer;

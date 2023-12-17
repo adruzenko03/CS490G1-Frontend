@@ -28,7 +28,7 @@
     padding-top: 20px;
     padding-bottom: 25px;
     max-width: 100%;
-    min-height: 65vh;
+    min-height: 45vh;
     height: fit-content;
     /* max-height: 60vh; */
     overflow: auto;
@@ -71,4 +71,19 @@
 
 .oneWorkoutTab:hover{
     background-color: #148dd9;
+}
+
+.close-btn{
+    margin-left: 1.5vw;
+    margin-top: 0;
+    margin-bottom: 1vh;
+    width: 2vw;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.close-btn:hover{
+    transform: scale(1.09);
 }

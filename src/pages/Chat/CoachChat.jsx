@@ -1,6 +1,7 @@
 import './CoachChat.css'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {useRef} from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom'
 import axios from 'axios';
 
@@ -25,8 +26,8 @@ const CoachChat = ({userId}) => {
     const [newMessage, setNewMessage] = useState({
         message: "",
         chatId: "", //should be retrieved based on who the coach is and which client chat he clicked on
-        sender_id: coachId, 
-        receiver_id: "",
+        sender_id: 2, 
+        receiver_id: "5",
         last_update: new Date().toISOString().slice(0, 19).replace('T', ' ')
     })
 
@@ -54,6 +55,7 @@ const CoachChat = ({userId}) => {
             await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
             setSelectedChatMessages([...selectedChatMessages, newMessage])
             setCurrentMessage('');
+            alert('here');
         }catch(err){
             console.log(err); 
         }
@@ -71,7 +73,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchAllMessages();
-    },[messageList])
+    },[userId])
 
     useEffect(()=>{
         const FetchChats = async()=>{
@@ -97,39 +99,47 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchUsers();
-    }, [users]);
+    }, [userId]);
 
     
+    const chatsRef = useRef(chats);
+
     useEffect(() => {
-        const fetchAllSideNames = async () => {
-            try {
-              const names = [];
-              for (const chat of chats) {
-                updateChatId(chat.coach_client_id);
-                const res = await axios.get(`${process.env.REACT_APP_HOST}/users1/${chat.coach_client_id}/${coachId}`);
-                if (res.data.surveyData[0] && res.data.surveyData[0].first_name && res.data.surveyData[0].last_name) {
-                  const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;
-                  names.push(fullName);
-                } else {
-                  names.push("Unknown User");
-                }
-              }
-              setSideName(names);
-            } catch (err) {
-              console.log(err);
+
+      chatsRef.current = chats;
+    }, [chats]);
+    
+    useEffect(() => {
+      const fetchAllSideNames = async () => {
+        try {
+          const names = [];
+          for (const chat of chatsRef.current) {
+            updateChatId(chat.coach_client_id);
+            const res = await axios.get(`http://localhost:3001/users1/${chat.coach_client_id}/${coachId}`);
+            if (res.data.surveyData[0] && res.data.surveyData[0].first_name && res.data.surveyData[0].last_name) {
+              const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;
+              names.push(fullName);
+            } else {
+              names.push("Unknown User");
+
             }
-          };
-        
-          if (chats.length > 0) {
-            fetchAllSideNames(); // Trigger the function when the component mounts
           }
-    }, [chats, users]);
+          setSideName(names);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+    
+      if (chatsRef.current.length > 0) {
+        fetchAllSideNames();
+      }
+    }, [userId]);
     
     const handleChatClick = async (chatId, receiverId) => {
         setSelectedChatId(chatId);
         updateReceiverId(receiverId);
-        setSelectedClientId(chatId);
-        
+        // setSelectedClientId(chatId);
+        // alert("ChatID: ", chatId)
         try {
             const res = await axios.get(`${process.env.REACT_APP_HOST}/messages1/chat/${chatId}`);
             setSelectedChatMessages(res.data.surveyData);
@@ -145,6 +155,7 @@ const CoachChat = ({userId}) => {
       const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
           handleNewMessage(event);
+          setCurrentMessage('');
         }
       };
 
@@ -166,7 +177,7 @@ const CoachChat = ({userId}) => {
         <div className="chat-body">
             <div className="allClients">
                 <span className='active-chats'>Active Chats</span>
-                {chats.map((chat, index)=>{
+                {chats && chats.map((chat, index)=>{
                     console.log(chat.coach_client_id + "-------" + chat.receiver_id); // Log values
                     return( 
                         <div 
@@ -176,9 +187,12 @@ const CoachChat = ({userId}) => {
                             className={`one-client ${selectedClientId === chat.coach_client_id ? 'selected' : ''}`} // Apply 'selected' class based on state
 
                         >
-                            <span>
-                                {sideName[index]}
-                            </span>
+                            {sideName && sideName[index] ? (
+                            <span>{sideName[index]}</span>
+                            ) : (
+                            <span>Loading...</span>
+                            )}
+                            <p>client  {index}</p>
                         </div>
                     )
                 })}
@@ -191,7 +205,7 @@ const CoachChat = ({userId}) => {
                                 <p style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.message}</p>
                             </div>
                             <div className='message-meta' style={{fontFamily:"Open Sans, sans-serif"}}>
-                                <p id='time' style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.time}</p>
+                                <p id='time' style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent && messageContent.last_update.split('T')[0]}</p>
                                 <p id='author' style={{fontFamily:"Open Sans, sans-serif"}}>{messageContent.username}</p>
                             </div>
                         </div>

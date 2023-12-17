@@ -44,4 +44,3 @@ const Exercise = ({elements, onUpdateStatus}) => {
 }
 
 export default Exercise
-

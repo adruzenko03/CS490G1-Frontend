@@ -31,18 +31,27 @@ const YourCoach = ({userId}) => {
   return (
     <>
         <br />
-      <div className='container1'>
-        <div className='inContainer'>
-          <span style={{marginLeft:"12px", color:"white"}}>YOUR COACH</span>
-                  {coachesList.map((coach)=>{
-                          return(
-                              <Stack gap={3} key={coach.coach_id}>
-                                  <div className='p-2'><YourCoachExpanded items={coach} userId={userId}/></div>
-                              </Stack>
-                          ) 
-                  })}
-        </div>
-        </div>
+        {coachesList.length!==0 ? ( 
+        <div className='container1'>
+          <div className='inContainer'>
+            <span style={{marginLeft:"12px", color:"white"}}>YOUR COACH</span>
+                    {coachesList.map((coach)=>{
+                            return(
+                                <Stack gap={3} key={coach.coach_id}>
+                                    <div className='p-2'><YourCoachExpanded items={coach} userId={userId}/></div>
+                                </Stack>
+                            ) 
+                    })}
+          </div>
+          </div>
+          ):(
+            <div className='container1'>
+              <div className='inContainer'>
+                <div>You have no coach.</div>
+              </div>
+            </div>
+          )
+        }
     </>
   )
 }

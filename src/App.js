@@ -103,6 +103,7 @@ function App() {
           <Route path="/Clients" element={<Clients />} />
           <Route path="/MyCoach" element={<MyCoach />} />
           <Route path="/ClientWorkouts" element={<ClientWorkouts userId={user?.user_id}/>} />
+
           <Route 
             path="/ChatMain" 
             element={
@@ -113,7 +114,6 @@ function App() {
             } 
             />
             <Route path="/Admin" element={<Admin />} />
-
         </Routes>
       </Router>
       <LoginModal
