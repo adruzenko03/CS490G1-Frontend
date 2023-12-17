@@ -33,7 +33,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
     const handleSaveChanges = async () => {
         try {
         const data = {editedItems, oldMuscleId};
-          const res = await axios.put(`http://localhost:3001/sendWorkoutData/${workoutId}`, data);
+          const res = await axios.put(`${process.env.REACT_APP_HOST}/sendWorkoutData/${workoutId}`, data);
           // console.log("successsssss");
           // setEditedItems(res.data.surveyData);
           // window.location.reload();
@@ -49,7 +49,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
       useEffect(() => {
         const fetchAllExercises = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/allExercises/${workoutId}`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/allExercises/${workoutId}`);
             setExercises(res.data.surveyData);
             // setGoalsList(res.data.surveyData);
           } catch (err) {
@@ -75,7 +75,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
 
     const deleteOneWorkout = async () => {
         try {
-          const res = await axios.delete(`http://localhost:3001/deleteOneWorkout/${workoutId}`);
+          const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteOneWorkout/${workoutId}`);
           // console.log(res.data);
           // setCoachesList(res.data.surveyData);
           if (res.data.ok) {

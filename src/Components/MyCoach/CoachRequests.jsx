@@ -13,7 +13,7 @@ const Requests = ({userId}) => {
   useEffect(() => {
     const fetchPendingCoach = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/pendingCoach/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/pendingCoach/${clientId}`);
         // console.log(res.data);
         setCoachesList(res.data.surveyData);
       } catch (err) {

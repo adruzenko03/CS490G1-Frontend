@@ -100,29 +100,10 @@ function App() {
               />
             }
           />
-          <Route path="/Clients" 
-            element={
-              <Clients 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />} 
-              />
-          <Route 
-            path="/MyCoach" 
-            element=
-            {<MyCoach 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-            />} 
-          />
-          <Route 
-            path="/ClientWorkouts" 
-            element=
-              {<ClientWorkouts 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />} 
-            />
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts userId={user?.user_id}/>} />
+
           <Route 
             path="/ChatMain" 
             element={

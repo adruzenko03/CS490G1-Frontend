@@ -9,7 +9,7 @@ const Exercise = ({elements, onUpdateStatus}) => {
 
   const handleUpdateStatus = (exercise_id, actionType) => {
     onUpdateStatus(exercise_id, actionType);
-    fetch(`http://localhost:3001/updateExercise/${exercise_id}/${actionType}`, {
+    fetch(`${process.env.REACT_APP_HOST}/updateExercise/${exercise_id}/${actionType}`, {
       method: 'POST',
     })
       .then((response) => response.json())

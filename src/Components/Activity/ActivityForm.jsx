@@ -26,7 +26,7 @@ export default function ActivityForm({ userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/activities/${userId}`)
+      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
           setActivities(response.data.activities);
@@ -53,7 +53,7 @@ export default function ActivityForm({ userId }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/activitySurvey",
+        process.env.REACT_APP_HOST+"/activitySurvey",
         {
           userId,
           entryDate: getNumberedDate(),

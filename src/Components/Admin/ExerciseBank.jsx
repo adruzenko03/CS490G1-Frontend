@@ -15,7 +15,7 @@ const ExerciseBank = () => {
     
     const [exerciseList, setExerciseList] = useState([]);
     const handleUpdateStatus = (exercise_id, actionType) => {
-      fetch('http://localhost:3001/exerciseList') 
+      fetch(process.env.REACT_APP_HOST+'/exerciseList') 
           .then((response) => response.json())
           .then((data) => setExerciseList(data))
           .catch((error) => console.error('Fetch error:', error));
@@ -56,7 +56,7 @@ const ExerciseBank = () => {
         setExerciseList([newExercise,...exerciseList]);
       }
       useEffect(() => {
-        fetch('http://localhost:3001/exerciseList') 
+        fetch(process.env.REACT_APP_HOST+'/exerciseList') 
           .then((response) => response.json())
           .then((data) => setExerciseList(data))
           .catch((error) => console.error('Fetch error:', error));

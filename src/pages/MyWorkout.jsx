@@ -21,7 +21,7 @@ export default function MyWorkout({ userId }) {
   };
 
 const updateWorkouts = () => {
-  axios.get(`http://localhost:3001/myworkouts/${userId}`)
+  axios.get(`${process.env.REACT_APP_HOST}/myworkouts/${userId}`)
 
     .then((response) => {
       if (response.data.ok) {
