@@ -12,6 +12,7 @@ function Workouts() {
   const [filteredData, setFilteredData] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({
     equipment: "",
+    muscle:"",
   });
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -49,6 +50,12 @@ function Workouts() {
       return (
         (appliedFilters.equipment === "" ||
           workout.equipment_name === appliedFilters.equipment) &&
+        (appliedFilters.muscle === "" ||
+          workout.muscle
+            .toLowerCase()
+            .trim()
+
+            .includes(appliedFilters.muscle)) &&
         (searchTerm === "" ||
           workout.exercise_name
             .toLowerCase()

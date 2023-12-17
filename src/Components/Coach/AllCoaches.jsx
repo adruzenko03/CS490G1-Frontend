@@ -50,7 +50,7 @@ const AllCoaches = ({vals, userId}) => {
                         return(
                             <Stack gap={3}>
                                 <div className='p-2'>
-                                  <OneCoach userId={userId} items={coach} />
+                                  <OneCoach userId={userId} items={coach} acceptedCoache/>
                                 </div>
                             </Stack>
                         );

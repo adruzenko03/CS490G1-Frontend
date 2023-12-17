@@ -62,7 +62,13 @@ const WeightGraph = ({ data }) => {
 
       <LineChart width={600} height={300} data={filteredData}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Date" />
+        <XAxis
+          dataKey="entry_date"
+          tickFormatter={(entry_date) => {
+            const date = new Date(entry_date);
+            return `${date.getMonth() + 1}/${date.getDate()}`;
+          }}
+        />
         <YAxis />
         <Tooltip
           formatter={(value, name, props) => {

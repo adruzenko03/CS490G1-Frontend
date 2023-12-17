@@ -9,7 +9,7 @@ import {
   Legend,
 } from "recharts";
 
-const CalorieGraph = ({ data }) => {
+const MoodGraph = ({ data }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
 
   // Extract unique months and years from the data
@@ -23,29 +23,31 @@ const CalorieGraph = ({ data }) => {
       })
     ),
   ];
-  // Sort months in chronological order
+
   uniqueMonths.sort();
 
   // Filter data based on selected month
-const filteredData = selectedMonth
-  ? data.filter((item) => {
-      const selectedMonthStart = selectedMonth.split(" ")[0];
-      const itemMonth = new Date(item.entry_date).toLocaleString("default", {
-        month: "long",
-      });
-      const itemMonthAbbrev = new Date(item.entry_date).toLocaleString(
-        "default",
-        {
-          month: "short",
-        }
-      );
+  const filteredData = selectedMonth
+    ? data.filter((item) => {
+        const selectedMonthStart = selectedMonth.split(" ")[0];
+        const itemMonth = new Date(item.entry_date).toLocaleString("default", {
+          month: "long",
+        });
+        const itemMonthAbbrev = new Date(item.entry_date).toLocaleString(
+          "default",
+          {
+            month: "short",
+          }
+        );
 
-      return (
-        itemMonth === selectedMonthStart ||
-        itemMonthAbbrev === selectedMonthStart
-      );
-    })
-  : data;
+        return (
+          itemMonth === selectedMonthStart ||
+          itemMonthAbbrev === selectedMonthStart
+        );
+      })
+    : data;
+
+  const ticks = Array.from({ length: 11 }, (_, index) => index);
 
   return (
     <div>
@@ -68,7 +70,7 @@ const filteredData = selectedMonth
             return `${date.getMonth() + 1}/${date.getDate()}`;
           }}
         />
-        <YAxis />
+        <YAxis ticks={ticks} />
         <Tooltip
           formatter={(value, name, props) => {
             const date = new Date(props.payload.entry_date);
@@ -76,15 +78,15 @@ const filteredData = selectedMonth
               month: "long",
             })} ${date.getDate()}`;
 
-            return [formattedDate, `Calories ${value}`];
+            return [formattedDate, `Mood ${value}`];
           }}
         />
 
         <Legend />
-        <Line type="monotone" dataKey="calorie_intake" stroke="#8884d8" />
+        <Line type="monotone" dataKey="mood" stroke="#c482ca" />
       </LineChart>
     </div>
   );
 };
 
-export default CalorieGraph;
+export default MoodGraph;
