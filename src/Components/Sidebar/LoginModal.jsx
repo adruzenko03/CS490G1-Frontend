@@ -11,6 +11,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError("");
     try {
+      console.log(process.env.REACT_APP_HOST)
       const response = await fetch(process.env.REACT_APP_HOST+"/login", {
         //TEST USING POSTMAN
         method: "POST",
