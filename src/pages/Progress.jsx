@@ -3,6 +3,7 @@ import "./styles/Progress.css";
 import CalorieGraph from "../Components/Progress/CalorieGraph";
 import WeightGraph from "../Components/Progress/WeightGraph";
 import axios from "axios";
+import MoodGraph from "../Components/Progress/MoodGraph";
 
 export default function Progress({ userId }) {
   const [activities, setActivities] = useState([]);
@@ -35,6 +36,12 @@ export default function Progress({ userId }) {
         Daily Weight
         <div className="graph">
           <WeightGraph data={activities} />
+        </div>
+      </div>
+      <div className="graph-container">
+        Daily Mood
+        <div className="graph">
+          <MoodGraph data={activities} />
         </div>
       </div>
     </div>

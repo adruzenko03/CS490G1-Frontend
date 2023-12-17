@@ -162,15 +162,15 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             Progress
           </Link>
-          <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
+          {/* <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
           <img 
-                src={settingsIcon} 
+                src={settingsIcon=} 
                 style={{ 
                   width:"20px" ,marginRight: "10px"
                   }}
             />
             Settings
-          </Link>
+          </Link> */}
           <Link id='link7' to='/Admin' className={activeLink === 'link7' ? 'active' : ''} onClick={() => toggleLink('link7')} >
             <img 
               src={adminIcon} 

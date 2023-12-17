@@ -12,6 +12,7 @@ const ExerciseFilter = ({
   const handleResetClick = () => {
     setAppliedFilters({
       equipment: "",
+      muscle: "",
     });
     setSearchTerm(""); // Reset the search term
     applyFilters();
@@ -49,7 +50,29 @@ const ExerciseFilter = ({
           <option value="Band">Band</option>
         </select>
       </label>
-
+      <label>
+        Muscle:
+        <select
+          value={appliedFilters.muscle}
+          onChange={(e) =>
+            setAppliedFilters({
+              ...appliedFilters,
+              muscle: e.target.value,
+            })
+          }
+        >
+          <option value=""></option>
+          <option value="legs">Legs</option>
+          <option value="core">Core</option>
+          <option value="arms">Arms</option>
+          <option value="chest">Chest</option>
+          <option value="shoulders">Shoulders</option>
+          <option value="full body">Full Body</option>
+          <option value="cardio">Cardio</option>
+          <option value="flexibility">Flexibility</option>
+          <option value="back">Back</option>
+        </select>
+      </label>
       <div>
         <button id="apply-btn" onClick={handleResetClick}>
           Reset
