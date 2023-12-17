@@ -24,7 +24,6 @@ const MoodGraph = ({ data }) => {
     ),
   ];
 
-  // Sort months in chronological order
   uniqueMonths.sort();
 
   // Filter data based on selected month
@@ -48,6 +47,8 @@ const MoodGraph = ({ data }) => {
       })
     : data;
 
+  const ticks = Array.from({ length: 11 }, (_, index) => index);
+
   return (
     <div>
       <label>Select Month: </label>
@@ -63,7 +64,7 @@ const MoodGraph = ({ data }) => {
       <LineChart width={600} height={300} data={filteredData}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="Date" />
-        <YAxis />
+        <YAxis ticks={ticks} />
         <Tooltip
           formatter={(value, name, props) => {
             const date = new Date(props.payload.entry_date);
