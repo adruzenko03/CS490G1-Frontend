@@ -5,11 +5,12 @@ import successBlue from '../icons/success-blue.png'
 import trashIcon from '../icons/trash.png'
 
 
-const ClientOneRequest = ({items}) => {
+const ClientOneRequest = ({items, onClientStatusChange}) => {
   const [modal, setModal] = useState(false);
   const [showDiv1, setShowDiv1] = useState(false);
   const [showDiv2, setShowDiv2] = useState(false);
 
+  const coachId = localStorage.getItem("userId");
   const toggleModal = () =>{
     setModal(!modal);
   }
@@ -31,21 +32,29 @@ const ClientOneRequest = ({items}) => {
 
   const acceptClientRequest = async () => {
     try {
-      const res = await axios.put(`http://localhost:3001/acceptClientRequest/${connectionId}`);
-      console.log("successsssss");
-      setShowDiv1(true);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.post(`http://localhost:3001/acceptClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'accepted');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
     }
   };
 
   const declineClientRequest = async () => {
     try {
-      const res = await axios.put(`http://localhost:3001/declineClientRequest/${connectionId}`);
-      console.log("successsssss");
-      setShowDiv2(true);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.post(`http://localhost:3001/declineClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'declined');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
     }
   };
   
@@ -54,14 +63,11 @@ const ClientOneRequest = ({items}) => {
 
   return (
     <>
-      {items ? (
-        <div className="oneRequest" onClick={toggleModal}>
-          <div className="text-wrapper">{items.first_name + " " + items.last_name}</div>
-          <div className="div" style={{color:'orange'}}>{items.status}</div>
-        </div>
-      ) : (
-        <p></p>
-      )}
+      <div className="oneRequest" onClick={toggleModal}>
+        <span className="name">{items.first_name + " " + items.last_name}</span>
+        <span className="div" style={{color:'orange'}}>{items.status}</span>
+      </div>
+
 
       {modal && (
         <div className='popup'>
@@ -69,7 +75,7 @@ const ClientOneRequest = ({items}) => {
           <div className="content">
             <button className='cancel' onClick={toggleModal}>X</button>
             <h1 className='coachName' style={{fontSize:"1.5rem", textDecoration:"underline"}}>{items.first_name}</h1>
-            <span><b>GOAL:</b>  {items.goal}</span>
+            <span><b>GOAL:</b>  {items.goal_description}</span>
             <span><b>FITNESS LEVEL:</b>   {items.fitness_level}</span>
             <span><b>DIET:</b>  {items.diet}</span>
             <span><b>WEEKLY EXERCISE:</b>  {items.weekly_exercise}</span>
@@ -108,5 +114,3 @@ const ClientOneRequest = ({items}) => {
 }
 
 export default ClientOneRequest
-
-

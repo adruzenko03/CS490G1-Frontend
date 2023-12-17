@@ -36,7 +36,7 @@ function App() {
     setUser(userData);
     setUserRole(userData.role);
   };
-  
+
   const logout = () => {
     setUser(null);
     setUserRole(null);
@@ -51,6 +51,7 @@ function App() {
     setSignupVisible(!isSignupVisible);
     setLoginVisible(false);
   };
+
   return (
     <div className="App">
       <Router>
@@ -99,33 +100,9 @@ function App() {
               />
             }
           />
-          <Route 
-            path="/Clients" 
-            element={
-              <Clients 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-            } 
-            />
-          <Route 
-            path="/MyCoach" 
-            element={
-              <MyCoach 
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-              } 
-            />
-          <Route
-            path="/ClientWorkouts"
-            element={
-              <ClientWorkouts
-                onLoginSuccess={onLoginSuccess}
-                userId={user?.user_id}
-              />
-            }
-          />
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
           <Route 
             path="/ChatMain" 
             element={
