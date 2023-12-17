@@ -5,15 +5,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/dropdown";
 import "./styles/Coaches.css";
 
-function Coaches() {
+function Coaches({userId}) {
   return (
     <div className="coaches">
         <div className="header">
           <h1>Coaches</h1>
         </div>
         <div className="container">
-          <Filter />
-          <AllCoaches />
+          <Filter userId={userId}/>
+          <AllCoaches userId={userId}/>
         </div>
     </div>
   );

@@ -1,51 +1,64 @@
 // ******* TODO *********//
 // Need to generate new id when creating new component
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ClWorkoutsPage.css'
 import OneWorkout from './OneWorkout'
 import WorkoutModal from './WorkoutModal';
 import './WorkoutModal.css'
-import { DataContext } from './DataContext';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
-const ClWorkoutsPage = () => {
+
+
+const ClWorkoutsPage = ({userId}) => {
+
+  const clientId = userId;
+  
+  const [workouts, setWorkouts] = useState([]);
+  const [clientInfo, setClientInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchClientWorkouts = ()=>{
+      axios.get(`http://localhost:3001/clientWorkouts/${clientId}`)
+        .then((response)=>{
+          if(response.data.ok){
+            setWorkouts(response.data.surveyData);
+          }else{
+            console.log("error retrieving workouts");
+          }
+        })
+        .catch((error)=>{
+          console.log("Error fetching data:", error);
+        })
+    };
+    fetchClientWorkouts();
+  }, [workouts]);
+
+
+
+
+  useEffect(() => {
+    const fetchClientInfo = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
+        // console.log('aaaaaaaaaaaaaaaa: ' + res.data.surveyData);
+        setClientInfo(res.data.surveyData[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    fetchClientInfo();
+  }, [workouts]);
+
 
 
   const [clicked, setClicked]= useState(false);
+
   const toggleBtn = ()=>{
     setClicked(!clicked);
   }
-
-  const [workouts, setWorkouts] = useState([
-    {
-      id: uuidv4(),
-      workoutName: "Pull",
-      goal: "Gain Muscle",
-      difficulty: "Beginner",
-      equipment: "Dumbbells",
-      muscleGroup: "Shoulders and Back",
-      description: "Do 3 sets per each muslce group."
-    },
-    {
-      id: uuidv4(),
-      workoutName: "Push",
-      goal: "Gain Muscle",
-      difficulty: "Intermediate",
-      equipment: "Bench",
-      muscleGroup: "Chest and Arms",
-      description: "Do 2 sets per each muslce group."
-    },
-    {
-      id: uuidv4(),
-      workoutName: "Run",
-      goal: "Core Strength",
-      difficulty: "Beginner",
-      equipment: "Bench",
-      muscleGroup: "Abdominals",
-      description: "Do 4 sets per each muslce group."
-    },    
-  ])
 
   const addWorkout = (newWorkout) =>{
     // setModal(false);
@@ -57,20 +70,24 @@ const ClWorkoutsPage = () => {
     setWorkouts(filteredWorkouts);
   }
 
+
+
   
-
-
   return (
     <>
       <div className="allContents">
         <h1 id='title'>CLIENT-NAME</h1>
         <div className='clientInfoContainer'>
-            <div className="clientInfo">
-              <h4>CLIENT NAME:</h4>
-              <h4>GOAL:</h4>
-              <h4>FITNESS LEVEL:</h4>
-              <h4>DIET:</h4>
-              <h4>WEEKLY EXPERIENCE:</h4>
+            <div className="clientInfo" style={{color:"black"}}>
+              {clientInfo && 
+              <>
+                <h4>CLIENT NAME: <span>{clientInfo.first_name + " " + clientInfo.last_name}</span></h4>
+                <h4>GOAL: <span> {clientInfo.goal}</span> </h4>
+                <h4>FITNESS LEVEL: <span>{clientInfo.fitness_level}</span> </h4>
+                <h4>DIET: <span>{clientInfo.diet} calories/day</span> </h4>
+                <h4>WEEKLY Exercise Count: <span>{clientInfo.weekly_exercise}</span></h4>
+              </>
+              }
             </div>
         </div>
 
@@ -78,9 +95,11 @@ const ClWorkoutsPage = () => {
           <div className="allWorkouts">
             {workouts.map((workout)=>{
               return(
-                <DataContext.Provider value={{workouts, setWorkouts}}>
+                // <DataContext.Provider value={{workouts, setWorkouts}}>
+                <div key={workout.workout_id}>
                   <OneWorkout elements={workout} deleteWorkout={deleteWorkout}/>
-                </DataContext.Provider>
+                </div>
+                // </DataContext.Provider>
               )
             })}
           </div>
@@ -95,7 +114,7 @@ const ClWorkoutsPage = () => {
           </div>
         </div>
 
-        {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout} />)}
+        {clicked && (<WorkoutModal setClicked={setClicked} addWorkout={addWorkout} clientId={clientId}/>)}
 
       </div>
     </>
@@ -103,3 +122,4 @@ const ClWorkoutsPage = () => {
 }
 
 export default ClWorkoutsPage
+
