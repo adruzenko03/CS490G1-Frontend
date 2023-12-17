@@ -26,7 +26,7 @@ import successBlue from '../icons/success-blue.png'
   }
 
   const handleClick = ()=>{
-    setShowChatBox(true);
+    setShowChatBox(!showChatBox);
   }
 
   const handleNewMessage = async(e)=>{
@@ -41,6 +41,7 @@ import successBlue from '../icons/success-blue.png'
     }catch(err){
         console.log(err); 
     }
+    setShowChatBox(false);
   }
 
   const connectionId = items.coach_client_id;
@@ -117,7 +118,7 @@ import successBlue from '../icons/success-blue.png'
 
       {showChatBox && (
            <div className='popup'>
-           <div className='overlay1' onClick={toggleDiv}></div>
+           <div className='overlay1' onClick={handleClick}></div>
            <div className="content" style={{height:"40vh",display:'flex', alignItems:"center", textAlign:"center", backgroundColor:"#4659b5", color:"white"}}>
              {/* <img src={successBlue} width={"140px"} style={{marginTop:"20px", marginBottom:"30px"}} alt="" /> */}
              <h1>Send message to: {items.first_name}</h1>

@@ -55,6 +55,7 @@ const CoachChat = ({userId}) => {
             await axios.post("http://localhost:3001/newMessage", newMessage);
             setSelectedChatMessages([...selectedChatMessages, newMessage])
             setCurrentMessage('');
+            alert('here');
         }catch(err){
             console.log(err); 
         }
@@ -72,7 +73,7 @@ const CoachChat = ({userId}) => {
             }
         }
         FetchAllMessages();
-    },[messageList])
+    },[userId])
 
     useEffect(()=>{
         const FetchChats = async()=>{
@@ -152,6 +153,7 @@ const CoachChat = ({userId}) => {
       const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
           handleNewMessage(event);
+          setCurrentMessage('');
         }
       };
 

@@ -61,9 +61,15 @@ const OneCoach = ({userId, items}) => {
   
 
   const [hasCurrentCoach, setHasCurrentCoach] = useState(false);
-  if(coachesList.length!==0){
-    setHasCurrentCoach(true);
-  }
+
+  useEffect(() => {
+    if (coachesList.length !== 0) {
+      setHasCurrentCoach(true);
+    } else {
+      setHasCurrentCoach(false);
+    }
+  }, [coachesList]);
+  
 
   const handleClick = async () => {
     if(userId){
