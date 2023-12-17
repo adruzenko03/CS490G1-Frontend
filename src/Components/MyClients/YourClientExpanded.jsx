@@ -1,14 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './YourClientExpanded.css'
 import axios from 'axios';
+import successBlue from '../icons/success-blue.png'
 
-const OneClient = ({items, onClientRemoved}) => {
+const OneClient = ({items, userId}) => {
   const [modal, setModal] = useState(false);
   const [workoutLog, setWorkoutLog] = useState([]);
   const [surveyResults, setSurveyResults] = useState([]);
-
-
   const coachId = localStorage.getItem("userId");
+  const [showDiv1, setShowDiv1] = useState(false);
+  const [showChatBox, setShowChatBox] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  const [message, setMessage] = useState("");
+
+
+  const [newMessage, setNewMessage] = useState({
+    message: "",
+    chatId: items.coach_client_id, //should be retrieved based on who the coach is and which client chat he clicked on
+    sender_id: userId, 
+    receiver_id: items.client_id,
+    last_update: new Date().toISOString().slice(0, 19).replace('T', ' ')
+})
+
+  const handleChange = (e) => {
+    setNewMessage((prev)=>({...prev, [e.target.name]:e.target.value}))
+    setCurrentMessage(e.target.value);
+  }
+
+
+  const handleNewMessage = async(e)=>{
+    e.preventDefault();
+    try{
+      // setNewMessage({
+      //   ...newMessage,
+      //   message: message
+      // });
+        await axios.post("http://localhost:3001/newMessage", newMessage);
+        // setCurrentMessage('');
+    }catch(err){
+        console.log(err); 
+    }
+  }
+  const removeClient = async () => {
+    try{
+      await axios.delete(`http://localhost:3001/removeClient/${items.user_id}/${coachId}`);
+      // onClientRemoved(items.user_id);
+      alert("Client has been successfully removed. Please reload Page");
+    } catch(error){
+      console.error('Error removing client:', error);
+    }
+  }
+  const handleClick = ()=>{
+    setShowChatBox(true);
+  }
+
   const toggleModal = async () => {
     if (!modal) {
       try {
@@ -22,15 +68,27 @@ const OneClient = ({items, onClientRemoved}) => {
     }
     setModal(!modal);
   };
-  const removeClient = async () => {
-    try{
-      await axios.delete(`http://localhost:3001/removeClient/${items.user_id}/${coachId}`);
-      onClientRemoved(items.user_id);
-      alert("Client has been successfully removed. Please reload Page");
-    } catch(error){
-      console.error('Error removing client:', error);
-    }
+
+  const toggleDiv = ()=>{
+    setModal(false);
+    setShowDiv1(false);
+    setShowChatBox(false);
   }
+
+  const connectionId = items.coach_client_id;
+
+  const deleteClient = async () => {
+    try {
+      const res = await axios.delete(`http://localhost:3001/deleteClient/${connectionId}`);
+      if (res.data.ok) {
+        setShowDiv1(true);
+      } else {
+        alert('Client couldnt be deleted');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -84,6 +142,30 @@ const OneClient = ({items, onClientRemoved}) => {
           </div>
         </div>
       )}
+      {showDiv1 && (
+          <div className='popup'>
+          <div className='overlay1' onClick={toggleDiv}></div>
+          <div className="content" style={{height:"40vh",display:'flex', alignItems:"center", textAlign:"center", backgroundColor:"#b54646", color:"white"}}>
+            <img src={successBlue} width={"140px"} style={{marginTop:"20px", marginBottom:"30px"}} alt="" />
+            <h2>
+              Client removed!
+            </h2>
+          </div>
+        </div>
+        )}
+
+        {showChatBox && (
+           <div className='popup'>
+           <div className='overlay1' onClick={toggleDiv}></div>
+           <div className="content" style={{height:"40vh",display:'flex', alignItems:"center", textAlign:"center", backgroundColor:"#4659b5", color:"white"}}>
+             {/* <img src={successBlue} width={"140px"} style={{marginTop:"20px", marginBottom:"30px"}} alt="" /> */}
+             <h1>Send message to: {items.first_name}</h1>
+             {/* <input type="text" placeholder='Type message here...'/> */}
+             <textarea name="message" placeholder='Type message here...' id="" cols="40" rows="4" value={currentMessage} onChange={handleChange}></textarea>
+             <button onClick={handleNewMessage}>Send Message</button>
+           </div>
+         </div>
+        )}
     </>
   )
 }

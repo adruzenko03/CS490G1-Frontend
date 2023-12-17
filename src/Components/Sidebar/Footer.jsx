@@ -1,13 +1,15 @@
 import { React, useState } from "react";
 import "./styles/Footer.css";
 import { Link } from "react-router-dom";
-
 import homeDumbbell from "../icons/homedumbbell.png";
 import activity from "../icons/activity.png";
 import progress from "../icons/progress.png";
 import mycoachIcon from "../icons/mycoach.png";
 import clientWorkout from "../icons/clientworkout.png";
 import clientsIcon from "../icons/clients.png";
+import chatIcon from "../icons/chat.png";
+import adminIcon from '../icons/admin.png'
+import settingsIcon from '../icons/settings.png'
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
@@ -101,6 +103,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             Progress
           </Link>
           <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
+          </Link>
+          <Link
             id="link6"
             to="/Settings"
             className={activeLink === "link6" ? "active" : ""}
@@ -149,6 +166,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             MyCoach
           </Link>
           <Link
+            id="myWorkout"
+            className={activeLink === "myWorkout" ? "active" : ""}
+            onClick={() => toggleLink("myWorkout")}
+            to="/MyWorkout"
+          >
+            <img
+              src={homeDumbbell}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            MyWorkout
+          </Link>
+          <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}
             onClick={() => toggleLink("activity")}
@@ -177,6 +209,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             Progress
+          </Link>
+          <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
           </Link>
            <Link
             id="link6"

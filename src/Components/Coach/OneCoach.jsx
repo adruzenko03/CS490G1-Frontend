@@ -1,12 +1,93 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './OneCoach.css'
+import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+import successLogo from '../icons/success.png'
+import successBlue from '../icons/success-blue.png'
 
-const OneCoach = ({items}) => {
+const OneCoach = ({userId, items}) => {
   const [modal, setModal] = useState(false);
+  const [clientInfo, setClientInfo] = useState(null);
+  const [showDiv, setShowDiv] = useState(false);
+  // const [info, setInfo] = useState([]);
+
+  // alert(userId);
+
+  // console.log('USER ID from ONE COACH: ', userId);
+
+  const clientId = userId;
+
 
   const toggleModal = () =>{
     setModal(!modal);
   }
+
+  const toggleDiv = () => {
+    setShowDiv(false);
+  }
+
+
+  const [coachesList, setCoachesList] = useState([]);
+
+  useEffect(() => {
+    const fetchClientInfo = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
+        console.log('aaaaaaaaaaaaaaaa: ' + res.data);
+        setClientInfo(res.data.surveyData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    fetchClientInfo();
+
+
+    const fetchAcceptedCoach = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
+        // console.log(res.data);
+        setCoachesList(res.data.surveyData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+
+    fetchAcceptedCoach();
+  }, [clientId]);
+
+  // console.log('asdfaadsfasfasfasfsadfasfd', userId);
+  
+
+  const [hasCurrentCoach, setHasCurrentCoach] = useState(false);
+  if(coachesList.length!==0){
+    setHasCurrentCoach(true);
+  }
+
+  const handleClick = async () => {
+    if(userId){
+      if(!hasCurrentCoach){
+        try {
+          const response = await axios.post(`http://localhost:3001/requestCoach`, {clientId, items});
+          console.log('Response:', response.data);
+          toggleModal();
+          if (response.data.ok) {
+            setShowDiv(true);
+          } else {
+          }
+          // Perform actions based on the response
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }else{
+        alert('You already have a coach.')
+      }
+    }else{
+      alert("You need to login first")
+    }
+  };
+
 
   console.log(items);
 
@@ -15,8 +96,8 @@ const OneCoach = ({items}) => {
     
       <div className='oneCoach' onClick={toggleModal}>
         <span id='name'>{items.first_name}</span>
-        <span>{items.goal}</span>
-        <span>{items.experience}</span>
+        <span>{"Specialization: " + items.goal}</span>
+        <span>{"Experience: " + items.experience + " years"}</span>
       </div>
 
       {modal && (
@@ -30,9 +111,22 @@ const OneCoach = ({items}) => {
             <span>City: {items.city}</span>
             <span>Cost: {items.cost}</span>
             {/* <span>{items.schedule}</span> */}
-            <button className='request'>REQUEST COACH</button>
+            <button className='request' onClick={handleClick}>REQUEST COACH</button>
           </div>
         </div>
+      )}
+
+      {showDiv && (
+        <div className='popup'>
+        <div className='overlay2' onClick={toggleDiv}></div>
+        <div className="content" style={{display:'flex', alignItems:"center", textAlign:"center", backgroundColor:"#01766c", color:"white"}}>
+          <img src={successBlue} width={"140px"} style={{marginTop:"20px", marginBottom:"30px"}} alt="" />
+          <h2>
+            Request successfully sent!
+          </h2>
+
+        </div>
+      </div>
       )}
     </>
   )
