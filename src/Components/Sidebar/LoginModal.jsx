@@ -11,7 +11,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError("");
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(process.env.REACT_APP_HOST+"/login", {
         //TEST USING POSTMAN
         method: "POST",
         headers: {
@@ -21,6 +21,8 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
       });
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("userId", data.user.user_id);
+        localStorage.setItem("coachStatus", data.user.coach_status);
         onLoginSuccess(true, "", data.user);
         onClose();
       } else {

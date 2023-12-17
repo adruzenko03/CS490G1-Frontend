@@ -6,16 +6,16 @@ import "./ClientRequests.css"
 import axios from 'axios';
 
 
-const ClientRequests = () => {
+const ClientRequests = ({userId}) => {
   const [clientsList, setClientsList] = useState([]);
 
-  const coachId = 2;
+  const coachId = localStorage.getItem("userId");
 
 
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/clientRequestsFetch/${coachId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/clientRequestsFetch/${coachId}`);
         console.log(res.data);
         setClientsList(res.data.Data);
       } catch (err) {
@@ -24,7 +24,7 @@ const ClientRequests = () => {
     };
 
     fetchAllRequests();
-  }, []); 
+  }, [clientsList]); 
 
   const onClientStatusChange = (clientId, newStatus) => {
     if(newStatus === 'declined'){
@@ -48,14 +48,16 @@ const ClientRequests = () => {
     <>
         <div className='allRequestss'>
             <span className="text-wrapper1">PENDING CLIENT REQUESTS:</span>
-            {clientsList.map((client, index)=>{
-              return(
-                  <Stack gap={3} key={index} className='stack'>
-                      <div className='p-2'><ClientOneRequest items={client} onClientStatusChange={onClientStatusChange}/></div>
-                  </Stack>
-              );  
-            })}
-
+                {clientsList && clientsList.length>0 ? (
+                    clientsList.map((client, index) => (
+                      <Stack gap={3} key={index} className='stack'>
+                        <div className='p-0'><ClientOneRequest items={client}/></div>
+                      </Stack>
+                  ))
+                  ) : (
+                    <h1 style={{padding:"20px", textAlign:"center"}}>You currently have no requests.</h1>
+                    )
+                }
         </div>
 
     </>

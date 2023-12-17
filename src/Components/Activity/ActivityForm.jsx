@@ -4,6 +4,8 @@ import axios from "axios";
 export default function ActivityForm({ userId }) {
   const [calorieIntake, setCalorieIntake] = useState("");
   const [weight, setWeight] = useState("");
+  const [mood, setMood] = useState("");
+
   const [formSaved, setFormSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const currentDate = getFormattedDate();
@@ -24,14 +26,10 @@ export default function ActivityForm({ userId }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/activities")
+      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
-          const filteredData = response.data.activities.filter(
-            (activity) => activity.user_id === userId
-          );
-          console.log("filteredData", filteredData);
-          setActivities(filteredData);
+          setActivities(response.data.activities);
         } else {
           console.error("Error retrieving activities");
         }
@@ -55,12 +53,13 @@ export default function ActivityForm({ userId }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/activitySurvey",
+        process.env.REACT_APP_HOST+"/activitySurvey",
         {
           userId,
           entryDate: getNumberedDate(),
           calorieIntake: parseFloat(calorieIntake),
           bodyWeight: parseFloat(weight),
+          mood: parseFloat(mood),
         }
       );
       console.log("Form data saved:", response.data);
@@ -97,7 +96,7 @@ export default function ActivityForm({ userId }) {
         <div className="check-in-message">
           Check-in Completed for {getFormattedDate()}
         </div>
-      ) : (
+      ) : shouldDisplayForm ? (
         <form className="activity-form">
           <div className="title">{currentDate}</div>
           <label>
@@ -118,12 +117,32 @@ export default function ActivityForm({ userId }) {
             />
           </label>
 
+          <label>
+            Current Mood:
+            <div>1 - Very Sad<br/>
+            10 - Very Happy</div>
+            <select
+              value={mood}
+              onChange={(e) => handleInputChange(e, setMood)}
+            >
+              {[...Array(10).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
+          </label>
+
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
           <button type="button" onClick={handleSave}>
             Save
           </button>
         </form>
+      ) : (
+        <div className="check-in-message">
+          Check-in Completed for {getFormattedDate()}
+        </div>
       )}
     </div>
   );
