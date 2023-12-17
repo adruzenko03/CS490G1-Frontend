@@ -50,7 +50,7 @@ const ClWorkoutsPage = ({userId}) => {
     };
   
     fetchClientInfo();
-  }, [workouts]);
+  }, [clientId]);
 
 
 
@@ -76,7 +76,7 @@ const ClWorkoutsPage = ({userId}) => {
   return (
     <>
       <div className="allContents">
-        <h1 id='title'>CLIENT-NAME</h1>
+        <h1 id='title'>NAME : {clientInfo && (clientInfo.first_name + " " + clientInfo.last_name)}</h1>
         <div className='clientInfoContainer'>
             <div className="clientInfo" style={{color:"black"}}>
               {clientInfo && 
