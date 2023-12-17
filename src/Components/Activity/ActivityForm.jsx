@@ -4,6 +4,8 @@ import axios from "axios";
 export default function ActivityForm({ userId }) {
   const [calorieIntake, setCalorieIntake] = useState("");
   const [weight, setWeight] = useState("");
+  const [mood, setMood] = useState("");
+
   const [formSaved, setFormSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const currentDate = getFormattedDate();
@@ -57,6 +59,7 @@ export default function ActivityForm({ userId }) {
           entryDate: getNumberedDate(),
           calorieIntake: parseFloat(calorieIntake),
           bodyWeight: parseFloat(weight),
+          mood: parseFloat(mood),
         }
       );
       console.log("Form data saved:", response.data);
@@ -112,6 +115,22 @@ export default function ActivityForm({ userId }) {
               value={weight}
               onChange={(e) => handleInputChange(e, setWeight)}
             />
+          </label>
+
+          <label>
+            Current Mood:
+            <div>1 - Very Sad<br/>
+            10 - Very Happy</div>
+            <select
+              value={mood}
+              onChange={(e) => handleInputChange(e, setMood)}
+            >
+              {[...Array(10).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
           </label>
 
           {errorMessage && <div className="error-message">{errorMessage}</div>}
