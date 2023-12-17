@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "dotenv";
 
 export default function ActivityForm({ userId }) {
   const [calorieIntake, setCalorieIntake] = useState("");
@@ -26,7 +27,7 @@ export default function ActivityForm({ userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/activities/${userId}`)
+      .get(`${process.env.BACK_HOST}/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
           setActivities(response.data.activities);
@@ -53,7 +54,7 @@ export default function ActivityForm({ userId }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/activitySurvey",
+        process.env.BACK_HOST+"/activitySurvey",
         {
           userId,
           entryDate: getNumberedDate(),

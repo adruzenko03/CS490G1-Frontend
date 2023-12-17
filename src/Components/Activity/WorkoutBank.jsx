@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import WorkoutModal from "../Activity/WorkoutModal";
 import WorkoutFilter from "../Activity/WorkoutFilter";
 import axios from "axios";
+import "dotenv";
 
 export default function WorkoutBank({ userId }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function WorkoutBank({ userId }) {
   useEffect(() => {
     Modal.setAppElement("#root");
     axios
-      .get("http://localhost:3001/Workouts")
+      .get(process.env.BACK_HOST+"/Workouts")
       .then((response) => {
         if (response.data.ok) {
           setOriginalData(response.data.exercises);
