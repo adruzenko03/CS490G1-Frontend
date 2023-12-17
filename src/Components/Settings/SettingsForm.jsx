@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './SettingsForm.css'
 
 export default function SettingsForm() {
     const user = JSON.parse(localStorage.getItem("user"));

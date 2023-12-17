@@ -2,9 +2,11 @@ import React from "react";
 import SettingsForm from "../Components/Settings/SettingsForm";
 export default function Settings() {
     return(
-      <div className="settings-page">
-        <div className="header">Settings</div>
+      <div className="page1">
+        <h1 style={{ textAlign: "center", marginTop:"10px" }}>Settings</h1>
         <SettingsForm></SettingsForm>
-      </div>
+        <div className="form">
+        </div>
+    </div>
     );
 }
