@@ -4,10 +4,8 @@ import './styles/survey.css';
 function CoachSurvey({ onClose }) {
   const [surveyData, setSurveyData] = useState({
     experience: '',
-    city: '',
-    state: '',
     cost: '',
-    goals: [],
+    goal: '',
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,16 +19,6 @@ function CoachSurvey({ onClose }) {
     }));
   };
 
-  const handleGoalsChange = (e) => {
-    const { value, checked } = e.target;
-    setSurveyData({
-      ...surveyData,
-      goals: checked
-        ? [...surveyData.goals, value]
-        : surveyData.goals.filter((goal) => goal !== value),
-    });
-  };
-
   const handleSurveySubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -39,7 +27,7 @@ function CoachSurvey({ onClose }) {
     const role = localStorage.getItem('role');
     const surveyDataWithUserId = { userID, ...surveyData };
     try {
-      const response = await fetch('http://localhost:3001/coach-survey', {
+      const response = await fetch(process.env.REACT_APP_HOST + '/coach-survey', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,47 +52,21 @@ function CoachSurvey({ onClose }) {
         <form onSubmit={handleSurveySubmit}>
 
           <input type="number" name="experience" placeholder="*EXPERIENCE (IN YEARS)" required onChange={handleChange} />
-          <input type="text" name="city" placeholder="*CITY" required onChange={handleChange} />
-          <input type="text" name="state" placeholder="*STATE" required onChange={handleChange} />
-          <input type="text" name="cost" placeholder="*COST ($AMNT/HR)" required onChange={handleChange} />
-          <label>*GOALS</label>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                value="LOSE_WEIGHT"
-                checked={surveyData.goals.includes('LOSE_WEIGHT')}
-                onChange={handleGoalsChange}
-              />
-              Lose Weight
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                value="GAIN_MUSCLE"
-                checked={surveyData.goals.includes('GAIN_MUSCLE')}
-                onChange={handleGoalsChange}
-              />
-              Gain Muscle
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                value="IMPROVE_ENDURANCE"
-                checked={surveyData.goals.includes('IMPROVE_ENDURANCE')}
-                onChange={handleGoalsChange}
-              />
-              Improve Endurance
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                value="ENHANCE_FLEXIBILITY"
-                checked={surveyData.goals.includes('ENHANCE_FLEXIBILITY')}
-                onChange={handleGoalsChange}
-              />
-              Enhance Flexibility
-            </label>
+          <input type="number" name="cost" placeholder="*COST ($AMNT/HR)" required onChange={handleChange} />
+          <div className="form-group">
+            <label>*FITNESS GOAL:</label>
+            <select
+              name="goal"
+              value={surveyData.goal}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select goal</option>
+              <option value="Lose Weight">Lose Weight</option>
+              <option value="Gain Muscle">Gain Muscle</option>
+              <option value="Improve Endurance">Improve Endurance</option>
+              <option value="Enhance Flexibility">Enhance Flexibility</option>
+            </select>
           </div>
           {error && <div className="alert aler-danger">{error}</div>}
           <button type="submit" className="finish-button" disabled={isLoading}>

@@ -29,7 +29,7 @@ export default function WorkoutBank({ userId }) {
   useEffect(() => {
     Modal.setAppElement("#root");
     axios
-      .get("http://localhost:3001/Workouts")
+      .get(process.env.REACT_APP_HOST+"/Workouts")
       .then((response) => {
         if (response.data.ok) {
           setOriginalData(response.data.exercises);

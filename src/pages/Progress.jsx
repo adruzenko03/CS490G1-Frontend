@@ -10,7 +10,7 @@ export default function Progress({ userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/activities/${userId}`)
+      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
       .then((response) => {
         if (response.data.ok) {
           setActivities(response.data.activities);

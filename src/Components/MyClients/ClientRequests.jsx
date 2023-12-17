@@ -15,7 +15,7 @@ const ClientRequests = ({userId}) => {
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/clientRequestsFetch/${coachId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/clientRequestsFetch/${coachId}`);
         console.log(res.data);
         setClientsList(res.data.Data);
       } catch (err) {

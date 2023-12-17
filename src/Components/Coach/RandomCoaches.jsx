@@ -16,7 +16,7 @@ const RandomCoaches = ({vals, userId}) => {
       if (vals && vals.length === 4) {
         const fetchAllCoaches = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/coachList`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/coachList`);
             setCoachesList(res.data.surveyData);
           } catch (err) {
             console.log(err);

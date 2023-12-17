@@ -11,7 +11,7 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
     event.preventDefault();
     setError("");
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(process.env.REACT_APP_HOST+"/login", {
         //TEST USING POSTMAN
         method: "POST",
         headers: {

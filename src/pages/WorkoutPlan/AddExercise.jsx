@@ -15,7 +15,7 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
     useEffect(() => {
         const fetchExercisesList = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/exercisesList`);
+                const res = await axios.get(`${process.env.REACT_APP_HOST}/exercisesList`);
                 // console.log(res.data);
                 setExercisesList(res.data.surveyData);
             } catch (err) {
@@ -28,7 +28,7 @@ const AddExercise = ({edditedItems, workoutId, handleClick }) => {
     const handleNewExercise = async (selectedId) => {
         const data = { selectedId: selectedId || 1 };
         try {
-          const res = await axios.post(`http://localhost:3001/addNewExercise/${workoutId}`, data);
+          const res = await axios.post(`${process.env.REACT_APP_HOST}/addNewExercise/${workoutId}`, data);
           console.log("successsssss");
         //   window.location.reload();
           handleClick();

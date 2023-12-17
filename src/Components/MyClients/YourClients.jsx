@@ -14,7 +14,7 @@ const YourClients = ({userId}) => {
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/acceptedClients2/${coachId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/acceptedClients2/${coachId}`);
         console.log(res.data);
         setClientsList(res.data.surveyData);
       } catch (err) {

@@ -30,7 +30,7 @@ const ApprovalRequests = () => {
       useEffect(() => {
         const fetchAllRequests = async () => {
           try {
-            const res = await axios.get(`http://localhost:3001/getPendingCoaches`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/getPendingCoaches`);
             console.log(res.data);
             setPendingCoaches(res.data);
           } catch (err) {
@@ -41,7 +41,7 @@ const ApprovalRequests = () => {
         fetchAllRequests();
       }, []); */
       useEffect(() => {
-        fetch('http://localhost:3001/pendingCoaches') 
+        fetch(process.env.REACT_APP_HOST+'/pendingCoaches') 
           .then((response) => response.json())
           .then((data) => setPendingCoaches(data))
           .catch((error) => console.error('Fetch error:', error));
