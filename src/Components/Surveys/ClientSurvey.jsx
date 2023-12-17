@@ -81,8 +81,9 @@ function ClientSurvey({ onClose }) {
           >
             <option value="">Select schedule</option>
             <option value="0-2">0-2 hours/week</option>
-            <option value="3-4">3-4 hours/week</option>
-            <option value="5+">5+ hours/week</option>
+            <option value="3-5">3-5 hours/week</option>
+            <option value="6-8">6-8 hours/week</option>
+            <option value="9+">9+ hours/week</option>
           </select>
         </div>
 
