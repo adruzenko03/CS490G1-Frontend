@@ -2,14 +2,14 @@ import React from 'react'
 import './styles/ClientWorkouts.css'
 import ClWorkoutsPage from './WorkoutPlan/ClWorkoutsPage'
 
-const ClientWorkouts = () => {
+const ClientWorkouts = ({userId}) => {
   return (
     <>
         <div className="myClientWorkouts">
             <div className="clientsWorkout-txt">
                 
             </div>
-            <ClWorkoutsPage />
+            <ClWorkoutsPage userId={userId}/>
         </div>
     </>
   )

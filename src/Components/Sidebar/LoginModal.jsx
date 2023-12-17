@@ -21,6 +21,8 @@ function LoginModal({ isVisible, onClose, onLoginSuccess }) {
       });
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("userId", data.user.user_id);
+        localStorage.setItem("coachStatus", data.user.coach_status);
         onLoginSuccess(true, "", data.user);
         onClose();
       } else {

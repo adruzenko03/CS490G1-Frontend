@@ -9,6 +9,7 @@ body{
 
 .container{
     padding: 1.3vw;
+    max-width: 90vw;
 }
 
 .coaches{

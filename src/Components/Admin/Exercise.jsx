@@ -33,6 +33,7 @@ const Exercise = ({elements, onUpdateStatus}) => {
                 <button className='deactivate' onClick={() => handleUpdateStatus(elements.exercise_id, 'deactivate')}>Dectivate</button>
                 </h5>
               <h5>Equipment: {elements.equipment_list}</h5>
+              <h5>Muscle: {elements.muscle}</h5>
               <h5>Steps: {elements.steps}</h5>
           </div>
       </div>

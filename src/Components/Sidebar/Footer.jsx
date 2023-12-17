@@ -7,19 +7,24 @@ import progress from "../icons/progress.png";
 import mycoachIcon from "../icons/mycoach.png";
 import clientWorkout from "../icons/clientworkout.png";
 import clientsIcon from "../icons/clients.png";
+import chatIcon from "../icons/chat.png";
 import adminIcon from '../icons/admin.png'
+import settingsIcon from '../icons/settings.png'
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
-
+  const coachStatus = localStorage.getItem("coachStatus");
   const toggleLink = (linkId) => {
     setActiveLink(linkId === activeLink ? null : linkId);
   };
   // Conditionally render footer content based on userRole
   const renderFooterContent = () => {
-    if (userRole === "coach") {
+    if (userRole === "coach" && coachStatus === "accepted") {
       return (
         <>
+          {/* <Link to="/MyWorkout">My Workout</Link>
+          <Link to="/Activity">Activity</Link>
+          <Link to="/Progress">Progress</Link> */}
           <Link
             id="link4"
             to="/Clients"
@@ -96,6 +101,21 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             Progress
+          </Link>
+          <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
           </Link>
           <Link
             id="link6"
@@ -187,6 +207,9 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
     } else if (userRole === "client") {
       return (
         <>
+          {/* <Link to="/MyWorkout">My Workout</Link>
+          <Link to="/Activity">Activity</Link>
+          <Link to="/Progress">Progress</Link> <div>My Coach</div> */}
           <Link
             id="link5"
             to="/ClientWorkouts"
@@ -265,13 +288,28 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             Progress
           </Link>
           <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
+          </Link>
+           <Link
             id="link6"
             to="/Settings"
             className={activeLink === "link6" ? "active" : ""}
             onClick={() => toggleLink("link6")}
           >
             Settings
-          </Link>
+          </Link> 
         </>
       );
     } else {
