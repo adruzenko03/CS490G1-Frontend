@@ -10,6 +10,7 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
   const [showDiv1, setShowDiv1] = useState(false);
   const [showDiv2, setShowDiv2] = useState(false);
 
+  const coachId = localStorage.getItem("userId");
   const toggleModal = () =>{
     setModal(!modal);
   }
@@ -31,21 +32,29 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
 
   const acceptClientRequest = async () => {
     try {
-      const res = await axios.put(`http://localhost:3001/acceptClientRequest/${connectionId}`);
-      console.log("successsssss");
-      setShowDiv1(true);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.post(`http://localhost:3001/acceptClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'accepted');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
     }
   };
 
   const declineClientRequest = async () => {
     try {
-      const res = await axios.put(`http://localhost:3001/declineClientRequest/${connectionId}`);
-      console.log("successsssss");
-      setShowDiv2(true);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.post(`http://localhost:3001/declineClient`,{
+        clientId: items.user_id,
+        coachId: coachId
+      });
+      if(response.status === 200) {
+        onClientStatusChange(items.user_id, 'declined');
+      }
+    } catch (error) {
+      console.error('Error accepting client:', error);
     }
   };
   

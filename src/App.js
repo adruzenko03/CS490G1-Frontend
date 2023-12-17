@@ -13,6 +13,7 @@ import MyWorkout from "./pages/MyWorkout";
 import Clients from "./pages/Clients";
 import ClientWorkouts from "./pages/ClientWorkouts";
 import MyCoach from "./pages/MyCoach";
+import Settings from "./pages/Settings";
 import ChatMain from './pages/ChatMain';
 import Admin from './pages/Admin';
 
@@ -71,6 +72,7 @@ function App() {
             } 
           />
           <Route path="/Workouts" element={<Workouts />} />
+          <Route path="/Settings" element={<Settings />} />
           <Route
             path="/Activity"
             element={
@@ -98,6 +100,9 @@ function App() {
               />
             }
           />
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/MyCoach" element={<MyCoach />} />
+          <Route path="/ClientWorkouts" element={<ClientWorkouts />} />
           <Route 
             path="/ChatMain" 
             element={
