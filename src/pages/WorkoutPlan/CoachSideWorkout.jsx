@@ -2,7 +2,7 @@
 // Need to generate new id when creating new component
 
 import React, { useState, useEffect } from 'react'
-import './ClWorkoutsPage.css'
+import './CoachSideWorkout.css'
 import OneWorkout from './OneWorkout'
 import WorkoutModal from './WorkoutModal';
 import './WorkoutModal.css'
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 
-const ClWorkoutsPage = ({userId}) => {
+const CoachSideWorkout = ({userId, handleWorkout}) => {
 
   const clientId = userId;
   
@@ -76,22 +76,8 @@ const ClWorkoutsPage = ({userId}) => {
   return (
     <>
       <div className="allContents">
-        <h1 id='title'>{clientInfo && ("NAME: " + clientInfo.first_name + " " + clientInfo.last_name)}</h1>
-        <div className='clientInfoContainer'>
-            <div className="clientInfo" style={{color:"black"}}>
-              {clientInfo && 
-              <>
-                <h4>CLIENT NAME: <span>{clientInfo.first_name + " " + clientInfo.last_name}</span></h4>
-                <h4>GOAL: <span> {clientInfo.goal}</span> </h4>
-                <h4>FITNESS LEVEL: <span>{clientInfo.fitness_level}</span> </h4>
-                <h4>DIET: <span>{clientInfo.diet} calories/day</span> </h4>
-                <h4>WEEKLY Exercise Count: <span>{clientInfo.weekly_exercise}</span></h4>
-              </>
-              }
-            </div>
-        </div>
-
         <div className="workoutsContainer">
+        <button className='close-btn' onClick={handleWorkout}>X</button>
           <div className="allWorkouts">
             {workouts.map((workout)=>{
               return(
@@ -121,5 +107,5 @@ const ClWorkoutsPage = ({userId}) => {
   )
 }
 
-export default ClWorkoutsPage
+export default CoachSideWorkout
 

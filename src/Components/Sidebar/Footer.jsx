@@ -14,6 +14,8 @@ import settingsIcon from '../icons/settings.png'
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
   const coachStatus = localStorage.getItem("coachStatus");
+  console.log('userRole:', userRole);
+  console.log('coachStatus:', coachStatus);
   const toggleLink = (linkId) => {
     setActiveLink(linkId === activeLink ? null : linkId);
   };
@@ -56,7 +58,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             MyWorkout
           </Link>
-          <Link
+          {/* <Link
             id="link3"
             to="/MyCoach"
             className={activeLink === "link3" ? "active" : ""}
@@ -71,7 +73,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             MyCoach
-          </Link>
+          </Link> */}
           <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}

@@ -100,7 +100,13 @@ function App() {
               />
             }
           />
-          <Route path="/Clients" element={<Clients />} />
+          <Route path="/Clients" 
+            element={
+              <Clients 
+                onLoginSuccess={onLoginSuccess}
+                userId={user?.user_id}
+              />} 
+              />
           <Route 
             path="/MyCoach" 
             element=
