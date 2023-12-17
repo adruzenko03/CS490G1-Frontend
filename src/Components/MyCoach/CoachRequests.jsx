@@ -35,7 +35,7 @@ const Requests = ({userId}) => {
             {coachesList.map((coach)=>{
               return(
                   <Stack gap={3} key={coach.coach_id}>
-                      <div className='p-2'><CoachOneRequest items={coach}/></div>
+                      <div className='p-2'><CoachOneRequest items={coach} userId={userId}/></div>
                   </Stack>
               );  
             })}

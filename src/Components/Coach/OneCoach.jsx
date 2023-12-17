@@ -5,13 +5,18 @@ import Alert from 'react-bootstrap/Alert';
 import successLogo from '../icons/success.png'
 import successBlue from '../icons/success-blue.png'
 
-const OneCoach = ({items}) => {
+const OneCoach = ({userId, items}) => {
   const [modal, setModal] = useState(false);
   const [clientInfo, setClientInfo] = useState(null);
   const [showDiv, setShowDiv] = useState(false);
   // const [info, setInfo] = useState([]);
 
-  const clientId = 25;
+  // alert(userId);
+
+  // console.log('USER ID from ONE COACH: ', userId);
+
+  const clientId = userId;
+
 
   const toggleModal = () =>{
     setModal(!modal);
@@ -20,6 +25,9 @@ const OneCoach = ({items}) => {
   const toggleDiv = () => {
     setShowDiv(false);
   }
+
+
+  const [coachesList, setCoachesList] = useState([]);
 
   useEffect(() => {
     const fetchClientInfo = async () => {
@@ -33,24 +41,50 @@ const OneCoach = ({items}) => {
     };
   
     fetchClientInfo();
+
+
+    const fetchAcceptedCoach = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3001/acceptedCoach/${clientId}`);
+        // console.log(res.data);
+        setCoachesList(res.data.surveyData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+
+    fetchAcceptedCoach();
   }, [clientId]);
 
+  // console.log('asdfaadsfasfasfasfsadfasfd', userId);
+  
+
+  const [hasCurrentCoach, setHasCurrentCoach] = useState(false);
+  if(coachesList.length!==0){
+    setHasCurrentCoach(true);
+  }
 
   const handleClick = async () => {
-    try {
-      const response = await axios.post(`http://localhost:3001/requestCoach`, {clientId, items});
-      console.log('Response:', response.data);
-      toggleModal();
-      if (response.data.ok) {
-        // Do something if the response indicates success
-        setShowDiv(true);
-      } else {
-        // Do something else if the response indicates failure
+    if(userId){
+      if(!hasCurrentCoach){
+        try {
+          const response = await axios.post(`http://localhost:3001/requestCoach`, {clientId, items});
+          console.log('Response:', response.data);
+          toggleModal();
+          if (response.data.ok) {
+            setShowDiv(true);
+          } else {
+          }
+          // Perform actions based on the response
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }else{
+        alert('You already have a coach.')
       }
-      // Perform actions based on the response
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle errors if any
+    }else{
+      alert("You need to login first")
     }
   };
 

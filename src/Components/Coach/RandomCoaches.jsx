@@ -5,7 +5,7 @@ import FilterButton from './FilterButton';
 import './AllCoaches.css'
 import axios from 'axios';
 
-const RandomCoaches = ({vals}) => {
+const RandomCoaches = ({vals, userId}) => {
 
     console.log('okokokkookkokokko'  + {vals})
     const [coachesList, setCoachesList] = useState([]);
@@ -40,7 +40,7 @@ const RandomCoaches = ({vals}) => {
                      <h1>slakdfalskjfjaslkfjdslkjldskjlfksjda</h1>
                         return(
                             <Stack gap={3}>
-                                <div className='p-2'><OneCoach items={coach}/></div>
+                                <div className='p-2'><OneCoach userId={userId}  items={coach} /></div>
                             </Stack>
                         );
                     

@@ -35,7 +35,7 @@ const OneWorkout = ({elements, deleteWorkout}) => {
         })
     };
     fetchExerciseCount();
-  }, [exerciseCount]); 
+  }, [elements]); 
   
 
 

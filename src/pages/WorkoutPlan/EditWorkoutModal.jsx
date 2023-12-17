@@ -38,10 +38,11 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
           // setEditedItems(res.data.surveyData);
           // window.location.reload();
         //   setShowDiv1(true);
-        setClicked1(false);
+          // handleButtonClick();
         } catch (err) {
           console.log(err);
         }
+        setClicked1();
       };
 
 
@@ -62,12 +63,12 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
 
 
 
-    const [modal, setModal] = useState(true);
-    const toggleModal = ()=>{
-        setModal(!modal)   
-    }
+    // const [modal, setModal] = useState(true);
+    // const toggleModal = ()=>{
+    //     setModal(!modal)   
+    // }
     const handleButtonClick = ()=>{
-        toggleModal();
+        // toggleModal();
         setClicked1(false);
     }
 

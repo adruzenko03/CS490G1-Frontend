@@ -57,7 +57,8 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
             axios.post(`http://localhost:3001/sendNewWorkoutData`, workoutData)
             .then((response)=>{
                 if(response.data.ok){
-                    setClicked(false);
+                    // setClicked(false);
+                    
                 }else{
                     console.log("Error sending workout data.");
                 }
@@ -65,7 +66,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
             .catch((error)=>{
                 console.log("error fetching data");
             })
-         
+            setClicked(false);
       };
 
 
@@ -86,7 +87,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
 
     const handleButtonClick = ()=>{
         toggleModal();
-        setClicked(false);
+        // setClicked(false);
     }
 
 

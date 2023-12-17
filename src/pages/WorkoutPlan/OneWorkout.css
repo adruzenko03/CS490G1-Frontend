@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     text-decoration: underline;
-    margin-top: 0px;
+    margin-bottom: 3vh;
 }
 
 .oneWorkoutContainer{
@@ -35,9 +35,10 @@
 
 
 .myButton{
+    height: 4.5vh;
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 4vh;
 }
 
 .editButton{

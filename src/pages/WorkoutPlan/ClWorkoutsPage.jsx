@@ -55,6 +55,7 @@ const ClWorkoutsPage = ({userId}) => {
 
 
   const [clicked, setClicked]= useState(false);
+
   const toggleBtn = ()=>{
     setClicked(!clicked);
   }
