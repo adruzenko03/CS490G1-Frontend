@@ -38,22 +38,14 @@ const OneClient = ({items, userId}) => {
       //   ...newMessage,
       //   message: message
       // });
-        await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
+        await axios.post("http://localhost:3001/newMessage", newMessage);
         // setCurrentMessage('');
     }catch(err){
         console.log(err); 
     }
+    setShowChatBox(false);
   }
 
-  const removeClient = async () => {
-    try{
-      await axios.delete(`${process.env.REACT_APP_HOST}/removeClient/${items.user_id}/${coachId}`);
-      // onClientRemoved(items.user_id);
-      alert("Client has been successfully removed. Please reload Page");
-    } catch(error){
-      console.error('Error removing client:', error);
-    }
-  }
   const handleClick = ()=>{
     setShowChatBox(true);
   }
@@ -62,18 +54,9 @@ const OneClient = ({items, userId}) => {
     setModal(false);
   }
 
-  const toggleModal = async () => {
-    if (!modal) {
-      try {
-        const workoutLogResponse = await axios.get(`${process.env.REACT_APP_HOST}/clientWorkoutLog/${items.user_id}`);
-        const surveyResponse = await axios.get(`${process.env.REACT_APP_HOST}/clientDailySurvey/${items.user_id}`);
-        setWorkoutLog(workoutLogResponse.data);
-        setSurveyResults(surveyResponse.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
 
+
+  const toggleModal = () =>{
     setModal(!modal);
   }
 
@@ -87,7 +70,7 @@ const OneClient = ({items, userId}) => {
 
   const deleteClient = async () => {
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteClient/${connectionId}`);
+      const res = await axios.delete(`http://localhost:3001/deleteClient/${connectionId}`);
       if (res.data.ok) {
         setShowDiv1(true);
       } else {
@@ -103,6 +86,7 @@ const OneClient = ({items, userId}) => {
     
       <div className='yourClient' onClick={toggleModal}>
         <span id='name'>{items.first_name +  " " + items.last_name}</span>
+        <span>{items.goal}</span>
       </div>
 
       {modal && (
