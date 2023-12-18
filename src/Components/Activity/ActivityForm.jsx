@@ -10,8 +10,6 @@ export default function ActivityForm({ userId }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [activities, setActivities] = useState([]);
 
-  const currentDate = getNumberedDate();
-
   function getNumberedDate(date) {
     date = date || new Date();
     const year = date.getFullYear();
@@ -97,7 +95,7 @@ export default function ActivityForm({ userId }) {
         </div>
       ) : (
         <form className="activity-form">
-          <div className="title">{currentDate}</div>
+          <div className="title">{getNumberedDate()}</div>
           <label>
             Calorie Intake:
             <input
