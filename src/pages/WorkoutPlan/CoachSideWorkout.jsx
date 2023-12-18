@@ -77,7 +77,7 @@ const CoachSideWorkout = ({userId, handleWorkout}) => {
     <>
       <div className="allContents">
         <div className="workoutsContainer">
-        <button className='close-btn' onClick={handleWorkout}>X</button>
+        <button className='close-btn' onClick={handleWorkout}>CLOSE WORKOUTS TAB</button>
           <div className="allWorkouts">
             {workouts.map((workout)=>{
               return(

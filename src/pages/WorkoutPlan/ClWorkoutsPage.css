@@ -35,15 +35,18 @@
     margin-bottom: 2vh;
 }
 
-.allWorkouts{
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap; */
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /*Adjust column width */
-    gap: 20px; /* Adjust gap between elements */
+.allWorkouts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
     margin-top: 0vh;
+}
+
+/* For smaller screens, display as two columns */
+@media screen and (max-width: 1500px) {
+    .allWorkouts {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust width for smaller screens */
+    }
 }
 
 

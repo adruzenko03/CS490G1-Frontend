@@ -40,10 +40,8 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap; */
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /*Adjust column width */
-    gap: 20px; /* Adjust gap between elements */
-    margin-top: 0vh;
+    
+   
 }
 
 
@@ -75,15 +73,19 @@
 
 .close-btn{
     margin-left: 1.5vw;
+    color: white;
     margin-top: 0;
     margin-bottom: 1vh;
-    width: 2vw;
-    background-color: red;
+    width: fit-content;
+    background-color: rgb(182, 36, 36);
     border: none;
     border-radius: 10px;
     transition: 0.2s;
+    display: block;
+    margin: auto;
+    margin-bottom: 3vh;
 }
 
 .close-btn:hover{
-    transform: scale(1.09);
+    transform: scale(1.05);
 }

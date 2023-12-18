@@ -178,14 +178,14 @@ const CoachChat = ({userId}) => {
             <div className="allClients">
                 <span className='active-chats'>Active Chats</span>
                 {chats && chats.map((chat, index)=>{
-                    console.log(chat.coach_client_id + "-------" + chat.receiver_id); // Log values
+                    // console.log(chat.coach_client_id + "-------" + chat.receiver_id); 
                     return( 
                         <div 
                             key={chat.coach_client_id}
                             onClick={()=>{handleChatClick(chat.coach_client_id, ((chat.receiver_id === coachId) ? chat.sender_id : chat.receiver_id))}}
                             // className='one-client'
-                            className={`one-client ${selectedClientId === chat.coach_client_id ? 'selected' : ''}`} // Apply 'selected' class based on state
-
+                            className={`one-client ${selectedClientId === chat.coach_client_id ? '-selected' : ''}`} // Apply 'selected' class based on state
+                            // className={`${selectedClientId === chat.coach_client_id ? 'one-client-selected' : 'one-client'}`;
                         >
                             
                             <span>{sideName && sideName[index]}</span>
