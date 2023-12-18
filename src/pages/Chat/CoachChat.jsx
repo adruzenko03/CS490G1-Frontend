@@ -54,11 +54,11 @@ const CoachChat = ({userId}) => {
         try{
             await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
             setSelectedChatMessages([...selectedChatMessages, newMessage])
-            setCurrentMessage('');
             alert('here');
         }catch(err){
             console.log(err); 
         }
+        setCurrentMessage('');
     }
 
     /* RETRIEVE ALL MESSAGES FROM DATABASE */

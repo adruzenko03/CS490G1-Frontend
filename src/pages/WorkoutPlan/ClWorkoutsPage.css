@@ -43,7 +43,7 @@
 }
 
 /* For smaller screens, display as two columns */
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1600px) {
     .allWorkouts {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust width for smaller screens */
     }
