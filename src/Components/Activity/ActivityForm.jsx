@@ -8,42 +8,38 @@ export default function ActivityForm({ userId }) {
 
   const [formSaved, setFormSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const currentDate = getFormattedDate();
   const [activities, setActivities] = useState([]);
 
-  function getFormattedDate() {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date().toLocaleDateString(undefined, options);
-  }
+  const currentDate = getNumberedDate();
 
   function getNumberedDate(date) {
-    date = date || new Date(); // Use current date if no date is provided
+    date = date || new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 
-useEffect(() => {
-  axios
-    .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
-    .then((response) => {
-      if (response.data.ok) {
-        setActivities(response.data.activities);
-      } else {
-        console.error("Error retrieving activities");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}, [userId, activities]);
+  function getFormattedDate(date) {
+    date = date || new Date();
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  }
 
-  const shouldDisplayForm = activities.every((activity) => {
-    const activityDate = new Date(activity.entry_date);
-    const formattedActivityDate = getNumberedDate(activityDate);
-    return formattedActivityDate !== getNumberedDate();
-  });
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_HOST}/activities/${userId}`)
+      .then((response) => {
+        if (response.data.ok) {
+          setActivities(response.data.activities);
+        } else {
+          console.error("Error retrieving activities");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [userId, activities]);
 
   const handleSave = async () => {
     if (!isValidInput(calorieIntake) || !isValidInput(weight)) {
@@ -53,7 +49,7 @@ useEffect(() => {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_HOST+"/activitySurvey",
+        process.env.REACT_APP_HOST + "/activitySurvey",
         {
           userId,
           entryDate: getNumberedDate(),
@@ -70,7 +66,7 @@ useEffect(() => {
       setActivities([...activities, response.data]);
     } catch (error) {
       console.error("Error saving form data:", error);
-      setErrorMessage("Error saving form data.");
+      setErrorMessage("Check-in Completed for today already.");
     }
   };
 
