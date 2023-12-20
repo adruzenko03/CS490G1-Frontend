@@ -121,7 +121,7 @@ const CoachChat = ({userId}) => {
               const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;
               names.push(fullName);
             } else {
-              names.push("Unknown User");
+            //   names.push("Unknown User");
               console.log(res)
 
             }
