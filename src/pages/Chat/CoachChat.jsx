@@ -114,7 +114,6 @@ const CoachChat = ({userId}) => {
         try {
           const names = [];
           for (const chat of chatsRef.current) {
-            updateChatId(chat.coach_client_id);
             const res = await axios.get(`${process.env.REACT_APP_HOST}/users1/${chat.coach_client_id}/${coachId}`);
             console.log(res.data.surveyData)
             if (res.data.surveyData[0] ) {
@@ -140,6 +139,7 @@ const CoachChat = ({userId}) => {
     const handleChatClick = async (chatId, receiverId) => {
         setSelectedChatId(chatId);
         updateReceiverId(receiverId);
+        updateChatId(chatId)
         // setSelectedClientId(chatId);
         // alert("ChatID: ", chatId)
         try {
