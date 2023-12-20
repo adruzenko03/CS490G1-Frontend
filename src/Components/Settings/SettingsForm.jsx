@@ -3,8 +3,9 @@ import './SettingsForm.css'
 import Form from 'react-bootstrap/Form';
 
 export default function SettingsForm() {
+    console.log("HKJHJKH",localStorage.getItem("user"));
     const user = JSON.parse(localStorage.getItem("user"));
-    const userID = user.user_id || localStorage.getItem('userId');
+    const userID = localStorage.getItem('userId');
     const [surveyData, setSurveyData] = useState({});
     const [fitnessLevel, setFitnessLevel] = useState('');
     const [weeklyExercise, setWeeklyExercise] = useState('');
@@ -44,7 +45,7 @@ export default function SettingsForm() {
     
         try {
             const response = await fetch(`${process.env.REACT_APP_HOST}/updateSurvey/${userID}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -76,7 +77,7 @@ export default function SettingsForm() {
                         </div>
                         <div className="form-field">
                             <label>*Email: 
-                            <span><input type="text" value={user.email} readOnly/></span> 
+                            <span><input type="text" value={user[0].email} readOnly/></span> 
                             </label>
                         </div>
                         <div className="form-field">
@@ -116,7 +117,7 @@ export default function SettingsForm() {
                         </div>
                         <div className="form-field">
                             <label>*PASSWORD: 
-                            <span><input type="text" value={user.password} readOnly/></span> 
+                            <span><input type="text" value={user[0].password} readOnly/></span> 
                             </label>
                         </div>
                         <div className="form-field">
@@ -131,7 +132,8 @@ export default function SettingsForm() {
                             <label>Diet Level: </label>
                             <input 
                                 type="number" 
-                                aria-label="Diet level" 
+                                aria-label="Diet level"
+                                placeholder={surveyData.diet}
                                 value={dietLevel} 
                                 onChange={e => setDietLevel(e.target.value)}
                                 min="1"   // This ensures only positive numbers are allowed
@@ -141,11 +143,11 @@ export default function SettingsForm() {
                         <div className="form-field">
                             <label>Goal: </label>
                             <Form.Select aria-label="Goal:" value="{goal}" onChange={e => setGoal(e.target.value)}>
-                                <option>Goal</option>
-                                <option value="1">Gain Muscle</option>
-                                <option value="2">Lose Weight</option>
-                                <option value="3">Improve Endurance</option>
-                                <option value="4">Enhance Flexibility</option>
+                                <option>Goal {surveyData.goal_id}</option>
+                                <option value="1">1. Gain Muscle</option>
+                                <option value="2">2. Lose Weight</option>
+                                <option value="3">3. Improve Endurance</option>
+                                <option value="4">4. Enhance Flexibility</option>
 
                             </Form.Select>
                         </div>
