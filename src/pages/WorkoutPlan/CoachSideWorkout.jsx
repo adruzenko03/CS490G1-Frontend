@@ -20,7 +20,7 @@ const CoachSideWorkout = ({userId, handleWorkout}) => {
 
   useEffect(() => {
     const fetchClientWorkouts = ()=>{
-      axios.get(`http://localhost:3001/clientWorkouts/${clientId}`)
+      axios.get(`${process.env.REACT_APP_HOST}/clientWorkouts/${clientId}`)
         .then((response)=>{
           if(response.data.ok){
             setWorkouts(response.data.surveyData);
@@ -41,7 +41,7 @@ const CoachSideWorkout = ({userId, handleWorkout}) => {
   useEffect(() => {
     const fetchClientInfo = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/clientInfo/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_HOST}/clientInfo/${clientId}`);
         // console.log('aaaaaaaaaaaaaaaa: ' + res.data.surveyData);
         setClientInfo(res.data.surveyData[0]);
       } catch (err) {

@@ -115,7 +115,7 @@ const CoachChat = ({userId}) => {
           const names = [];
           for (const chat of chatsRef.current) {
             updateChatId(chat.coach_client_id);
-            const res = await axios.get(`http://localhost:3001/users1/${chat.coach_client_id}/${coachId}`);
+            const res = await axios.get(`${process.env.REACT_APP_HOST}/users1/${chat.coach_client_id}/${coachId}`);
             console.log(res.data.surveyData)
             if (res.data.surveyData[0] ) {
               const fullName = `${res.data.surveyData[0].first_name} ${res.data.surveyData[0].last_name}`;

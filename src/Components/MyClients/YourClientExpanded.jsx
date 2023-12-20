@@ -38,7 +38,7 @@ const OneClient = ({items, userId}) => {
       //   ...newMessage,
       //   message: message
       // });
-        await axios.post("http://localhost:3001/newMessage", newMessage);
+        await axios.post(process.env.REACT_APP_HOST+"/newMessage", newMessage);
         // setCurrentMessage('');
     }catch(err){
         console.log(err); 
@@ -70,7 +70,7 @@ const OneClient = ({items, userId}) => {
 
   const deleteClient = async () => {
     try {
-      const res = await axios.delete(`http://localhost:3001/deleteClient/${connectionId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_HOST}/deleteClient/${connectionId}`);
       if (res.data.ok) {
         setShowDiv1(true);
       } else {
