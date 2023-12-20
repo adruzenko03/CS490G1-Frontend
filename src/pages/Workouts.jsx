@@ -50,17 +50,11 @@ function Workouts() {
     const filtered = originalData.filter((workout) => {
       return (
         (appliedFilters.equipment === "" ||
-          workout.equipment_name === appliedFilters.equipment) &&
+          workout.equipment_names.toLowerCase() === appliedFilters.equipment) &&
         (appliedFilters.muscle === "" ||
-          workout.muscle
-            .toLowerCase()
-            .trim()
-
-            .includes(appliedFilters.muscle)) &&
+          workout.muscle.toLowerCase().trim().includes(appliedFilters.muscle)) &&
         (searchTerm === "" ||
-          workout.exercise_name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()))
+          workout.exercise_name.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     });
 
@@ -95,7 +89,7 @@ function Workouts() {
             onClick={() => openModal(workout)}
           >
             <p className="exercise-name">{workout.exercise_name}</p>
-            <p>Equipment: {workout.equipment_name}</p>
+            <p>Equipment: {workout.equipment_names}</p>
           </div>
         ))}
       </div>

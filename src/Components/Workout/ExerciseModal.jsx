@@ -23,7 +23,11 @@ const ExerciseModal = ({ isOpen, closeModal, selectedWorkout }) => {
         <div>
           <h2 className="workout-name">{selectedWorkout.exercise_name}</h2>
           <p>
-            <strong>Equipment:</strong> {selectedWorkout.equipment_name}
+            <strong>Equipment:</strong> {selectedWorkout.equipment_names}
+      
+          </p>
+          <p>
+            <strong>Muscle:</strong> {selectedWorkout.muscle}
           </p>
 
           {selectedWorkout.link && (
