@@ -9,11 +9,14 @@ import clientWorkout from "../icons/clientworkout.png";
 import clientsIcon from "../icons/clients.png";
 import chatIcon from "../icons/chat.png";
 import adminIcon from '../icons/admin.png'
-import settingsIcon from '../icons/settings.png'
+import settingsIcon from '../icons/settingsIcon.png'
+
 
 function Footer({ onLoginClick, onSignupClick, userRole }) {
   const [activeLink, setActiveLink] = useState(null);
   const coachStatus = localStorage.getItem("coachStatus");
+  console.log('userRole:', userRole);
+  console.log('coachStatus:', coachStatus);
   const toggleLink = (linkId) => {
     setActiveLink(linkId === activeLink ? null : linkId);
   };
@@ -56,22 +59,17 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             MyWorkout
           </Link>
-          <Link
-            id="link3"
-            to="/MyCoach"
-            className={activeLink === "link3" ? "active" : ""}
-            onClick={() => toggleLink("link3")}
-          >
-            <img
-              src={mycoachIcon}
+          <Link id='link3' to='/MyCoach' className={activeLink === 'link3' ? 'active' : ''} onClick={() => toggleLink('link3')}>
+            <img 
+              src={mycoachIcon} 
               style={{
-                width: "20px",
-                display: "inline-block",
-                marginRight: "12px",
-              }}
+                width:"20px", 
+                display:"inline-block", 
+                marginRight: "12px"
+              }} 
             />
             MyCoach
-          </Link>
+            </Link>
           <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}
@@ -182,15 +180,35 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             Progress
           </Link>
-          {/* <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
-          <img 
-                src={settingsIcon=} 
-                style={{ 
-                  width:"20px" ,marginRight: "10px"
-                  }}
+          <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
+          </Link>
+           <Link
+            id="link6"
+            to="/Settings"
+            className={activeLink === "link6" ? "active" : ""}
+            onClick={() => toggleLink("link6")}
+          >
+            <img src={settingsIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
             />
             Settings
-          </Link> */}
+          </Link> 
           <Link id='link7' to='/Admin' className={activeLink === 'link7' ? 'active' : ''} onClick={() => toggleLink('link7')} >
             <img 
               src={adminIcon} 
@@ -204,7 +222,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
           </Link>
           </>
         );
-    } else if (userRole === "client") {
+    } else if (userRole === "client" || (userRole === "coach" && coachStatus !== "accepted")) {
       return (
         <>
           {/* <Link to="/MyWorkout">My Workout</Link>
@@ -224,7 +242,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
                 marginRight: "12px",
               }}
             />
-            Client Workouts
+            My Workouts
           </Link>
           <Link
             id="link3"
@@ -242,7 +260,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             MyCoach
           </Link>
-          <Link
+          {/* <Link
             id="myWorkout"
             className={activeLink === "myWorkout" ? "active" : ""}
             onClick={() => toggleLink("myWorkout")}
@@ -256,7 +274,7 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
               }}
             />
             MyWorkout
-          </Link>
+          </Link> */}
           <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}
@@ -308,6 +326,12 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             className={activeLink === "link6" ? "active" : ""}
             onClick={() => toggleLink("link6")}
           >
+            <img src={settingsIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
             Settings
           </Link> 
         </>

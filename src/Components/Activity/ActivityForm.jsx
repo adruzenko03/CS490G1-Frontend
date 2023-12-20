@@ -18,6 +18,15 @@ export default function ActivityForm({ userId }) {
     return `${year}-${month}-${day}`;
   }
 
+  function getNextDate(date) {
+    date = date || new Date();
+    date.setDate(date.getDate() + 1);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   function getFormattedDate(date) {
     date = date || new Date();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -44,13 +53,17 @@ export default function ActivityForm({ userId }) {
       setErrorMessage("Please enter valid numbers.");
       return;
     }
+    if (mood === "") {
+      setErrorMessage("Please select a mood.");
+      return;
+    }
 
     try {
       const response = await axios.post(
         process.env.REACT_APP_HOST + "/activitySurvey",
         {
           userId,
-          entryDate: getNumberedDate(),
+          entryDate: getNextDate(),
           calorieIntake: parseFloat(calorieIntake),
           bodyWeight: parseFloat(weight),
           mood: parseFloat(mood),
@@ -95,7 +108,7 @@ export default function ActivityForm({ userId }) {
         </div>
       ) : (
         <form className="activity-form">
-          <div className="title">{getNumberedDate()}</div>
+          <div className="title">{getFormattedDate()}</div>
           <label>
             Calorie Intake:
             <input
@@ -125,6 +138,7 @@ export default function ActivityForm({ userId }) {
               value={mood}
               onChange={(e) => handleInputChange(e, setMood)}
             >
+              <option value="">Select Mood</option>
               {[...Array(10).keys()].map((num) => (
                 <option key={num + 1} value={num + 1}>
                   {num + 1}

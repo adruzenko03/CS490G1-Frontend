@@ -1,8 +1,13 @@
 #workoutTitle{
-    display: flex;
-    justify-content: center;
-    text-decoration: underline;
+    display: block;
+    margin: auto;
+    text-align: center;
+    /* text-decoration: underline; */
     margin-bottom: 3vh;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 15vw;
 }
 
 .oneWorkoutContainer{
