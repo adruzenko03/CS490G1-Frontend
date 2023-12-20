@@ -122,7 +122,7 @@ const CoachChat = ({userId}) => {
               names.push(fullName);
             } else {
               names.push("Unknown User");
-              console.log(chat.coach_client_id)
+              console.log(res)
 
             }
           }
