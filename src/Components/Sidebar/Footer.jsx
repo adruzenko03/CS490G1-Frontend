@@ -59,22 +59,17 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             MyWorkout
           </Link>
-          {/* <Link
-            id="link3"
-            to="/MyCoach"
-            className={activeLink === "link3" ? "active" : ""}
-            onClick={() => toggleLink("link3")}
-          >
-            <img
-              src={mycoachIcon}
+          <Link id='link3' to='/MyCoach' className={activeLink === 'link3' ? 'active' : ''} onClick={() => toggleLink('link3')}>
+            <img 
+              src={mycoachIcon} 
               style={{
-                width: "20px",
-                display: "inline-block",
-                marginRight: "12px",
-              }}
+                width:"20px", 
+                display:"inline-block", 
+                marginRight: "12px"
+              }} 
             />
             MyCoach
-          </Link> */}
+            </Link>
           <Link
             id="activity"
             className={activeLink === "activity" ? "active" : ""}
@@ -185,15 +180,35 @@ function Footer({ onLoginClick, onSignupClick, userRole }) {
             />
             Progress
           </Link>
-          {/* <Link id='link6' to='/Settings' className={activeLink === 'link6' ? 'active' : ''} onClick={() => toggleLink('link6')} >
-          <img 
-                src={settingsIcon=} 
-                style={{ 
-                  width:"20px" ,marginRight: "10px"
-                  }}
+          <Link
+            id="chat"
+            className={activeLink === "chat" ? "active" : ""}
+            onClick={() => toggleLink("chat")}
+            to="/ChatMain"
+          >
+            <img
+              src={chatIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            />
+            Chat
+          </Link>
+           <Link
+            id="link6"
+            to="/Settings"
+            className={activeLink === "link6" ? "active" : ""}
+            onClick={() => toggleLink("link6")}
+          >
+            <img src={settingsIcon}
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
             />
             Settings
-          </Link> */}
+          </Link> 
           <Link id='link7' to='/Admin' className={activeLink === 'link7' ? 'active' : ''} onClick={() => toggleLink('link7')} >
             <img 
               src={adminIcon} 
