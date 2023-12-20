@@ -46,20 +46,27 @@ function Workouts() {
     setModalIsOpen(false);
   };
 
-  const applyFilters = () => {
-    const filtered = originalData.filter((workout) => {
-      return (
-        (appliedFilters.equipment === "" ||
-          workout.equipment_names.toLowerCase() === appliedFilters.equipment) &&
-        (appliedFilters.muscle === "" ||
-          workout.muscle.toLowerCase().trim().includes(appliedFilters.muscle)) &&
-        (searchTerm === "" ||
-          workout.exercise_name.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    });
 
-    setFilteredData(filtered);
-  };
+const applyFilters = () => {
+  const filtered = originalData.filter((workout) => {
+    const selectedEquipment = appliedFilters.equipment.split(",");
+
+    return (
+      (selectedEquipment.length === 0 ||
+        selectedEquipment.some((equipment) =>
+          workout.equipment_names.includes(equipment.trim())
+        )) &&
+      (appliedFilters.muscle === "" ||
+        workout.muscle.toLowerCase().trim().includes(appliedFilters.muscle)) &&
+      (searchTerm === "" ||
+        workout.exercise_name.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
+
+  setFilteredData(filtered);
+};
+
+
 
 
   useEffect(() => {
