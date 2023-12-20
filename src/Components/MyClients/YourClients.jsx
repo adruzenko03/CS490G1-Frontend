@@ -15,7 +15,7 @@ const YourClients = ({userId}) => {
     const fetchAllRequests = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_HOST}/acceptedClients2/${coachId}`);
-        console.log(res.data);
+        // console.log(res.data);
         setClientsList(res.data.surveyData);
       } catch (err) {
         console.log(err);
@@ -23,6 +23,8 @@ const YourClients = ({userId}) => {
     };
     fetchAllRequests();
   }, [clientsList]); 
+
+  // alert(userId);
 
   return (
     <>

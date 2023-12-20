@@ -111,7 +111,7 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
                 <div className="allComponents">
 
                     <div className="headerDiv">
-                        <span className='header'>name: {items.workout_name}</span>
+                        <span className='header'>{items.workout_name}</span>
                     </div>
                     
                     <div className="workoutModal">
@@ -136,8 +136,6 @@ const EditWorkoutModal = ({setClicked1, items, deleteWorkout}) => {
                                 <option value="2">Lose Weight</option> 
                                 <option value="3">Improve Endurance</option> 
                                 <option value="4">Enhance Flexibility</option> 
-                                <option value="5">Bulk</option> 
-                                <option value="6">Core Strength</option> 
                             </select>
 
                             <select name="difficulty" value={editedItems.difficulty || ""} onChange={handleInputChange}> 

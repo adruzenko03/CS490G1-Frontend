@@ -3,10 +3,13 @@
 .form-container{
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 50vw;
     align-items: center;
+    justify-content: center;
     padding-left: 3vw;
     padding-top: 4vh;
+    border-radius: 20px;
+    
 }
 
 .upperHalf{
@@ -19,7 +22,7 @@
 .first-col{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-right: 3vw;
 }
 
@@ -34,7 +37,7 @@
 .second-col{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .second-col span{

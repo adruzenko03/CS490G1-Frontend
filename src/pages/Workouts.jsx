@@ -46,6 +46,7 @@ function Workouts() {
     setModalIsOpen(false);
   };
 
+
 const applyFilters = () => {
   const filtered = originalData.filter((workout) => {
     const selectedEquipment = appliedFilters.equipment.split(",");
@@ -64,6 +65,7 @@ const applyFilters = () => {
 
   setFilteredData(filtered);
 };
+
 
 
 

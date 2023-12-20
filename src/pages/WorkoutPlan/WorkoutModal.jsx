@@ -54,6 +54,7 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
     //   };
 
       const createNewWorkout = async () => {
+        if (workoutData.workout_name) {
             axios.post(`${process.env.REACT_APP_HOST}/sendNewWorkoutData`, workoutData)
             .then((response)=>{
                 if(response.data.ok){
@@ -67,6 +68,9 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
                 console.log("error fetching data");
             })
             setClicked(false);
+        } else {
+            alert("The workout needs to have a name.");
+        }
       };
 
 
@@ -126,8 +130,6 @@ const WorkoutModal = ({setClicked, addWorkout, clientId}) => {
                                  <option value="2">Lose Weight</option> 
                                  <option value="3">Improve Endurance</option> 
                                  <option value="4">Enhance Flexibility</option> 
-                                 <option value="5">Bulk</option> 
-                                 <option value="6">Core Strength</option> 
                              </select>
  
                              <select name="difficulty" value={workoutData.difficulty || ""} onChange={handleInputChange}> 

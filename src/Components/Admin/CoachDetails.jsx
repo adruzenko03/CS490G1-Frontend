@@ -53,4 +53,3 @@ const CoachDetails = ({items, onUpdateStatus}) => {
 
 export default CoachDetails
 
-
