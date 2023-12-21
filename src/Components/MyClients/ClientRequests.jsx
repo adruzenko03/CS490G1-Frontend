@@ -9,7 +9,7 @@ import axios from 'axios';
 const ClientRequests = ({userId}) => {
   const [clientsList, setClientsList] = useState([]);
 
-  const coachId = localStorage.getItem("userId");
+  const coachId = userId;
 
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const ClientRequests = ({userId}) => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_HOST}/clientRequestsFetch/${coachId}`);
         console.log(res.data);
-        setClientsList(res.data.Data);
+        setClientsList(res.data.surveyData);
       } catch (err) {
         console.log(err);
       }

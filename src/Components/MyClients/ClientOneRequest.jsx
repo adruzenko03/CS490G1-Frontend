@@ -32,9 +32,8 @@ const ClientOneRequest = ({items, onClientStatusChange}) => {
 
   const acceptClientRequest = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_HOST}/acceptClient`,{
-        clientId: items.user_id,
-        coachId: coachId
+      const response = await axios.put(`${process.env.REACT_APP_HOST}/acceptClientRequest`,{
+        connectionId: items.coach_client_id,
       });
       if(response.status === 200) {
         onClientStatusChange(items.user_id, 'accepted');
