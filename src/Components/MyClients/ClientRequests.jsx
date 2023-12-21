@@ -9,7 +9,7 @@ import axios from 'axios';
 const ClientRequests = ({userId}) => {
   const [clientsList, setClientsList] = useState([]);
 
-  const coachId = localStorage.getItem("userId");
+  const coachId = userId;
 
 
   useEffect(() => {
