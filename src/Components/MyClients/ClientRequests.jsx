@@ -5,7 +5,6 @@ import Stack from 'react-bootstrap/esm/Stack'
 import "./ClientRequests.css"
 import axios from 'axios';
 
-
 const ClientRequests = ({userId}) => {
   const [clientsList, setClientsList] = useState([]);
 
